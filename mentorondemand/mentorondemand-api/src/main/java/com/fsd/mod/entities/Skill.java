@@ -10,8 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -37,6 +35,7 @@ public class Skill {
 	private String skillName;
 	
 	@Column(name = "prerequisites", nullable = false)
+	private String prerequisites;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skills")
 //	@JoinTable(name = "mentor", joinColumns = { @JoinColumn(name = "mentor_id") }, inverseJoinColumns = {

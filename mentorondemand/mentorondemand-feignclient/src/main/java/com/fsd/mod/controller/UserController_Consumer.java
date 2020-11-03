@@ -3,7 +3,9 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,29 +22,39 @@ public class UserController_Consumer {
 	@Autowired
 	UserClientService userClientService;
 	
-	@RequestMapping("/consumer/users")
+	@RequestMapping("/feign/users/getUsers")
 	public List<User> getUsers() {
 		return userClientService.getUsers();
 	}
 	
-	@RequestMapping("/consumer/users/{id}")
+	@RequestMapping("/feign/users/{id}")
 	public User getUser(@PathVariable Long userId) {
 		return userClientService.getUser(userId);
 	}
 	
-	@PostMapping(value = "/consumer/users/signup")
-	public void addUser(@RequestBody User user) {
-		userClientService.addUser(user);		
+	@PostMapping(value = "/feign/users/signup")
+	public User addUser(@RequestBody User user) {
+		return userClientService.addUser(user);		
 	}
 	
-	@PutMapping(value = "/consumer/users/{id}")
-	public void updateUser(@RequestBody User user) {
-		userClientService.updateUser(user);
+	@PutMapping(value = "/feign/users/{id}")
+	public User updateUser(@RequestBody User user) {
+		return userClientService.updateUser(user);
 	}
 	
-	@DeleteMapping(value = "/consumer/users/{id}")
+	@DeleteMapping(value = "/feign/users/{id}")
 	public void deleteUser(@PathVariable Long userId) {
 		userClientService.deleteUser(userId);
 	}	
+	
+	@PostMapping(value = "/feign/users/login")
+	public ResponseEntity<User> loginUser(@RequestBody User user){
+		return userClientService.loginUser(user);
+	}
+	
+	@PatchMapping(value = "/feign/users/updatePassword")
+	public ResponseEntity<User> updatePassword(@RequestBody User user){
+		return userClientService.updatePassword(user);
+	}
 	
 }

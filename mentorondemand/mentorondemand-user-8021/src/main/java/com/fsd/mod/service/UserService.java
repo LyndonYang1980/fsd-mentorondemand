@@ -26,20 +26,24 @@ public class UserService {
 		return userRepo.findOne(userId);
 	}
 
-	public void addUser(User user) {
-		userRepo.save(user);
+	public User addUser(User user) {
+		return userRepo.save(user);
 	}
 
-	public void saveUser(User user) {
-		userRepo.save(user);
+	public User saveUser(User user) {
+		return userRepo.save(user);
 	}
 
-	public void updateUser(User user) {
-		userRepo.save(user);
+	public User updateUser(User user) {
+		return userRepo.save(user);
 	}
 
 	public void deleteUser(Long userId) {
 		userRepo.delete(userId);
+	}
+	
+	public User userLogin(String email, String password) {
+		return userRepo.findByEmailAndPassword(email, password);
 	}
 
 }

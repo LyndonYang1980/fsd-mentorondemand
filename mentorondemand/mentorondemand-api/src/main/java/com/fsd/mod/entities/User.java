@@ -1,6 +1,5 @@
 package com.fsd.mod.entities;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,26 +37,14 @@ public class User {
 
 	@Column(name = "password")
 	private String password;
-
-	@Column(name = "first_name")
-	private String firstName;
-
-	@Column(name = "last_name")
-	private String lastName;
+	
+	@Column(name = "email")
+	private String email;
 
 	@Column(name = "contact_number")
 	private Long contactNumber;
-
-	@Column(name = "reg_code")
-	private String regCode = "";
-
-	@Column(name = "confirmed_signup")
-	private Boolean confirmedSignUp = false;
-
-	@Column(name = "reset_password")
-	private Boolean resetPassword = false;
-
-	@Column(name = "reset_password_date")
-	private Date resetPasswordDate;
+	
+	@Column(name = "status", columnDefinition="tinyint(1) default 1")
+	private boolean status = false;
 
 }

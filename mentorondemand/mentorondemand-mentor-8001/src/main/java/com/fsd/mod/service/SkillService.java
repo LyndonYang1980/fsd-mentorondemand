@@ -1,5 +1,4 @@
 package com.fsd.mod.service;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +22,16 @@ public class SkillService {
 	 * @param skill
 	 * @param userId
 	 */
-	public void setSkills(Skill skill, Long mentorId) {
+	public Boolean setSkills(Skill skill, Long mentorId) {
 
 		Mentor mentor = mentorService.getMentor(mentorId);
 		
 		mentor.getSkills().add(skill);		
-		mentorService.saveMentor(mentor);
+		if (mentorService.saveMentor(mentor) != null) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	/**

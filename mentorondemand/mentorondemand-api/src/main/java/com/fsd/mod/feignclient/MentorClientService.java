@@ -3,6 +3,7 @@ package com.fsd.mod.feignclient;
 import java.util.List;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,38 +22,38 @@ public interface MentorClientService {
 
 	@RequestMapping("/mentors")
 	public List<Mentor> getMentors();
-	
+
 	@RequestMapping("/mentors/{id}")
 	public Mentor getMentor(@PathVariable Long mentorId);
-	
+
 	@RequestMapping(value = "/mentors", method = RequestMethod.POST)
 	public void addMentor(@RequestBody Mentor mentor);
-	
+
 	@RequestMapping(value = "/mentors", method = RequestMethod.PUT)
 	public void updateMentor(@RequestBody Mentor mentor);
-	
+
 	@GetMapping("/calendars")
 	public List<Calendar> getCalendars();
-	
+
 	@GetMapping("/calendars/{calendarId}")
 	public Calendar getCalendar(@PathVariable Long calendarId);
-	
+
 	@PostMapping(value = "/calendars", produces = "application/json")
 	public void addCalendar(@RequestBody Calendar calendar);
-	
+
 	@PutMapping(value = "/calendars")
 	public void updateCalendar(@RequestBody Calendar calendar);
-	
+
 	@DeleteMapping("/calendars/{id}")
 	public void deleteCalendar(@PathVariable Long calendarId);
-	
-	@RequestMapping("/skills")
+
+	@GetMapping("/skills/getSkills")
 	public List<Skill> getSkills();
-	
-	@RequestMapping("/skills/{id}")
+
+	@GetMapping("/skills/{mentorId}")
 	public Skill getSkills(@PathVariable Long skillId);
-	
-	@RequestMapping(value = "/skills/{mentorId}", method = RequestMethod.POST)
-	public void setSkills(@RequestBody Skill skill, @PathVariable Long mentorId);
-		
+
+	@PostMapping(value = "/skills/{mentorId}")
+	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId);
+
 }
