@@ -21,15 +21,24 @@ public class SkillController {
 	SkillService skillService;
 
 	@GetMapping("/skills/getSkills")
-	public List<Skill> getSkills() {
+	public ResponseEntity<List<Skill>> getSkills() {
 
-		return skillService.getSkills();
+		List<Skill> skills = skillService.getSkills();
+		if (skills != null) {
+			return new ResponseEntity<List<Skill>>(skills, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<List<Skill>>(skills, HttpStatus.NOT_FOUND); 
+		}		
 	}
 
 	@GetMapping("/skills/{mentorId}")
-	public Skill getSkills(@PathVariable Long skillId) {
-
-		return skillService.getSkill(skillId);
+	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId) {
+		Skill skill = skillService.getSkill(skillId); 
+		if (skill != null) {
+			return new ResponseEntity<Skill>(skill, HttpStatus.OK);			
+		}else {
+			return new ResponseEntity<Skill>(skill, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping(value = "/skills/{mentorId}")

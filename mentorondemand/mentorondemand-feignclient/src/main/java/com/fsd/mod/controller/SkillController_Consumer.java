@@ -21,13 +21,13 @@ public class SkillController_Consumer {
 	MentorClientService mentorClientService;
 
 	@RequestMapping("/feign/skills/getSkills")
-	public List<Skill> getSkills() {
+	public ResponseEntity<List<Skill>> getSkills() {
 		return mentorClientService.getSkills();
 	}
 
 	@GetMapping("/feign/skills/{id}")
-	public Skill getSkills(@PathVariable Long skillId) {
-		return mentorClientService.getSkills(skillId);
+	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId) {
+		return mentorClientService.getSkill(skillId);
 	}
 
 	@PostMapping(value = "/feign/skills/{mentorId}")

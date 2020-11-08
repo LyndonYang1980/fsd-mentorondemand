@@ -38,8 +38,14 @@ public class UserService {
 		return userRepo.save(user);
 	}
 
-	public void deleteUser(Long userId) {
-		userRepo.delete(userId);
+	public Boolean deleteUser(Long userId) {
+		try {
+			userRepo.delete(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public User userLogin(String email, String password) {

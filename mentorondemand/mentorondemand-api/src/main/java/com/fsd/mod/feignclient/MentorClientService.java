@@ -48,10 +48,10 @@ public interface MentorClientService {
 	public void deleteCalendar(@PathVariable Long calendarId);
 
 	@GetMapping("/skills/getSkills")
-	public List<Skill> getSkills();
+	public ResponseEntity<List<Skill>> getSkills();
 
 	@GetMapping("/skills/{mentorId}")
-	public Skill getSkills(@PathVariable Long skillId);
+	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId);
 
 	@PostMapping(value = "/skills/{mentorId}")
 	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId);

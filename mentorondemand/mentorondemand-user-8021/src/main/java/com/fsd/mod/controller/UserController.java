@@ -24,28 +24,53 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping("/users/getUsers")
-	public List<User> getUsers() {
-		return userService.getUsers();
+	public ResponseEntity<List<User>> getUsers() {
+		List<User> users = userService.getUsers();
+		if (users != null) {
+			return new ResponseEntity<List<User>>(users, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<List<User>>(users, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@RequestMapping("/users/{id}")
-	public User getUser(@PathVariable Long userId) {
-		return userService.getUser(userId);
+	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+		User user = userService.getUser(userId);
+		if (user != null) {
+			return new ResponseEntity<User>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping(value = "/users/addUser")
-	public void addUser(@RequestBody User user) {
-		userService.addUser(user);
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		User addedUser = userService.addUser(user);
+		if (addedUser != null) {
+			return new ResponseEntity<User>(addedUser, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<User>(addedUser, HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 
 	@PutMapping(value = "/users/{id}")
-	public void updateUser(@RequestBody User user) {
-		userService.updateUser(user);
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+		User updUser = userService.updateUser(user);
+		if (updUser != null) {
+			return new ResponseEntity<User>(updUser, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<User>(updUser, HttpStatus.NOT_MODIFIED);
+		}
 	}
 
 	@DeleteMapping(value = "/users/{id}")
-	public void deleteUser(@PathVariable Long userId) {
-		userService.deleteUser(userId);
+	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
+		Boolean delFlag = userService.deleteUser(userId);
+		if (delFlag) {
+			return new ResponseEntity<Boolean>(delFlag, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Boolean>(delFlag, HttpStatus.NOT_MODIFIED);
+		}
 	}
 
 	@PostMapping(value = "/users/login")
@@ -57,10 +82,10 @@ public class UserController {
 			return new ResponseEntity<User>(userData, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@PatchMapping(value = "/users/updatePassword")
-	public ResponseEntity<User> updatePassword(@RequestBody User user){
-		return new ResponseEntity<User>(userService.updateUser(user), HttpStatus.OK);
+	public ResponseEntity<User> updatePassword(@RequestBody User user) {
+		return this.updateUser(user);
 	}
 
 }

@@ -21,40 +21,40 @@ public class UserController_Consumer {
 
 	@Autowired
 	UserClientService userClientService;
-	
+
 	@RequestMapping("/feign/users/getUsers")
-	public List<User> getUsers() {
+	public ResponseEntity<List<User>> getUsers() {
 		return userClientService.getUsers();
 	}
-	
+
 	@RequestMapping("/feign/users/{id}")
-	public User getUser(@PathVariable Long userId) {
+	public ResponseEntity<User> getUser(@PathVariable Long userId) {
 		return userClientService.getUser(userId);
 	}
-	
+
 	@PostMapping(value = "/feign/users/signup")
-	public User addUser(@RequestBody User user) {
-		return userClientService.addUser(user);		
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		return userClientService.addUser(user);
 	}
-	
+
 	@PutMapping(value = "/feign/users/{id}")
-	public User updateUser(@RequestBody User user) {
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return userClientService.updateUser(user);
 	}
-	
+
 	@DeleteMapping(value = "/feign/users/{id}")
-	public void deleteUser(@PathVariable Long userId) {
+	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
 		userClientService.deleteUser(userId);
-	}	
-	
+	}
+
 	@PostMapping(value = "/feign/users/login")
-	public ResponseEntity<User> loginUser(@RequestBody User user){
+	public ResponseEntity<User> loginUser(@RequestBody User user) {
 		return userClientService.loginUser(user);
 	}
-	
+
 	@PatchMapping(value = "/feign/users/updatePassword")
-	public ResponseEntity<User> updatePassword(@RequestBody User user){
+	public ResponseEntity<User> updatePassword(@RequestBody User user) {
 		return userClientService.updatePassword(user);
 	}
-	
+
 }

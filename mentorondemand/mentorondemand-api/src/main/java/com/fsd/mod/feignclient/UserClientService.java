@@ -18,24 +18,24 @@ import com.fsd.mod.entities.User;
 public interface UserClientService {
 
 	@RequestMapping("/users/getUsers")
-	public List<User> getUsers();
-	
+	public ResponseEntity<List<User>> getUsers();
+
 	@RequestMapping("/users/{id}")
-	public User getUser(@PathVariable Long userId);
-	
-	@PostMapping(value = "/users/signup")
-	public User addUser(@RequestBody User user);
-	
+	public ResponseEntity<User> getUser(@PathVariable Long userId);
+
+	@PostMapping(value = "/users/addUser")
+	public ResponseEntity<User> addUser(@RequestBody User user);
+
 	@PutMapping(value = "/users/{id}")
-	public User updateUser(@RequestBody User user);
-	
+	public ResponseEntity<User> updateUser(@RequestBody User user);
+
 	@DeleteMapping(value = "/users/{id}")
-	public void deleteUser(@PathVariable Long userId);
-	
+	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId);
+
 	@PostMapping(value = "/users/login")
 	public ResponseEntity<User> loginUser(@RequestBody User user);
-	
+
 	@PatchMapping(value = "/users/updatePassword")
 	public ResponseEntity<User> updatePassword(@RequestBody User user);
-	
+
 }
