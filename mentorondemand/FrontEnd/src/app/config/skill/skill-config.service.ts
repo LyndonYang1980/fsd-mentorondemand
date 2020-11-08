@@ -7,12 +7,16 @@ export class SkillConfigService {
 
   private skillAPIUrl = "http://localhost:8001/feign/skills";
 
-  getSkillSetUrl(mentorId: string):string{
-    return (this.skillAPIUrl + "/" + mentorId);
+    getSkillSetUrl(mentorId: number):string{
+    return (this.skillAPIUrl + "/${mentorId}");
   }
 
-  getAllSkillsUrl():string{
+  getSkillsUrl():string{
     return (this.skillAPIUrl+"/getSkills");
+  }
+
+  getSkillUrl(mentorId: number): string {
+    return (this.skillAPIUrl + "/{mentorId}");
   }
 
   getMentorSkillsUrl(mentorId: string): string {

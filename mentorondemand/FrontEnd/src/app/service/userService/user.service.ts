@@ -27,7 +27,7 @@ export class UserService {
     private router: Router) { }
 
   //Adding a user
-  public createUser(userData: UserModule): Observable<UserModule>{
+  public addUser(userData: UserModule): Observable<UserModule>{
     return this.httpClient.post<UserModule>(this.userConfig.getUserRegistrationURL(), userData, httpOptions);
   }
 
@@ -35,7 +35,6 @@ export class UserService {
   public loginUser(user:UserModule):Observable<UserModule>{
     
     console.log("Logging the user")
-    return this.httpClient.post<UserModule>(this.userConfig.getUserLoginURL(),user,httpOptions);
-
+    return this.httpClient.post<UserModule>(this.userConfig.getUserLoginURL(), user, httpOptions);    
   }
 }
