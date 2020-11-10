@@ -3,6 +3,8 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,23 +23,43 @@ public class CalendarController {
 	CalendarService calendarService;
 
 	@GetMapping("/calendars")
-	public List<Calendar> getCalendars() {
-		return calendarService.getCalendars();
+	public ResponseEntity<List<Calendar>> getCalendars() {
+		List<Calendar> calendars = calendarService.getCalendars();
+		if (calendars.size() > 0) {
+			return new ResponseEntity<List<Calendar>>(calendars, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<List<Calendar>>(calendars, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@GetMapping("/calendars/{calendarId}")
-	public Calendar getCalendar(@PathVariable Long calendarId) {
-		return calendarService.getCalendar(calendarId);
+	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId) {
+		Calendar calendar = calendarService.getCalendar(calendarId);
+		if (calendar != null) {
+			return new ResponseEntity<Calendar>(calendar, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Calendar>(calendar, HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@PostMapping(value = "/calendars", produces = "application/json")
-	public void addCalendar(@RequestBody Calendar calendar) {
-		calendarService.addCalendar(calendar);
+	public ResponseEntity<Calendar> addCalendar(@RequestBody Calendar calendar) {
+		Calendar addedCalendar = calendarService.addCalendar(calendar);
+		if (addedCalendar != null) {
+			return new ResponseEntity<Calendar>(addedCalendar, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Calendar>(addedCalendar, HttpStatus.NOT_MODIFIED);
+		}
 	}
 
 	@PutMapping(value = "/calendars")
-	public void updateCalendar(@RequestBody Calendar calendar) {
-		calendarService.updateCalendar(calendar);
+	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar) {
+		Calendar updCalendar = calendarService.updateCalendar(calendar);
+		if (updCalendar != null) {
+			return new ResponseEntity<Calendar>(updCalendar, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<Calendar>(updCalendar, HttpStatus.NOT_MODIFIED);
+		}
 	}
 
 	@DeleteMapping("/calendars/{id}")

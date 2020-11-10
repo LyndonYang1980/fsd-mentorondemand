@@ -3,10 +3,12 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.Mentor;
@@ -18,24 +20,24 @@ public class MentorController_Consumer {
 	@Autowired
 	MentorClientService mentorClientService;
 
-	@RequestMapping("/consumer/mentors")
-	public List<Mentor> getMentors() {
+	@GetMapping("/feign/mentors")
+	public ResponseEntity<List<Mentor>> getMentors() {
 		return mentorClientService.getMentors();
 	}
 
-	@RequestMapping("/consumer/mentors/{id}")
-	public Mentor getMentor(@PathVariable Long mentorId) {
+	@GetMapping("/feign/mentors/{id}")
+	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
 		return mentorClientService.getMentor(mentorId);
 	}
 
-	@RequestMapping(value = "/consumer/mentors", method = RequestMethod.POST)
-	public void addMentor(@RequestBody Mentor mentor) {
-		mentorClientService.addMentor(mentor);
+	@PostMapping(value = "/feign/mentors")
+	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
+		return mentorClientService.addMentor(mentor);
 	}
 
-	@RequestMapping(value = "/consumer/mentors", method = RequestMethod.PUT)
-	public void updateMentor(@RequestBody Mentor mentor) {
-		mentorClientService.updateMentor(mentor);
+	@PutMapping(value = "/feign/mentors")
+	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
+		return mentorClientService.updateMentor(mentor);
 	}
 
 }

@@ -15,42 +15,42 @@ public class CalendarService {
 
 	@Autowired
 	CalendarRepo calendarRepo;
-	
+
 	@Autowired
 	MentorService mentorService;
-	
+
 	public void setCalendar(Calendar calendar, Long mentorId) {
-		
+
 		Mentor mentorUser = mentorService.getMentor(mentorId);
-		calendar.setMentorId(mentorId);		
+		calendar.setMentorId(mentorId);
 		calendarRepo.save(calendar);
 	}
-	
-	public List<Calendar> getCalendars(){
-		
+
+	public List<Calendar> getCalendars() {
+
 		List<Calendar> calendarList = new ArrayList<>();
 		calendarRepo.findAll().forEach(calendarList::add);
 		return calendarList;
 	}
-	
+
 	public Calendar getCalendar(Long calendarId) {
 		return calendarRepo.findOne(calendarId);
 	}
-	
-	public void addCalendar(Calendar calendar) {
-		calendarRepo.save(calendar);
+
+	public Calendar addCalendar(Calendar calendar) {
+		return calendarRepo.save(calendar);
 	}
-	
-	public void saveCalendar(Calendar calendar) {
-		calendarRepo.save(calendar);
+
+	public Calendar saveCalendar(Calendar calendar) {
+		return calendarRepo.save(calendar);
 	}
-	
-	public void updateCalendar(Calendar calendar) {
-		calendarRepo.save(calendar);
+
+	public Calendar updateCalendar(Calendar calendar) {
+		return calendarRepo.save(calendar);
 	}
-	
+
 	public void deleteCalendar(Long calendarId) {
 		calendarRepo.delete(calendarId);
 	}
-	
+
 }

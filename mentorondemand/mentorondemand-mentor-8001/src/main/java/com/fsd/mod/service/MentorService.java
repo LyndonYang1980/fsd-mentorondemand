@@ -35,8 +35,8 @@ public class MentorService {
 		return mentorRepo.save(mentor);
 	}
 
-	public void updateMentor(Mentor mentor) {
-		mentorRepo.save(mentor);
+	public Mentor updateMentor(Mentor mentor) {
+		return mentorRepo.save(mentor);
 	}
 
 	public void deleteMentor(Long id) {

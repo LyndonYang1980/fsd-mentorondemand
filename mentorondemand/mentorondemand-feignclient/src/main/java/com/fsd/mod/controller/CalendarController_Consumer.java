@@ -3,6 +3,7 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,27 +21,27 @@ public class CalendarController_Consumer {
 	@Autowired
 	MentorClientService mentorClientService;
 
-	@GetMapping("/consumer/calendars")
-	public List<Calendar> getCalendars() {
+	@GetMapping("/feign/calendars")
+	public ResponseEntity<List<Calendar>> getCalendars() {
 		return mentorClientService.getCalendars();
 	}
 
-	@GetMapping("/consumer/calendars/{calendarId}")
-	public Calendar getCalendar(@PathVariable Long calendarId) {
+	@GetMapping("/feign/calendars/{calendarId}")
+	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId) {
 		return mentorClientService.getCalendar(calendarId);
 	}
 
-	@PostMapping(value = "/consumer/calendars", produces = "application/json")
-	public void addCalendar(@RequestBody Calendar calendar) {
-		mentorClientService.addCalendar(calendar);
+	@PostMapping(value = "/feign/calendars", produces = "application/json")
+	public ResponseEntity<Calendar> addCalendar(@RequestBody Calendar calendar) {
+		return mentorClientService.addCalendar(calendar);
 	}
 
-	@PutMapping(value = "/consumer/calendars/{id}")
-	public void updateCalendar(@RequestBody Calendar calendar) {
-		mentorClientService.updateCalendar(calendar);
+	@PutMapping(value = "/feign/calendars/{id}")
+	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar) {
+		return mentorClientService.updateCalendar(calendar);
 	}
 
-	@DeleteMapping("/consumer/calendars/{id}")
+	@DeleteMapping("/feign/calendars/{id}")
 	public void deleteCalendar(@PathVariable Long calendarId) {
 		mentorClientService.deleteCalendar(calendarId);
 	}

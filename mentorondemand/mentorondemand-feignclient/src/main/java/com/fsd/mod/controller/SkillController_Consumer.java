@@ -20,7 +20,7 @@ public class SkillController_Consumer {
 	@Autowired
 	MentorClientService mentorClientService;
 
-	@RequestMapping("/feign/skills/getSkills")
+	@GetMapping("/feign/skills/getSkills")
 	public ResponseEntity<List<Skill>> getSkills() {
 		return mentorClientService.getSkills();
 	}

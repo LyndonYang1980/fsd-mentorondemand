@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.User;
@@ -22,17 +22,17 @@ public class UserController_Consumer {
 	@Autowired
 	UserClientService userClientService;
 
-	@RequestMapping("/feign/users/getUsers")
+	@GetMapping("/feign/users/getUsers")
 	public ResponseEntity<List<User>> getUsers() {
 		return userClientService.getUsers();
 	}
 
-	@RequestMapping("/feign/users/{id}")
+	@GetMapping("/feign/users/{id}")
 	public ResponseEntity<User> getUser(@PathVariable Long userId) {
 		return userClientService.getUser(userId);
 	}
 
-	@PostMapping(value = "/feign/users/signup")
+	@PostMapping(value = "/feign/users/addUser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		return userClientService.addUser(user);
 	}
@@ -44,7 +44,7 @@ public class UserController_Consumer {
 
 	@DeleteMapping(value = "/feign/users/{id}")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
-		userClientService.deleteUser(userId);
+		return userClientService.deleteUser(userId);
 	}
 
 	@PostMapping(value = "/feign/users/login")
@@ -52,7 +52,7 @@ public class UserController_Consumer {
 		return userClientService.loginUser(user);
 	}
 
-	@PatchMapping(value = "/feign/users/updatePassword")
+	@PutMapping(value = "/feign/users/updatePassword")
 	public ResponseEntity<User> updatePassword(@RequestBody User user) {
 		return userClientService.updatePassword(user);
 	}
