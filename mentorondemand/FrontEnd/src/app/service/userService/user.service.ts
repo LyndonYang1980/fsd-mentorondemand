@@ -19,6 +19,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
+
 export class UserService {
 
   constructor(
@@ -26,9 +27,17 @@ export class UserService {
     private userConfig: UserConfigService, 
     private router: Router) { }
 
+  public getUsers(): Observable<UserModule[]>{
+    return this.httpClient.get<UserModule[]>(this.userConfig.getUsersUrl(), httpOptions);
+  }
+
+  public getUser(userId: number){
+    return this.httpClient.get<UserModule[]>(this.userConfig.getUserUrl(userId), httpOptions);
+  }
+
   //Adding a user
   public addUser(userData: UserModule): Observable<UserModule>{
-    return this.httpClient.post<UserModule>(this.userConfig.getUserRegistrationURL(), userData, httpOptions);
+    return this.httpClient.post<UserModule>(this.userConfig.getUserAddedURL(), userData, httpOptions);
   }
 
   //Login of user
@@ -37,4 +46,6 @@ export class UserService {
     console.log("Logging the user")
     return this.httpClient.post<UserModule>(this.userConfig.getUserLoginURL(), user, httpOptions);    
   }
+
+  
 }

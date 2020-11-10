@@ -5,10 +5,20 @@ import { Injectable } from '@angular/core';
 })
 export class UserConfigService {
 
-  private userAPIUrl = "http://localhost:8021/feign/users";
+  private userAPIUrl = "http://localhost/feign/users";
   
+  constructor() { }
+  
+  getUsersUrl(): string{
+    return (this.userAPIUrl + "/getUsers");
+  }
+
+  getUserUrl(id: number): string{
+    return (this.userAPIUrl + "/{id}");
+  }
+
   // URL for adding a user
-  getUserRegistrationURL():string{
+  getUserAddedURL():string{
     return (this.userAPIUrl + "/addUser");
   }
 
@@ -16,6 +26,4 @@ export class UserConfigService {
   getUserLoginURL():string{
     return (this.userAPIUrl + "/login");
   }
-
-  constructor() { }
 }

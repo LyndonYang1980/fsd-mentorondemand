@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class SkillConfigService {
 
-  private skillAPIUrl = "http://localhost:8001/feign/skills";
+  private skillAPIUrl = "http://localhost/feign/skills";
 
-    getSkillSetUrl(mentorId: number):string{
+  getSkillSetUrl(mentorId: number):string{
     return (this.skillAPIUrl + "/${mentorId}");
   }
 
