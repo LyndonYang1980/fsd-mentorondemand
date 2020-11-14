@@ -51,5 +51,12 @@ public class UserService {
 	public User userLogin(String email, String password) {
 		return userRepo.findByEmailAndPassword(email, password);
 	}
+	
+	public boolean isUserExisted(String email) {
+		if(userRepo.findByEmail(email)!=null)
+			return true;
+		else
+			return false;
+	}
 
 }

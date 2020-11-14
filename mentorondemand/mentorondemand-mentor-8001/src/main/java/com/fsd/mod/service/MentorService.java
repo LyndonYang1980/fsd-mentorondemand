@@ -43,4 +43,8 @@ public class MentorService {
 		mentorRepo.delete(id);
 	}
 
+	public Mentor mentorLogin(String email, String password) {
+		return mentorRepo.FindByEmailAndPassword(email, password);
+	}
+
 }

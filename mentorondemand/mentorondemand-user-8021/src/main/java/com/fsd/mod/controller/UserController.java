@@ -34,6 +34,7 @@ public class UserController {
 
 	@RequestMapping("/users/{id}")
 	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+
 		User user = userService.getUser(userId);
 		if (user != null) {
 			return new ResponseEntity<User>(user, HttpStatus.OK);
@@ -44,11 +45,14 @@ public class UserController {
 
 	@PostMapping(value = "/users/addUser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		User addedUser = userService.addUser(user);
-		if (addedUser != null) {
-			return new ResponseEntity<User>(addedUser, HttpStatus.OK);
+
+		boolean existFlag = userService.isUserExisted(user.getEmail());
+		if (existFlag) {
+			System.out.println("User already exist");
+			return new ResponseEntity<User>(user, HttpStatus.CONFLICT);
 		} else {
-			return new ResponseEntity<User>(addedUser, HttpStatus.NOT_ACCEPTABLE);
+			User addedUser = userService.addUser(user);
+			return new ResponseEntity<User>(addedUser, HttpStatus.ACCEPTED);
 		}
 	}
 

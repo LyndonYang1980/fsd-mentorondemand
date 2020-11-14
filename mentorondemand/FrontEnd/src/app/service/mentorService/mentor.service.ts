@@ -24,23 +24,27 @@ const httpOptions = {
 export class MentorService {
 
   constructor(
-    private httpClient: HttpClient, 
-    private mentorConfig: MentorConfigService, 
+    private httpClient: HttpClient,
+    private mentorConfig: MentorConfigService,
     private router: Router) { }
 
-  public getMentors(): Observable<MentorModule[]>{
+  public getMentors(): Observable<MentorModule[]> {
     return this.httpClient.get<MentorModule[]>(this.mentorConfig.getMentorsUrl(), httpOptions);
   }
 
-  public getMentor(mentorId: number): Observable<MentorModule>{
+  public getMentor(mentorId: number): Observable<MentorModule> {
     return this.httpClient.get<MentorModule>(this.mentorConfig.getMentorUrl(mentorId), httpOptions);
   }
 
-  public addMentor(mentorData: MentorModule): Observable<MentorModule>{
+  public addMentor(mentorData: MentorModule): Observable<MentorModule> {
     return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorAddedUrl(), httpOptions);
   }
 
-  public updateMentor(mentorData:MentorModule): Observable<MentorModule>{
-    return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorUpdatedUrl(), httpOptions);
+  public updateMentor(mentorData: MentorModule): Observable<MentorModule> {
+    return this.httpClient.put<MentorModule>(this.mentorConfig.getMentorUpdUrl(), httpOptions);
+  }
+
+  public mentorLogin(mentorData: MentorModule): Observable<MentorModule> {
+    return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorLoginUrl(), httpOptions);
   }
 }

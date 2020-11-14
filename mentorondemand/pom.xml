@@ -94,5 +94,6 @@
 		<module>mentorondemand-training-8011</module>
 		<module>mentorondemand-eureka-7001</module>
 		<module>mentorondemand-feignclient</module>
+		<module>mentorondemand-proposal-8041</module>
 	</modules>
 </project>

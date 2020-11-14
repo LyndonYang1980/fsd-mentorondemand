@@ -33,19 +33,19 @@ public class MentorController {
 
 	@GetMapping("/mentors/{id}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
-		Mentor mentor = mentorService.getMentor(mentorId);
-		if (mentor != null) {
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.OK);
+		Mentor mentorData = mentorService.getMentor(mentorId);
+		if (mentorData != null) {
+			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Mentor>(mentorData, HttpStatus.NOT_FOUND);
 		}
 	}
 
 	@PostMapping(value = "/mentors")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
-		Mentor addedMentor = mentorService.saveMentor(mentor);
-		if (addedMentor != null) {
-			return new ResponseEntity<Mentor>(addedMentor, HttpStatus.OK);
+		Mentor mentorData = mentorService.saveMentor(mentor);
+		if (mentorData != null) {
+			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_MODIFIED);
 		}
@@ -53,11 +53,21 @@ public class MentorController {
 
 	@PutMapping(value = "/mentors")
 	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
-		Mentor updMentor = mentorService.updateMentor(mentor);
-		if (updMentor != null) {
-			return new ResponseEntity<Mentor>(updMentor, HttpStatus.OK);
+		Mentor mentorData = mentorService.updateMentor(mentor);
+		if (mentorData != null) {
+			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_MODIFIED);
+		}
+	}
+
+	@PostMapping("/mentors/login")
+	public ResponseEntity<Mentor> mentorLogin(@RequestBody Mentor mentor) {
+		Mentor mentorData = mentorService.mentorLogin(mentor.getEmail(), mentor.getPassword());
+		if (mentorData != null) {
+			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_FOUND);
 		}
 	}
 

@@ -21,7 +21,11 @@ export class MentorConfigService {
     return (this.mentorAPIUrl);
   }
 
-  getMentorUpdatedUrl(){
+  getMentorUpdUrl(){
     return (this.mentorAPIUrl);
+  }
+
+  getMentorLoginUrl(){
+    return (this.mentorAPIUrl + "/login");
   }
 }
