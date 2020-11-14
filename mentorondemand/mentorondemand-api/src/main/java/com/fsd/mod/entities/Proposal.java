@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)
-public class UserMentor {
+public class Proposal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -49,7 +49,7 @@ public class UserMentor {
 	@Column(name = "feedback")
 	private String feedback;
 
-	public UserMentor(Long id, Long userId, Long mentorId, Long skillId, boolean userProposal, boolean mentorProposal,
+	public Proposal(Long id, Long userId, Long mentorId, Long skillId, boolean userProposal, boolean mentorProposal,
 			boolean userReconfirmProposal, double userRating, int userProgress, String feedback) {
 		
 		super();
@@ -67,7 +67,7 @@ public class UserMentor {
 
 	@Override
 	public String toString() {
-		return "UserMentor [Id=" + Id + ", userId=" + userId + ", mentorId=" + mentorId + ", skillId=" + skillId
+		return "Proposal [Id=" + Id + ", userId=" + userId + ", mentorId=" + mentorId + ", skillId=" + skillId
 				+ ", userProposal=" + userProposal + ", mentorProposal=" + mentorProposal + ", userReconfirmProposal="
 				+ userReconfirmProposal + ", userRating=" + userRating + ", userProgress=" + userProgress
 				+ ", feedback=" + feedback + "]";
