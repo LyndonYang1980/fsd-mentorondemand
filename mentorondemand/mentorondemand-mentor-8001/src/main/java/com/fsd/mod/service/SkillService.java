@@ -1,4 +1,5 @@
 package com.fsd.mod.service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +21,24 @@ public class SkillService {
 
 	/**
 	 * @param skill
+	 * @return
+	 */
+	public Skill addSkill(Skill skill) {
+		return skillRepo.save(skill);
+	}
+
+	/**
+	 * @param skill
 	 * @param userId
 	 */
 	public Boolean setSkills(Skill skill, Long mentorId) {
 
 		Mentor mentor = mentorService.getMentor(mentorId);
-		
-		mentor.getSkills().add(skill);		
+
+		mentor.getSkills().add(skill);
 		if (mentorService.saveMentor(mentor) != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -50,5 +59,16 @@ public class SkillService {
 	public Skill getSkill(Long skillId) {
 
 		return skillRepo.findOne(skillId);
+	}
+
+	/**
+	 * @param mentorId
+	 * @return
+	 */
+	public List<Skill> getMentorSkills(Long mentorId) {
+		Mentor mentor = mentorService.getMentor(mentorId);
+		List<Skill> skillList = new ArrayList<>();
+		skillList.addAll(mentor.getSkills());
+		return skillList;
 	}
 }

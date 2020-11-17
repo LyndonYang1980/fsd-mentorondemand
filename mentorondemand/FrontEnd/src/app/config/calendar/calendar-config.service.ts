@@ -14,7 +14,7 @@ export class CalendarConfigService {
   }
 
   getCalendarUrl(calendarId: number){
-    return (this.calendarAPIUrl + "/{calendarId}");
+    return (this.calendarAPIUrl + "/${calendarId}");
   }
 
   getCalendarAddedUrl(){
@@ -26,6 +26,6 @@ export class CalendarConfigService {
   }
 
   getCalendarDelUrl(calendarId: number){
-    return (this.calendarAPIUrl + "{calendarId}");
+    return (this.calendarAPIUrl + "${calendarId}");
   }
 }

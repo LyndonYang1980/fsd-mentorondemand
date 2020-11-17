@@ -14,19 +14,27 @@ import { HomeComponent } from './component/home/home.component';
 import { MentorDetailComponent } from './component/mentor-search/mentor-detail/mentor-detail.component';
 import { MentorListComponent } from './component/mentor-search/mentor-list/mentor-list.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
+import { MentorItemComponent } from './component/mentor-search/mentor-item/mentor-item.component';
+import { MentorSearchComponent } from './component/mentor-search/mentor-search.component';
+import { MentorSignupComponent } from './component/mentor-signup/mentor-signup.component';
+import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
+import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
+import { MentorConnectionComponent } from './component/user-dashboard/mentor-connection/mentor-connection.component';
+import { ExistingSkillComponent } from './component/mentor-dashboard/mentor-skill/existing-skill/existing-skill.component';
+import { NewSkillComponent } from './component/mentor-dashboard/mentor-skill/new-skill/new-skill.component';
+import { MentorSkillComponent } from './component/mentor-dashboard/mentor-skill/mentor-skill.component';
 
 const routes: Routes = [
   { path : '' , component : HomeComponent},
-  // { path : 'mentor' , component : MentorSearchComponent},
+  { path : 'mentor' , component : MentorSearchComponent},
   { path : 'login' , component : LoginComponent},
   { path : 'mentorLogin' , component : MentorLoginComponent},
-  // { path : 'about' , component : AboutComponent},
   { path : 'userSignUp' , component : SignUpComponent},
-  // { path : 'mentorSignUp' , component : MentorSignUpComponent},
-  // { path : 'userpage' , component : UserDashboardComponent},
-  // { path : 'mentorpage' , component :MentorDashboardComponent},
-  // { path : 'skills' , component : MentorSkillComponent},
-  // { path : 'students' , component : UserProposalComponent},
+  { path : 'mentorSignUp' , component : MentorSignupComponent},
+  { path : 'userpage' , component : UserDashboardComponent},
+  { path : 'mentorpage' , component :MentorDashboardComponent},
+  { path : 'skills' , component : MentorSkillComponent},
+  { path : 'students' , component : UserProposalComponent},
   // { path : 'payments' , component : PaymentComponent},
   // { path : 'connections' , component : MentorConnectionComponent}
 
@@ -42,7 +50,16 @@ const routes: Routes = [
     HomeComponent,
     MentorDetailComponent,
     MentorListComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    MentorItemComponent,
+    MentorSearchComponent,
+    MentorSignupComponent,
+    MentorDashboardComponent,
+    UserDashboardComponent,
+    MentorConnectionComponent,
+    ExistingSkillComponent,
+    NewSkillComponent,
+    MentorSkillComponent
   ],
   imports: [
     BrowserModule,

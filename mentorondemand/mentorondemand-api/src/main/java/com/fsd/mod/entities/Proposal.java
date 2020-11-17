@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 @Entity
-@Table(name = "usermentor")
+@Table(name = "proposal")
 @NoArgsConstructor
 @Data
 @Accessors(chain = true)

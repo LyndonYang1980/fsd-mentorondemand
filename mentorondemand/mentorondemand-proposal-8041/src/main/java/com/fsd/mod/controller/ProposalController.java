@@ -22,7 +22,7 @@ public class ProposalController {
 	@Autowired
 	private ProposalService proposalService;
 
-	@PostMapping("/usermentor/addProposal")
+	@PostMapping("/proposal/addProposal")
 	public ResponseEntity<Proposal> addProposal(@RequestBody Proposal userMentorData) {
 		Proposal proposal = proposalService.saveProposal(userMentorData);
 		if (proposal != null)
@@ -31,7 +31,7 @@ public class ProposalController {
 			return new ResponseEntity<Proposal>(proposal, HttpStatus.CONFLICT);
 	}
 
-	@GetMapping("/usermentor/getUserProposal/{userId}")
+	@GetMapping("/proposal/getUserProposal/{userId}")
 	public ResponseEntity<List<Proposal>> getUserProposal(@PathVariable("userId") Long userId) {
 		List<Proposal> userProposal = proposalService.getUserProposal(userId);
 		if (userProposal != null)

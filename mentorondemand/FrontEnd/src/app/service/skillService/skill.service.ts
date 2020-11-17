@@ -24,24 +24,33 @@ const httpOptions = {
 })
 export class SkillService {
 
-  private mentor: mentorModule;
+  private loggedMentor: mentorModule;
   
   constructor(
     private httpClient: HttpClient, 
     private skillConfig: SkillConfigService, private router: Router) { 
     
-      this.mentor = JSON.parse(localStorage.getItem('mentor'));
+      this.loggedMentor = JSON.parse(localStorage.getItem('mentor'));
     }
   
   setSkills(skill: SkillModule, mentorId: number): Observable<SkillModule>{
     return this.httpClient.post<SkillModule>(this.skillConfig.getSkillSetUrl(mentorId), skill, httpOptions);
   }
 
+  addSkill(skill: SkillModule):Observable<SkillModule>{
+    return this.httpClient.post<SkillModule>(this.skillConfig.addSkillUrl(), skill, httpOptions);
+  }
+
   getSkills(): Observable<SkillModule[]>{
     return this.httpClient.get<SkillModule[]>(this.skillConfig.getSkillsUrl(), httpOptions);
   }
 
-  getSkill(mentorId: number): Observable<SkillModule>{
-    return this.httpClient.get<SkillModule>(this.skillConfig.getSkillUrl(mentorId), httpOptions);
+  getSkill(skillId: number): Observable<SkillModule>{
+    return this.httpClient.get<SkillModule>(this.skillConfig.getSkillUrl(skillId), httpOptions);
+  }
+
+  getMentorSkills(): Observable<SkillModule>{
+    var mentorId = this.loggedMentor.mentorId;
+    return this.httpClient.get<SkillModule>(this.skillConfig.getMentorSkillsUrl(mentorId), httpOptions);
   }
 }

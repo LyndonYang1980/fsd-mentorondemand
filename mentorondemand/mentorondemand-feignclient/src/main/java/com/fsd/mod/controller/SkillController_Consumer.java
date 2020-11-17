@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.Skill;
@@ -30,9 +29,19 @@ public class SkillController_Consumer {
 		return mentorClientService.getSkill(skillId);
 	}
 
+	@PostMapping("/feign/skills/addSkill")
+	public ResponseEntity<Skill> addSkill(@RequestBody Skill skill) {
+		return mentorClientService.addSkill(skill);
+	}
+
 	@PostMapping(value = "/feign/skills/{mentorId}")
 	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId) {
 		return mentorClientService.setSkills(skill, mentorId);
+	}
+
+	@GetMapping(value = "/feign/skills/getMentorSkills/{mentorId}")
+	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId) {
+		return mentorClientService.getMentorSkills(mentorId);
 	}
 
 }

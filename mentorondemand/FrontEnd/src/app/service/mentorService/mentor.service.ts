@@ -47,4 +47,8 @@ export class MentorService {
   public mentorLogin(mentorData: MentorModule): Observable<MentorModule> {
     return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorLoginUrl(), httpOptions);
   }
+
+  getMentorByUserProposal(mentorIdArray:number[]):Observable<MentorModule[]>{
+    return this.httpClient.post<MentorModule[]>(this.mentorConfig.getMentorProposalByUserUrl(), mentorIdArray);
+  }
 }

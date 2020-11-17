@@ -14,7 +14,7 @@ export class MentorConfigService {
   }
 
   getMentorUrl(mentorId: number){
-    return (this.mentorAPIUrl + "/{mentorId}");
+    return (this.mentorAPIUrl + "/${mentorId}");
   }
 
   getMentorAddedUrl(){
@@ -27,5 +27,9 @@ export class MentorConfigService {
 
   getMentorLoginUrl(){
     return (this.mentorAPIUrl + "/login");
+  }
+
+  getMentorProposalByUserUrl(){
+    return (this.mentorAPIUrl + "/getMentorProposalByUser");
   }
 }

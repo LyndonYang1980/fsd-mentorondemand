@@ -26,19 +26,24 @@ public class SkillController {
 		List<Skill> skills = skillService.getSkills();
 		if (skills != null) {
 			return new ResponseEntity<List<Skill>>(skills, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<List<Skill>>(skills, HttpStatus.NOT_FOUND); 
-		}		
+		} else {
+			return new ResponseEntity<List<Skill>>(skills, HttpStatus.NOT_FOUND);
+		}
 	}
 
-	@GetMapping("/skills/{mentorId}")
+	@GetMapping("/skills/{skillId}")
 	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId) {
-		Skill skill = skillService.getSkill(skillId); 
+		Skill skill = skillService.getSkill(skillId);
 		if (skill != null) {
-			return new ResponseEntity<Skill>(skill, HttpStatus.OK);			
-		}else {
+			return new ResponseEntity<Skill>(skill, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<Skill>(skill, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@PostMapping("/skills/addSkill")
+	public ResponseEntity<Skill> addSkill(@RequestBody Skill skill) {
+		return new ResponseEntity<Skill>(skillService.addSkill(skill), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/skills/{mentorId}")
@@ -49,5 +54,11 @@ public class SkillController {
 		} else {
 			return new ResponseEntity<Skill>(skill, HttpStatus.NOT_MODIFIED);
 		}
+	}
+
+	@GetMapping("/skills/getMentorSkills/{mentorId}")
+	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId) {
+		System.out.println("Skill: " + mentorId);
+		return new ResponseEntity<List<Skill>>(skillService.getMentorSkills(mentorId), HttpStatus.OK);
 	}
 }

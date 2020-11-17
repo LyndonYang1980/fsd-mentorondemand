@@ -1,5 +1,6 @@
 package com.fsd.mod.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,16 @@ public class MentorController {
 		} else {
 			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_FOUND);
 		}
+	}
+
+	@PostMapping("/mentors/getMentorProposalByUser")
+	public ResponseEntity<List<Mentor>> getMentorProposalByUser(@RequestBody Long[] mentorIds) {
+		List<Mentor> mentorList = new ArrayList<Mentor>();
+		for (int i = 0; i < mentorIds.length; i++) {
+			mentorList.add(mentorService.getMentor(mentorIds[i]));
+		}
+
+		return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
 	}
 
 }

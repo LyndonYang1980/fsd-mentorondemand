@@ -18,10 +18,10 @@ import com.fsd.mod.entities.Skill;
 @FeignClient(value = "mentorondemand-mentor")
 public interface MentorClientService {
 
-	@GetMapping("/mentors")
+	@GetMapping(value = "/mentors")
 	public ResponseEntity<List<Mentor>> getMentors();
 
-	@GetMapping("/mentors/{id}")
+	@GetMapping(value = "/mentors/{id}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId);
 
 	@PostMapping(value = "/mentors")
@@ -30,10 +30,10 @@ public interface MentorClientService {
 	@PutMapping(value = "/mentors")
 	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor);
 
-	@GetMapping("/calendars")
+	@GetMapping(value = "/calendars")
 	public ResponseEntity<List<Calendar>> getCalendars();
 
-	@GetMapping("/calendars/{calendarId}")
+	@GetMapping(value = "/calendars/{calendarId}")
 	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId);
 
 	@PostMapping(value = "/calendars", produces = "application/json")
@@ -42,16 +42,22 @@ public interface MentorClientService {
 	@PutMapping(value = "/calendars")
 	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar);
 
-	@DeleteMapping("/calendars/{id}")
+	@DeleteMapping(value = "/calendars/{id}")
 	public void deleteCalendar(@PathVariable Long calendarId);
 
-	@GetMapping("/skills/getSkills")
+	@GetMapping(value = "/skills/getSkills")
 	public ResponseEntity<List<Skill>> getSkills();
 
-	@GetMapping("/skills/{mentorId}")
+	@PostMapping(value = "/skills/addSkill")
+	public ResponseEntity<Skill> addSkill(@RequestBody Skill skill);
+
+	@GetMapping(value = "/skills/{mentorId}")
 	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId);
 
 	@PostMapping(value = "/skills/{mentorId}")
 	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId);
+
+	@GetMapping(value = "/skills/getMentorSkills/{mentorId}")
+	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId);
 
 }
