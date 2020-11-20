@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fsd.mod.entities.User;
 import com.fsd.mod.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
 
@@ -46,7 +48,7 @@ public class UserController {
 	@PostMapping(value = "/users/addUser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 
-		boolean existFlag = userService.isUserExisted(user.getEmail());
+		boolean existFlag = userService.isUserExisted(user.getUserEmail());
 		if (existFlag) {
 			System.out.println("User already exist");
 			return new ResponseEntity<User>(user, HttpStatus.CONFLICT);
@@ -78,7 +80,7 @@ public class UserController {
 
 	@PostMapping(value = "/users/login")
 	public ResponseEntity<User> loginUser(@RequestBody User user) {
-		User userData = userService.userLogin(user.getEmail(), user.getPassword());
+		User userData = userService.userLogin(user.getUserEmail(), user.getPassword());
 		if (userData != null) {
 			return new ResponseEntity<User>(userData, HttpStatus.ACCEPTED);
 		} else {

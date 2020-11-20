@@ -1,5 +1,6 @@
 package com.fsd.mod.entities;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,11 +39,14 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "user_email")
+	private String userEmail;
 
 	@Column(name = "contact_number")
 	private Long contactNumber;
+	
+	@Column(name = "user_birthday")
+	private Date userBirthday;
 	
 	@Column(name = "status", columnDefinition="tinyint(1) default 1")
 	private boolean status = false;

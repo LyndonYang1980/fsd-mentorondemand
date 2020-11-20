@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { SkillModule } from "../../module/skill.module";
 
-import { mentorModule } from "../../module/mentor.module";
+import { MentorModule } from "../../module/mentor.module";
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -24,7 +24,7 @@ const httpOptions = {
 })
 export class SkillService {
 
-  private loggedMentor: mentorModule;
+  private loggedMentor: MentorModule;
   
   constructor(
     private httpClient: HttpClient, 

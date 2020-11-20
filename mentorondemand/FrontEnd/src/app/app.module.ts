@@ -23,6 +23,8 @@ import { MentorConnectionComponent } from './component/user-dashboard/mentor-con
 import { ExistingSkillComponent } from './component/mentor-dashboard/mentor-skill/existing-skill/existing-skill.component';
 import { NewSkillComponent } from './component/mentor-dashboard/mentor-skill/new-skill/new-skill.component';
 import { MentorSkillComponent } from './component/mentor-dashboard/mentor-skill/mentor-skill.component';
+import { UserProposalComponent } from './component/mentor-dashboard/user-proposal/user-proposal.component';
+import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
 
 const routes: Routes = [
   { path : '' , component : HomeComponent},
@@ -35,8 +37,8 @@ const routes: Routes = [
   { path : 'mentorpage' , component :MentorDashboardComponent},
   { path : 'skills' , component : MentorSkillComponent},
   { path : 'students' , component : UserProposalComponent},
-  // { path : 'payments' , component : PaymentComponent},
-  // { path : 'connections' , component : MentorConnectionComponent}
+  { path : 'payments' , component : PaymentComponent},
+  { path : 'connections' , component : MentorConnectionComponent}
 
 ];
 
@@ -59,7 +61,9 @@ const routes: Routes = [
     MentorConnectionComponent,
     ExistingSkillComponent,
     NewSkillComponent,
-    MentorSkillComponent
+    MentorSkillComponent,
+    UserProposalComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

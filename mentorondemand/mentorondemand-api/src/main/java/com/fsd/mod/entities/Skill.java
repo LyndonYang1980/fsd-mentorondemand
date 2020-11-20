@@ -34,6 +34,9 @@ public class Skill {
 	@Column(name = "skill_name", nullable = false)
 	private String skillName;
 	
+	@Column(name = "skill_duration", nullable = false)
+	private int skillDuration;
+	
 	@Column(name = "prerequisites", nullable = false)
 	private String prerequisites;
 
