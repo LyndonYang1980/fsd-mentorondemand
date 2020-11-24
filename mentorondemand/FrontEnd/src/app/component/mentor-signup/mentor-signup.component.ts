@@ -10,12 +10,12 @@ import { NgForm } from '@angular/forms';
 })
 export class MentorSignupComponent implements OnInit {
 
-  userEnteredEmail: any;
+  // mentorEnteredEmail: any;
 
   constructor(private mentorService: MentorService,
     private Route: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
   onSubmit(f: NgForm) {

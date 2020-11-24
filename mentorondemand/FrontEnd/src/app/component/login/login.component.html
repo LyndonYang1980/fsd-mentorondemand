@@ -5,7 +5,7 @@
         </div>
         <h2 class="text-center">User Login</h2>
         <div class="form-group">
-            <input type="text" class="form-control" name="userEmailId" placeholder="User Email" ngModel required email
+            <input type="text" class="form-control" name="userEmail" placeholder="User Email" ngModel required email
                 #emailLogin=ngModel>
             <span *ngIf="!emailLogin.valid && emailLogin.touched">Please enter a valid email</span>
         </div>

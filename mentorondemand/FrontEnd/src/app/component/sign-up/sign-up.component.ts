@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import {NgForm} from "@angular/forms";
 import { UserService } from 'src/app/service/userService/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/service/userService/user.service';
 export class SignUpComponent implements OnInit {
 
   userEnteredEmail='';
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,  
+              private Route: Router) { }
 
   ngOnInit(): void {
   }
@@ -20,7 +22,8 @@ export class SignUpComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.userService.addUser(f.value)
       .subscribe((data)=>{
-          console.log("User created")
+          console.log("User created");
+          this.Route.navigate(['login'])
       },(error)=>{
         console.log("Error in adding user")
       });

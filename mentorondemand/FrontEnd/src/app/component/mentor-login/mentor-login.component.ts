@@ -19,7 +19,7 @@ export class MentorLoginComponent implements OnInit {
   }
 
   onSubmit(mentorLoginForm: NgForm) {
-    this.mentorService.mentorLogin(mentorLoginForm.value)
+    this.mentorService.loginMentor(mentorLoginForm.value)
       .subscribe((data)=>{
           localStorage.setItem('isMentorLoggedIn','true');
           console.log("Mentor logged in");

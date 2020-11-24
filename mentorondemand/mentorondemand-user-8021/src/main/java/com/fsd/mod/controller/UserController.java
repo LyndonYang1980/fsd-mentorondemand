@@ -47,13 +47,15 @@ public class UserController {
 
 	@PostMapping(value = "/users/addUser")
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-
+		
+		System.out.println("To add user: " + user.toString());
 		boolean existFlag = userService.isUserExisted(user.getUserEmail());
 		if (existFlag) {
 			System.out.println("User already exist");
 			return new ResponseEntity<User>(user, HttpStatus.CONFLICT);
-		} else {
+		} else {			
 			User addedUser = userService.addUser(user);
+			System.out.println("Use added: " + addedUser.toString());
 			return new ResponseEntity<User>(addedUser, HttpStatus.ACCEPTED);
 		}
 	}
@@ -80,7 +82,7 @@ public class UserController {
 
 	@PostMapping(value = "/users/login")
 	public ResponseEntity<User> loginUser(@RequestBody User user) {
-		User userData = userService.userLogin(user.getUserEmail(), user.getPassword());
+		User userData = userService.userLogin(user.getUserEmail(), user.getUserPassword());
 		if (userData != null) {
 			return new ResponseEntity<User>(userData, HttpStatus.ACCEPTED);
 		} else {

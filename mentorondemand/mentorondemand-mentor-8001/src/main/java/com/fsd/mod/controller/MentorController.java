@@ -24,7 +24,7 @@ public class MentorController {
 	@Autowired
 	MentorService mentorService;
 
-	@GetMapping("/mentors")
+	@GetMapping("/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors() {
 		List<Mentor> mentors = mentorService.getMentors();
 		if (mentors != null) {
@@ -44,17 +44,22 @@ public class MentorController {
 		}
 	}
 
-	@PostMapping(value = "/mentors")
+	@PostMapping(value = "/mentors/addMentor")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
-		Mentor mentorData = mentorService.saveMentor(mentor);
-		if (mentorData != null) {
-			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
+
+		System.out.println("To add mentor: " + mentor.toString());
+		boolean existFlag = mentorService.isMentorExisted(mentor.getMentorEmail());
+		if (existFlag) {
+			System.out.println("Mentor already exist");
+			return new ResponseEntity<Mentor>(mentor, HttpStatus.CONFLICT);
 		} else {
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_MODIFIED);
+			Mentor addedMentor = mentorService.addMentor(mentor);
+			System.out.println("Mentor added: " + addedMentor.toString());
+			return new ResponseEntity<Mentor>(addedMentor, HttpStatus.ACCEPTED);
 		}
 	}
 
-	@PutMapping(value = "/mentors")
+	@PutMapping(value = "/mentors/updateMentor")
 	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
 		Mentor mentorData = mentorService.updateMentor(mentor);
 		if (mentorData != null) {
@@ -65,8 +70,8 @@ public class MentorController {
 	}
 
 	@PostMapping("/mentors/login")
-	public ResponseEntity<Mentor> mentorLogin(@RequestBody Mentor mentor) {
-		Mentor mentorData = mentorService.mentorLogin(mentor.getEmail(), mentor.getPassword());
+	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor) {
+		Mentor mentorData = mentorService.loginMentor(mentor.getMentorEmail(), mentor.getMentorPassword());
 		if (mentorData != null) {
 			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
 		} else {

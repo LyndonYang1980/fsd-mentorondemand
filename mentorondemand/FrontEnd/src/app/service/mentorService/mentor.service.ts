@@ -37,15 +37,16 @@ export class MentorService {
   }
 
   public addMentor(mentorData: MentorModule): Observable<MentorModule> {
-    return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorAddedUrl(), httpOptions);
+    return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorAddedUrl(), mentorData, httpOptions);
   }
 
   public updateMentor(mentorData: MentorModule): Observable<MentorModule> {
-    return this.httpClient.put<MentorModule>(this.mentorConfig.getMentorUpdUrl(), httpOptions);
+    return this.httpClient.put<MentorModule>(this.mentorConfig.getMentorUpdUrl(), mentorData, httpOptions);
   }
 
-  public mentorLogin(mentorData: MentorModule): Observable<MentorModule> {
-    return this.httpClient.post<MentorModule>(this.mentorConfig.getMentorLoginUrl(), httpOptions);
+  public loginMentor(mentorData: MentorModule): Observable<MentorModule> {
+    var returnMentor = this.httpClient.post<MentorModule>(this.mentorConfig.getMentorLoginUrl(), mentorData, httpOptions);
+    return returnMentor;
   }
 
   getMentorByUserProposal(mentorIdArray:number[]):Observable<MentorModule[]>{

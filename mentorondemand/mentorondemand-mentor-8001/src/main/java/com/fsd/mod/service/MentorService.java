@@ -27,8 +27,8 @@ public class MentorService {
 		return mentorRepo.findOne(id);
 	}
 
-	public void addMentor(Mentor mentor) {
-		mentorRepo.save(mentor);
+	public Mentor addMentor(Mentor mentor) {
+		return mentorRepo.save(mentor);
 	}
 
 	public Mentor saveMentor(Mentor mentor) {
@@ -43,8 +43,15 @@ public class MentorService {
 		mentorRepo.delete(id);
 	}
 
-	public Mentor mentorLogin(String email, String password) {
-		return mentorRepo.FindByEmailAndPassword(email, password);
+	public Mentor loginMentor(String mentorEmail, String mentorPassword) {
+		return mentorRepo.findByMentorEmailAndMentorPassword(mentorEmail, mentorPassword);
+	}
+	
+	public boolean isMentorExisted(String mentorEmail) {
+		if(mentorRepo.findByMentorEmail(mentorEmail) != null)
+			return true;
+		else
+			return false;
 	}
 
 }

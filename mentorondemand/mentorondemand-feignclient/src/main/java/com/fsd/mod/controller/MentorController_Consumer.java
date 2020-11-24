@@ -22,7 +22,7 @@ public class MentorController_Consumer {
 	@Autowired
 	MentorClientService mentorClientService;
 
-	@GetMapping("/feign/mentors")
+	@GetMapping("/feign/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors() {
 		return mentorClientService.getMentors();
 	}
@@ -32,14 +32,19 @@ public class MentorController_Consumer {
 		return mentorClientService.getMentor(mentorId);
 	}
 
-	@PostMapping(value = "/feign/mentors")
+	@PostMapping(value = "/feign/mentors/addMentor")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.addMentor(mentor);
 	}
 
-	@PutMapping(value = "/feign/mentors")
+	@PutMapping(value = "/feign/mentors/updateMentor")
 	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.updateMentor(mentor);
+	}
+	
+	@PostMapping("/feign/mentors/login")
+	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor){
+		return mentorClientService.loginMentor(mentor);
 	}
 
 }

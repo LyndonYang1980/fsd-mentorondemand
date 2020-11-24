@@ -6,5 +6,6 @@ import com.fsd.mod.entities.Mentor;
 
 public interface MentorRepo extends CrudRepository<Mentor, Long> {
 
-	public Mentor FindByEmailAndPassword(String email, String password);
+	public Mentor findByMentorEmail(String mentorEmail);
+	public Mentor findByMentorEmailAndMentorPassword(String mentorEmail, String mentorPassword);
 }

@@ -7,6 +7,6 @@ import com.fsd.mod.entities.User;
 
 public interface UserRepo extends CrudRepository<User, Long> {
 	
-	public User findByEmail(String email);
-	public User findByEmailAndPassword(String email,String password);
+	public User findByUserEmail(String userEmail);
+	public User findByUserEmailAndUserPassword(String userEmail,String userPassword);
 }

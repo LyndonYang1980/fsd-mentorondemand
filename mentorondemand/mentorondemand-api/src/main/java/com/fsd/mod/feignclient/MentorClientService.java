@@ -18,17 +18,20 @@ import com.fsd.mod.entities.Skill;
 @FeignClient(value = "mentorondemand-mentor")
 public interface MentorClientService {
 
-	@GetMapping(value = "/mentors")
+	@GetMapping(value = "/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors();
 
 	@GetMapping(value = "/mentors/{id}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId);
-
-	@PostMapping(value = "/mentors")
+	
+	@PostMapping(value = "/mentors/addMentor")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor);
 
-	@PutMapping(value = "/mentors")
+	@PutMapping(value = "/mentors/updateMentor")
 	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor);
+	
+	@PostMapping("/mentors/login")
+	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor);
 
 	@GetMapping(value = "/calendars")
 	public ResponseEntity<List<Calendar>> getCalendars();

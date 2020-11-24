@@ -1,9 +1,22 @@
 server:
   port: 80
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000
+
   
 feign: 
   hystrix: 
-    enabled: true
+    enabled: false
+
 
 eureka:
   client:

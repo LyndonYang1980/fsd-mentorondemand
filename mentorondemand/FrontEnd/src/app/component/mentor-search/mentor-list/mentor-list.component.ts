@@ -7,13 +7,15 @@ import { MentorModule } from 'src/app/module/mentor.module';
   styleUrls: ['./mentor-list.component.css']
 })
 export class MentorListComponent implements OnInit {
+  
   mentorArray: MentorModule[];
 
-  @Input() mentorData: MentorModule;
+  // @Input() mentorData: MentorModule;
   constructor() { }
 
   ngOnInit() {
-    this.mentorArray = JSON.parse(localStorage.getItem('allMentor'));
+    this.mentorArray = JSON.parse(localStorage.getItem('allMentors'));
+    console.log(this.mentorArray);
   }
 
   @Output() onSelectingMentor = new EventEmitter<MentorModule>();

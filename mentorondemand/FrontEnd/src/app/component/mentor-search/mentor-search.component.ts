@@ -20,8 +20,8 @@ export class MentorSearchComponent implements OnInit {
   getAllMentors() {
     this.mentorService.getMentors()
       .subscribe((data) => {
-        console.log("getting all mentors");
-        localStorage.setItem('allMentor', JSON.stringify(data));
+        console.log("getting all mentors" + data);
+        localStorage.setItem('allMentors', JSON.stringify(data));
       }, (error) => {
         console.log(error);
       })

@@ -48,12 +48,12 @@ public class UserService {
 		}
 	}
 	
-	public User userLogin(String email, String password) {
-		return userRepo.findByEmailAndPassword(email, password);
+	public User userLogin(String userEmail, String userPassword) {
+		return userRepo.findByUserEmailAndUserPassword(userEmail, userPassword);
 	}
 	
-	public boolean isUserExisted(String email) {
-		if(userRepo.findByEmail(email)!=null)
+	public boolean isUserExisted(String userEmail) {
+		if(userRepo.findByUserEmail(userEmail)!=null)
 			return true;
 		else
 			return false;

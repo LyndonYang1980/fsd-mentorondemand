@@ -10,7 +10,7 @@ export class MentorConfigService {
   private mentorAPIUrl = "http://localhost/feign/mentors";
 
   getMentorsUrl(){
-    return (this.mentorAPIUrl);
+    return (this.mentorAPIUrl + "/getMentors");
   }
 
   getMentorUrl(mentorId: number){
@@ -18,11 +18,11 @@ export class MentorConfigService {
   }
 
   getMentorAddedUrl(){
-    return (this.mentorAPIUrl);
+    return (this.mentorAPIUrl + "/addMentor");
   }
 
   getMentorUpdUrl(){
-    return (this.mentorAPIUrl);
+    return (this.mentorAPIUrl + "/updateMentor");
   }
 
   getMentorLoginUrl(){
