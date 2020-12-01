@@ -13,7 +13,8 @@ public class ProposalService {
 
 	@Autowired
 	ProposalRepo proposalRepo;
-
+	
+	
 	public Proposal saveProposal(Proposal userMentorData) {
 		if (proposalRepo.findByUserIdAndMentorIdAndSkillId(userMentorData.getUserId(), userMentorData.getMentorId(),
 				userMentorData.getSkillId()) == null)

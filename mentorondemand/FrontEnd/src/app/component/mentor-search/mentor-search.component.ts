@@ -9,19 +9,22 @@ import { MentorService } from 'src/app/service/mentorService/mentor.service';
 })
 export class MentorSearchComponent implements OnInit {
   mentorData: MentorModule;
+  mentorList: MentorModule[];
+  
   constructor(private mentorService: MentorService) { }
 
   ngOnInit() {
     this.getAllMentors();
   }
-  selectedMentorDetail(mentorData: MentorModule) {
+  selectMentorEvent(mentorData: MentorModule) {
     this.mentorData = mentorData;
   }
   getAllMentors() {
     this.mentorService.getMentors()
       .subscribe((data) => {
-        console.log("getting all mentors" + data);
-        localStorage.setItem('allMentors', JSON.stringify(data));
+        console.log("getting all mentors" + JSON.stringify(data));
+        // localStorage.setItem('allMentors', JSON.stringify(data));
+        this.mentorList = data;
       }, (error) => {
         console.log(error);
       })

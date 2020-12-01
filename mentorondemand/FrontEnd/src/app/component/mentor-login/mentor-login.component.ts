@@ -22,9 +22,12 @@ export class MentorLoginComponent implements OnInit {
     this.mentorService.loginMentor(mentorLoginForm.value)
       .subscribe((data)=>{
           localStorage.setItem('isMentorLoggedIn','true');
-          console.log("Mentor logged in");
-          localStorage.setItem('MentorLoggedIn',JSON.stringify(data));
-          this.router.navigate(['mentorpage']);
+          console.log("Mentor logged in: " + JSON.stringify(data));
+          localStorage.setItem('mentorLoggedIn',JSON.stringify(data));
+          this.router.navigate(['mentorpage']).then(() => {
+            console.log("Navigated to mentor dashboard")
+            location.reload();       
+          });
 
       },()=>{
           console.log("No mentor found");

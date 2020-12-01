@@ -36,7 +36,15 @@ public class MentorService {
 	}
 
 	public Mentor updateMentor(Mentor mentor) {
-		return mentorRepo.save(mentor);
+		Long mentorId = mentor.getMentorId();
+		Mentor oldMentor = mentorRepo.findOne(mentorId);
+		oldMentor.setMentorName(mentor.getMentorName());
+		oldMentor.setMentorEmail(mentor.getMentorEmail());
+		oldMentor.setMentorExperience(mentor.getMentorExperience());
+		oldMentor.setMentorPassword(mentor.getMentorPassword());
+		oldMentor.setSkills(mentor.getSkills());
+		mentorRepo.save(oldMentor);
+		return oldMentor;		
 	}
 
 	public void deleteMentor(Long id) {

@@ -29,7 +29,7 @@ public class Training {
 	@JoinColumn(name = "skill_id")
 	private Skill skill;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "trainings")
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "trainings")
 //	@JoinTable(name = "user", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 //			@JoinColumn(name = "training_id") })
 	private Set<User> users = new HashSet<>();

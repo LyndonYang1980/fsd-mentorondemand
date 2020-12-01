@@ -3,6 +3,7 @@ import { UserService } from 'src/app/service/userService/user.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,9 +22,10 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(userLoginForm.value)
       .subscribe((data) => {
         localStorage.setItem('isUserLoggedIn', 'true');
-        localStorage.setItem('UserLoggedIn', JSON.stringify(data));
+        localStorage.setItem('userLoggedIn', JSON.stringify(data));
         this.router.navigate(['userpage']).then(() => {
           console.log("Navigated to user home page")
+          location.reload();       
         });
       },
         (error) => {

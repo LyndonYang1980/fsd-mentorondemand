@@ -25,6 +25,12 @@ import { NewSkillComponent } from './component/mentor-dashboard/mentor-skill/new
 import { MentorSkillComponent } from './component/mentor-dashboard/mentor-skill/mentor-skill.component';
 import { UserProposalComponent } from './component/mentor-dashboard/user-proposal/user-proposal.component';
 import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
+
+
 
 const routes: Routes = [
   { path : '' , component : HomeComponent},
@@ -63,14 +69,18 @@ const routes: Routes = [
     NewSkillComponent,
     MentorSkillComponent,
     UserProposalComponent,
-    PaymentComponent
+    PaymentComponent,
+    MentorSkillsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule.forRoot(routes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes),
+    NgMultiSelectDropDownModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

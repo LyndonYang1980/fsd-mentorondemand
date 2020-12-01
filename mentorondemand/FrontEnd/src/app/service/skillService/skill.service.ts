@@ -8,7 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { SkillConfigService } from "../../config/skill/skill-config.service";
 
-import { Observable, observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';

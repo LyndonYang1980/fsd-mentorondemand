@@ -1,6 +1,5 @@
 package com.fsd.mod.entities;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +10,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -25,8 +26,11 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Mentor {
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	private Set<Skill> skills = new HashSet<>();
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinTable(name = "mentor_skills", 
+			joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), 
+			inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
+	private Set<Skill> skills;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,19 +45,25 @@ public class Mentor {
 	
 	@Column(name = "mentor_email")
 	private String mentorEmail;
+	
+	@Column(name = "mentor_experience")
+	private Float mentorExperience;
 
 	@Column(name = "contact_number")
 	private Long contactNumber;
+	
+	@Column(name = "rating")
+	private Long rating;
+	
+	@Column(name = "active")
+	private boolean active;
 
 //	@Column(name = "reg_code")
 //	private String regCode = "";
 //
 //	@Column(name = "linkedin_url")
 //	private String linkedinUrl = null;
-
-	@Column(name = "mentor_experience")
-	private Float mentorExperience;
-
+	
 //	@Column(name = "confirmed_signup")
 //	private Boolean confirmedSignUp = false;
 //

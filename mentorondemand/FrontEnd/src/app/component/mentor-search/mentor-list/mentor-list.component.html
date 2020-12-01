@@ -1,11 +1,30 @@
-<!-- <div class="row">
-    <div class="col-md-12 scroll">
-        <app-mentor-item *ngFor="let mentor of mentorArray" [mentorData]="mentor"
-            (selectMentorEvent)="mentorElaborate(mentor)"></app-mentor-item>
-    </div>
-</div> -->
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <h5>Mentor List</h5>
+    <!-- Table -->
+    <table class="table">
+        <tr class="header">
+            <td class="td">Mentor Name</td>
+            <td class="td">Experience</td>
+            <td class="td">Email Address</td>
+            <td class="td">Contact Number</td>
+            <td class="td">Rating</td>
+            <td class="td">Skills</td>
+            <td class="td">Proposal?</td>
 
-<ul class="mentors">
-    <app-mentor-item *ngFor="let mentor of mentorArray" [mentorData]="mentor"
-            (selectMentorEvent)="mentorElaborate(mentor)"></app-mentor-item>
-</ul>
+        </tr>
+
+        <tr class="tr" *ngFor="let mentor of mentorList" (click)="mentorElaborate(mentor)">
+            <td class="td">{{mentor.mentorName}}</td>
+            <td class="td">{{mentor.mentorExperience}}</td>
+            <td class="td">{{mentor.mentorEmail}}</td>
+            <td class="td">{{mentor.contactNumber}}</td>
+            <td class="td">{{mentor.rating}}</td>
+            <app-mentor-skills [mentorSkills]="mentor.skills"></app-mentor-skills>
+            <td class="td">
+                <button class="btn btn-success pull-right " type="button" (click)="proposeMentor(mentorData.mentorId)"
+                    *ngIf="isUserLoggedIn === 'true'">Send Proposal</button>
+            </td>
+        </tr>
+    </table>
+</div>

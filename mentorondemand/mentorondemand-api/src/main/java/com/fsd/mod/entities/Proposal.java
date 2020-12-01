@@ -20,7 +20,8 @@ public class Proposal {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long Id;
+	@Column(name = "proposal_id")
+	private Long proposalId;
 	
 	@Column(name = "user_id")
 	private Long userId;
@@ -49,11 +50,11 @@ public class Proposal {
 	@Column(name = "feedback")
 	private String feedback;
 
-	public Proposal(Long id, Long userId, Long mentorId, Long skillId, boolean userProposal, boolean mentorProposal,
+	public Proposal(Long proposalId, Long userId, Long mentorId, Long skillId, boolean userProposal, boolean mentorProposal,
 			boolean userReconfirmProposal, double userRating, int userProgress, String feedback) {
 		
 		super();
-		Id = id;
+		this.proposalId = proposalId;
 		this.userId = userId;
 		this.mentorId = mentorId;
 		this.skillId = skillId;
@@ -67,7 +68,7 @@ public class Proposal {
 
 	@Override
 	public String toString() {
-		return "Proposal [Id=" + Id + ", userId=" + userId + ", mentorId=" + mentorId + ", skillId=" + skillId
+		return "Proposal [proposalId=" + proposalId + ", userId=" + userId + ", mentorId=" + mentorId + ", skillId=" + skillId
 				+ ", userProposal=" + userProposal + ", mentorProposal=" + mentorProposal + ", userReconfirmProposal="
 				+ userReconfirmProposal + ", userRating=" + userRating + ", userProgress=" + userProgress
 				+ ", feedback=" + feedback + "]";

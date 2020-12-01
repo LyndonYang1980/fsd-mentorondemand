@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
@@ -34,15 +36,14 @@ public class Skill {
 	@Column(name = "skill_name", nullable = false)
 	private String skillName;
 	
-	@Column(name = "skill_duration", nullable = false)
+	@Column(name = "skill_duration", nullable = true)
 	private int skillDuration;
 	
-	@Column(name = "prerequisites", nullable = false)
+	@Column(name = "prerequisites", nullable = true)
 	private String prerequisites;
 
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "skills")
-//	@JoinTable(name = "mentor", joinColumns = { @JoinColumn(name = "mentor_id") }, inverseJoinColumns = {
-//			@JoinColumn(name = "skill_id") })
-	private Set<Mentor> mentors = new HashSet<>();
+//	@JsonIgnore
+//	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
+//	private Set<Mentor> mentors;
 
 }

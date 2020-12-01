@@ -1,88 +1,105 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <div class="navbar-brand"><a href="#">Mentor On Demand</a></div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Mentor On Demand</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarCommon"
+    *ngIf="isUserLoggedIn==='false' && isMentorLoggedIn==='false'">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/mentor">Mentors</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Login
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/login">User Login</a>
+          <a class="dropdown-item" routerLink="/mentorLogin">Mentor Login</a>
         </div>
-        <div class="collapse navbar-collapse " *ngIf="isUserLoggedIn==='false' && isMentorLoggedIn==='false'">
-            <ul class="nav navbar-nav navbar-right">
-                <li [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}"><a routerLink="/">Home</a></li>
-                <li [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/mentor">Mentors</a></li>
-                <li>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown" appDropDownDirective>
-                            <a class="dropdown-toggle" role="button">Login<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a routerLink="/login">User Login</a></li>
-                                <li><a routerLink="/mentorLogin">Mentor Login</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown" appDropDownDirective>
-                            <a class="dropdown-toggle" role="button">SignUp<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a routerLink="/userSignUp">User SignUp</a></li>
-                                <li><a routerLink="/mentorSignUp">Mentor SignUp</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li [routerLinkActive]="'about'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/about">About</a></li>
-            </ul>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Sign Up
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/userSignUp">User SignUp</a>
+          <a class="dropdown-item" routerLink="/mentorSignUp">Mentor SignUp</a>
+        </div>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="'about'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/about">About</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbarMentorLoggedIn" *ngIf="isMentorLoggedIn==='true'">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/mentorpage">Home</a>
+      </li>
+
+      <!-- <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/skills">Skills</a>
+      </li> -->
+
+      <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/payments">Students</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/mentorpage">Update Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/" (click)="getMentorLogOut()">Logout</a>
         </div>
 
-        <!--Logged In Header-->
+      </li>
+    </ul>
+  </div>
 
-        <div class="collapse navbar-collapse" *ngIf="isMentorLoggedIn==='true'">
-            <ul class="nav navbar-nav navbar-right">
-                <li [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/mentorpage">Home</a></li>
-                <li [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/skills">Skills</a></li>
-                <li [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/payments">Students</a></li>
-                <li>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown" appDropDownDirective>
-                            <a class="dropdown-toggle" role="button">Profile<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a routerLink="/login">Update Profile</a></li>
-                                <li><a routerLink="/mentorLogin">Change Password</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/" (click)="getMentorLogOut()">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
+  <div class="collapse navbar-collapse" id="navbarUserLoggedIn" *ngIf="isUserLoggedIn==='true'">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/userpage">Home</a>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/connections">Connection</a>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/students">Course</a>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Profile
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/userpage">Update Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="/" (click)="getUserLogOut()">Logout</a>
         </div>
 
+      </li>
+    </ul>
+  </div>
 
-        <div class="collapse navbar-collapse" *ngIf="isUserLoggedIn==='true'">
-            <ul class="nav navbar-nav navbar-right">
-                <li [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/userpage">Home</a></li>
-                <li [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/connections">Connection</a></li>
-                <li>
-                <li [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}"><a
-                        routerLink="/students">Course</a></li>
-                <li>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown" appDropDownDirective>
-                            <a class="dropdown-toggle" role="button">Profile<span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a routerLink="/login">Update Profile</a></li>
-                                <li><a routerLink="/mentorLogin">Change Password</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="/" (click)="getUserLogOut()">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
 </nav>
