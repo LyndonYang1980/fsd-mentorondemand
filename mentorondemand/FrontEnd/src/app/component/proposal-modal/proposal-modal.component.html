@@ -1,0 +1,25 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+
+        <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                        <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+                        </div>
+                        <div class="modal-body" *ngFor="let skill of mentorSkills; let i=index">
+                                <label>
+                                        <input type="checkbox" [value]="skill.skillId"
+                                                (change)="onCheckboxChange($event)" />
+                                        {{skill.skillName}}
+                                </label>
+                        </div>
+
+                        <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
+                                Checkbox is required, select atleast one value.
+                        </p>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                </div>
+        </div>
+</form>
