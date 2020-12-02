@@ -12,10 +12,8 @@ import { ProposalModule } from 'src/app/module/proposal.module';
 })
 export class MentorListComponent implements OnInit {
 
-  // mentorArray: MentorModule[];
   isUserLoggedIn: string;
   loggedUser: UserModule;
-  mentors: MentorModule[];
 
   @Input() mentorData: MentorModule;
   @Input() mentorList: MentorModule[];
@@ -30,10 +28,8 @@ export class MentorListComponent implements OnInit {
 
   initData(){
     console.log("Exporting mentor info...");
-    // this.mentorArray = JSON.parse(localStorage.getItem('allMentors'));
     this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
     this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
-    console.log(this.mentorList);
   }
   
   mentorElaborate(mentor: MentorModule) {
@@ -41,16 +37,14 @@ export class MentorListComponent implements OnInit {
   }
 
   proposeMentor(mentorId: number) {
-    console.log("deep kumar" + this.loggedUser.userId);
-    let proposalData = new ProposalModule(this.loggedUser.userId, mentorId, 12, true,
-      false, false, 4.6, 0.0, 'Not Sure');
-    this.proposalService.addProposal(proposalData)
-      .subscribe((data) => {
-        console.log("Successfully connected");
-        console.log(data)
-          ;
-      }, (err) => {
-        console.log("Connection Not sent");
-      });
+    // let proposalData = new ProposalModule(this.loggedUser.userId, mentorId, );
+    // this.proposalService.addProposal(proposalData)
+    //   .subscribe((data) => {
+    //     console.log("Successfully connected");
+    //     console.log(data)
+    //       ;
+    //   }, (err) => {
+    //     console.log("Connection Not sent");
+    //   });
   }
 }

@@ -29,6 +29,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
+import { ProposalBtnComponent } from './component/proposal-btn/proposal-btn.component';
 
 
 
@@ -70,7 +71,8 @@ const routes: Routes = [
     MentorSkillComponent,
     UserProposalComponent,
     PaymentComponent,
-    MentorSkillsComponent
+    MentorSkillsComponent,
+    ProposalBtnComponent
   ],
   imports: [
     BrowserModule,

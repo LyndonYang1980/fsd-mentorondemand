@@ -21,6 +21,12 @@ public class MentorService {
 		mentorRepo.findAll().forEach(list::add);
 		return list;
 	}
+	
+	public List<Mentor> getAllMentorsAndSkills(){
+		List<Mentor> list = new ArrayList<>();
+		mentorRepo.getAllMentorsAndSkills().forEach(list::add);
+		return list;
+	}
 
 	public Mentor getMentor(Long id) {
 

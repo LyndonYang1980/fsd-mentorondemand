@@ -27,6 +27,7 @@ public class MentorController {
 	@GetMapping("/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors() {
 		List<Mentor> mentors = mentorService.getMentors();
+//		List<Mentor> mentors = mentorService.getAllMentorsAndSkills();
 		if (mentors != null) {
 			return new ResponseEntity<List<Mentor>>(mentors, HttpStatus.OK);
 		} else {
