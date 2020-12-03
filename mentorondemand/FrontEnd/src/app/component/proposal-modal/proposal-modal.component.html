@@ -17,8 +17,8 @@
                                 Checkbox is required, select atleast one value.
                         </p>
                         <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" id="submitBtn" class="btn btn-secondary" disabled="setBtnAvailable()" data-dismiss="modal">OK</button>
+                                <button type="button" id="cancelBtn" class="btn btn-primary" (click)="cancel()">Cancel</button>
                         </div>
                 </div>
         </div>

@@ -17,44 +17,60 @@ export class ProposalModalComponent implements OnInit {
   isCancel: boolean;
   onConfirm: any;
   form: FormGroup;
+  checkArray: FormArray;
 
-  constructor(private fb: FormBuilder, private bsModalRef: BsModalRef) {
-    this.form = this.fb.group({
-      checkArray: this.fb.array([])
+  constructor(private formBuilder: FormBuilder, private bsModalRef: BsModalRef) {
+    this.form = this.formBuilder.group({
+      checkArray: this.formBuilder.array([])
     })
     console.log("BsModalRef content: " + this.bsModalRef.content);
   }
 
   ngOnInit(): void {
-    this.initData();
+
   }
 
-  initData() {
-    this.mentorSkills.forEach((m) => {
-      this.skillArr.push(m.skillName);
-    });
-    this.skills = this.skillArr.toLocaleString();
-  }
+  onCheckboxChange(e: { target: { checked: any; value: any; }; }) {
 
-  onCheckboxChange(e) {
-    const checkArray: FormArray = this.form.get('checkArray') as FormArray;
-
+    this.checkArray = this.form.get('checkArray') as FormArray;
     if (e.target.checked) {
-      checkArray.push(new FormControl(e.target.value));
+      this.checkArray.push(new FormControl(e.target.value));
     } else {
       let i: number = 0;
-      checkArray.controls.forEach((item: FormControl) => {
+      this.checkArray.controls.forEach((item: FormControl) => {
         if (item.value == e.target.value) {
-          checkArray.removeAt(i);
+          this.checkArray.removeAt(i);
           return;
         }
         i++;
       });
     }
+
+    this.setBtnAvailable();
+  }
+
+  setBtnAvailable(){
+    let btnElement = <HTMLInputElement> document.getElementById("submitBtn");
+    if (this.checkArray.length <= 0) {
+      btnElement.disabled = true;
+    }else{
+      btnElement.disabled = false;
+    }
+  }
+
+  getCheckedItems() {
+    this.checkArray.controls.forEach((item: FormControl) => {
+      if (item.value !== null) {
+        this.skillArr.push(item.value);
+      }
+    });
   }
 
   submitForm() {
-    console.log(this.form.value)
+    this.getCheckedItems();
+    this.onConfirm(this.skillArr);
+    this.bsModalRef.hide();
+
   }
 
   confirm() {

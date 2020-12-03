@@ -38,7 +38,7 @@ export class ProposalBtnComponent implements OnInit {
 
   showProposalModal() {
     const initialState = {
-      title: 'Select skill to launch proposal',
+      title: 'Select skill for proposal',
       mentorSkills: this.mentorSkills
     };
     
