@@ -15,12 +15,15 @@ public class ProposalService {
 	ProposalRepo proposalRepo;
 	
 	
-	public Proposal saveProposal(Proposal userMentorData) {
-		if (proposalRepo.findByUserIdAndMentorIdAndSkillId(userMentorData.getUserId(), userMentorData.getMentorId(),
-				userMentorData.getSkillId()) == null)
-			return proposalRepo.save(userMentorData);
-		else
+	public Proposal saveProposal(Proposal proposalData) {
+		
+		Proposal proposal = proposalRepo.findByUserIdAndMentorIdAndSkillId(proposalData.getUserId(), proposalData.getMentorId(),
+				proposalData.getSkillId());
+		if (proposal == null) {
+			return proposalRepo.save(proposalData);
+		} else {
 			return null;
+		}
 	}
 
 	public List<Proposal> getUserProposal(Long userId) {

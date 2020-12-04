@@ -4,6 +4,7 @@ import { UserModule } from 'src/app/module/user.module';
 import { HttpClient } from '@angular/common/http';
 import { ProposalService } from 'src/app/service/proposalService/proposal.service';
 import { ProposalModule } from 'src/app/module/proposal.module';
+import { SkillModule } from 'src/app/module/skill.module';
 
 @Component({
   selector: 'app-mentor-list',
@@ -13,12 +14,12 @@ import { ProposalModule } from 'src/app/module/proposal.module';
 export class MentorListComponent implements OnInit {
 
   isUserLoggedIn: string;
-  loggedUser: UserModule;
+  userLoggedIn: UserModule;
 
-  @Input() mentorData: MentorModule;
+  theMentor: MentorModule;
   @Input() mentorList: MentorModule[];
   @Output() onSelectingMentor = new EventEmitter<MentorModule>();
-  
+
   constructor(private proposalService: ProposalService,
     private httpClient: HttpClient) { }
 
@@ -26,25 +27,30 @@ export class MentorListComponent implements OnInit {
     this.initData();
   }
 
-  initData(){
+  initData() {
     console.log("Exporting mentor info...");
-    this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
   }
-  
+
   mentorElaborate(mentor: MentorModule) {
     this.onSelectingMentor.emit(mentor);
   }
 
-  proposeMentor(mentorId: number) {
-    // let proposalData = new ProposalModule(this.loggedUser.userId, mentorId, );
-    // this.proposalService.addProposal(proposalData)
-    //   .subscribe((data) => {
-    //     console.log("Successfully connected");
-    //     console.log(data)
-    //       ;
-    //   }, (err) => {
-    //     console.log("Connection Not sent");
-    //   });
+  sendProposal(selectedSkills: SkillModule[]) {
+    for (let i = 0; i < selectedSkills.length; i++) {
+      let skillItem: SkillModule = selectedSkills[i];
+      let proposalData = new ProposalModule(this.userLoggedIn.userId, this.theMentor.mentorId, skillItem.skillId,
+        true, false, false, 0, 0, null);
+      this.proposalService.addProposal(proposalData)
+        .subscribe((data) => {
+          console.log("Successfully connected");
+          console.log(data)
+            ;
+        }, (err) => {
+          console.log("Connection Not sent");
+        });
+    }
+
   }
 }

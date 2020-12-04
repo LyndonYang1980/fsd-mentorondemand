@@ -17,17 +17,17 @@ export class MentorDetailComponent implements OnInit {
     private httpClient: HttpClient) { }
 
   isUserLoggedIn: string;
-  loggedUser: UserModule;
+  userLoggedIn: UserModule;
 
   ngOnInit(): void {
-    this.loggedUser = JSON.parse(localStorage.getItem('loggedUser'));
+    this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
     console.log("Check" + this.isUserLoggedIn);
   }
 
   proposeMentor(mentorId: number) {
-    console.log("deep kumar" + this.loggedUser.userId);
-    let proposalData = new ProposalModule(this.loggedUser.userId, mentorId, 12, true,
+    console.log("deep kumar" + this.userLoggedIn.userId);
+    let proposalData = new ProposalModule(this.userLoggedIn.userId, mentorId, 12, true,
       false, false, 4.6, 0.0, 'Not Sure');
     this.proposalService.addProposal(proposalData)
       .subscribe((data) => {

@@ -29,9 +29,9 @@ export class ProposalModalComponent implements OnInit {
   ngOnInit(): void {
 
   }
-
+  
   onCheckboxChange(e: { target: { checked: any; value: any; }; }) {
-
+    
     this.checkArray = this.form.get('checkArray') as FormArray;
     if (e.target.checked) {
       this.checkArray.push(new FormControl(e.target.value));

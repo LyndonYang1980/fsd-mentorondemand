@@ -12,13 +12,10 @@
                                         {{skill.skillName}}
                                 </label>
                         </div>
-
-                        <p class="error" *ngIf="this.form.controls['checkArray'].errors?.required">
-                                Checkbox is required, select atleast one value.
-                        </p>
+                        
                         <div class="modal-footer">
                                 <button type="submit" id="submitBtn" class="btn btn-secondary" disabled="setBtnAvailable()" data-dismiss="modal">OK</button>
-                                <button type="button" id="cancelBtn" class="btn btn-primary" (click)="cancel()">Cancel</button>
+                                <button type="button" id="cancelBtn" class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
                         </div>
                 </div>
         </div>

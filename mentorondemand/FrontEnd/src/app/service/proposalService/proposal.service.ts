@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ProposalConfigService } from 'src/app/config/proposal/proposal-config.service';
 import { ProposalModule } from 'src/app/module/proposal.module';
 import { Observable } from 'rxjs';
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +19,7 @@ export class ProposalService {
     private proposalConfig: ProposalConfigService) { }
 
   addProposal(proposalData: ProposalModule): Observable<ProposalModule> {
-    return this.httpClient.post<ProposalModule>(this.proposalConfig.addProposalUrl(), proposalData);
+    return this.httpClient.post<ProposalModule>(this.proposalConfig.addProposalUrl(), proposalData, httpOptions);
   }
 
   getUserProposal(userId: number): Observable<ProposalModule[]> {
