@@ -12,10 +12,8 @@ export class ProposalModalComponent implements OnInit {
 
   title: string;
   mentorSkills: SkillModule[];
-  skills: string;
   skillArr = [];
-  isCancel: boolean;
-  onConfirm: any;
+  onSubmit: any;
   form: FormGroup;
   checkArray: FormArray;
 
@@ -26,9 +24,7 @@ export class ProposalModalComponent implements OnInit {
     console.log("BsModalRef content: " + this.bsModalRef.content);
   }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
   
   onCheckboxChange(e: { target: { checked: any; value: any; }; }) {
     
@@ -45,7 +41,7 @@ export class ProposalModalComponent implements OnInit {
         i++;
       });
     }
-
+    // The OK button availablility is depending on checkbox selected or not
     this.setBtnAvailable();
   }
 
@@ -66,17 +62,11 @@ export class ProposalModalComponent implements OnInit {
     });
   }
 
-  submitForm() {
+  submit() {
     this.getCheckedItems();
-    this.onConfirm(this.skillArr);
+    this.onSubmit(this.skillArr);
     this.bsModalRef.hide();
 
-  }
-
-  confirm() {
-    // this.isCancel = false;
-    this.onConfirm(this.skills);
-    this.bsModalRef.hide();
   }
 
   cancel() {

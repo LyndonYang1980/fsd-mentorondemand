@@ -11,8 +11,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,7 +28,12 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class User {
 	
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//	@JsonManagedReference(value = "proposals")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
+	private Set<Proposal> proposals = new HashSet<>();
+	
+//	@JsonManagedReference(value = "trainings")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
 	private Set<Training> trainings = new HashSet<>();
 
 	@Id

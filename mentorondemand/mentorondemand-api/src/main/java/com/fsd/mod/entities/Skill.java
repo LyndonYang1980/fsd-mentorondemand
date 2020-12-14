@@ -10,10 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,13 +36,21 @@ public class Skill {
 
 	@Column(name = "skill_name", nullable = false)
 	private String skillName;
-	
+
 	@Column(name = "skill_duration", nullable = true)
 	private int skillDuration;
-	
+
 	@Column(name = "prerequisites", nullable = true)
 	private String prerequisites;
 
+//	@JsonManagedReference(value = "proposals")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "skill")
+	private Set<Proposal> proposals = new HashSet<>();
+	
+//	@JsonManagedReference(value = "trainings")
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "skill")
+	private Set<Training> trainings = new HashSet<>();
+	
 //	@JsonIgnore
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
 //	private Set<Mentor> mentors;

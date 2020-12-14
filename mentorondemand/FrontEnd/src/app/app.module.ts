@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MentorLoginComponent } from './component/mentor-login/mentor-login.component';
 import { HeaderComponent } from './component/header/header.component';
 import { HomeComponent } from './component/home/home.component';
-import { MentorDetailComponent } from './component/mentor-search/mentor-detail/mentor-detail.component';
 import { MentorListComponent } from './component/mentor-search/mentor-list/mentor-list.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { MentorItemComponent } from './component/mentor-search/mentor-item/mentor-item.component';
@@ -19,11 +18,6 @@ import { MentorSearchComponent } from './component/mentor-search/mentor-search.c
 import { MentorSignupComponent } from './component/mentor-signup/mentor-signup.component';
 import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
 import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
-import { MentorConnectionComponent } from './component/user-dashboard/mentor-connection/mentor-connection.component';
-import { ExistingSkillComponent } from './component/mentor-dashboard/mentor-skill/existing-skill/existing-skill.component';
-import { NewSkillComponent } from './component/mentor-dashboard/mentor-skill/new-skill/new-skill.component';
-import { MentorSkillComponent } from './component/mentor-dashboard/mentor-skill/mentor-skill.component';
-import { UserProposalComponent } from './component/mentor-dashboard/user-proposal/user-proposal.component';
 import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -32,6 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
 import { ProposalBtnComponent } from './component/proposal-btn/proposal-btn.component';
 import { ProposalModalComponent } from './component/proposal-modal/proposal-modal.component';
+import { MessageModalComponent } from './component/message-modal/message-modal.component';
+import { MentorProposalComponent } from './component/mentor-dashboard/mentor-proposal/mentor-proposal.component';
 
 
 
@@ -44,10 +40,8 @@ const routes: Routes = [
   { path : 'mentorSignUp' , component : MentorSignupComponent},
   { path : 'userpage' , component : UserDashboardComponent},
   { path : 'mentorpage' , component :MentorDashboardComponent},
-  { path : 'skills' , component : MentorSkillComponent},
-  { path : 'students' , component : UserProposalComponent},
   { path : 'payments' , component : PaymentComponent},
-  { path : 'connections' , component : MentorConnectionComponent}
+  // { path : 'connections' , component : MentorConnectionComponent}
 
 ];
 
@@ -59,7 +53,6 @@ const routes: Routes = [
     MentorLoginComponent,
     HeaderComponent,
     HomeComponent,
-    MentorDetailComponent,
     MentorListComponent,
     SearchBarComponent,
     MentorItemComponent,
@@ -67,15 +60,12 @@ const routes: Routes = [
     MentorSignupComponent,
     MentorDashboardComponent,
     UserDashboardComponent,
-    MentorConnectionComponent,
-    ExistingSkillComponent,
-    NewSkillComponent,
-    MentorSkillComponent,
-    UserProposalComponent,
     PaymentComponent,
     MentorSkillsComponent,
     ProposalBtnComponent,
-    ProposalModalComponent
+    ProposalModalComponent,
+    MessageModalComponent,
+    MentorProposalComponent
   ],
   imports: [
     BrowserModule,

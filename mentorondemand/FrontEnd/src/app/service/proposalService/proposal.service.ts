@@ -18,8 +18,8 @@ export class ProposalService {
   constructor(private httpClient: HttpClient,
     private proposalConfig: ProposalConfigService) { }
 
-  addProposal(proposalData: ProposalModule): Observable<ProposalModule> {
-    return this.httpClient.post<ProposalModule>(this.proposalConfig.addProposalUrl(), proposalData, httpOptions);
+  addProposal(proposalDataList: ProposalModule[]): Observable<ProposalModule[]> {
+    return this.httpClient.post<ProposalModule[]>(this.proposalConfig.addProposalUrl(), proposalDataList, httpOptions);
   }
 
   getUserProposal(userId: number): Observable<ProposalModule[]> {

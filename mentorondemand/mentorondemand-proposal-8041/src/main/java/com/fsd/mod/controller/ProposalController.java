@@ -23,14 +23,28 @@ public class ProposalController {
 	private ProposalService proposalService;
 
 	@PostMapping("/proposal/addProposal")
-	public ResponseEntity<Proposal> addProposal(@RequestBody Proposal userMentorData) {
-		Proposal proposal = proposalService.saveProposal(userMentorData);
-		if (proposal != null)
-			return new ResponseEntity<Proposal>(proposal, HttpStatus.OK);
-		else
-			return new ResponseEntity<Proposal>(proposal, HttpStatus.CONFLICT);
+	public ResponseEntity<List<Proposal>> addProposal(@RequestBody List<Proposal> proposalDataList) {
+
+		Proposal addProposal = null;
+		List<Proposal> addedProposalList = null;
+		try {
+			addedProposalList = proposalService.saveProposal(proposalDataList);
+			return new ResponseEntity<List<Proposal>>(addedProposalList, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<List<Proposal>>(proposalDataList, HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 
+	@GetMapping("/proposal/getMentorProposal/{mentorId}")
+	public ResponseEntity<List<Proposal>> getMentorProposal(@PathVariable("mentorId") Long mentorId) {
+		List<Proposal> mentorProposal = proposalService.getMentorProposal(mentorId);
+		if (mentorProposal != null)
+			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.OK);
+		else
+			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.CONFLICT);
+	}
+	
 	@GetMapping("/proposal/getUserProposal/{userId}")
 	public ResponseEntity<List<Proposal>> getUserProposal(@PathVariable("userId") Long userId) {
 		List<Proposal> userProposal = proposalService.getUserProposal(userId);

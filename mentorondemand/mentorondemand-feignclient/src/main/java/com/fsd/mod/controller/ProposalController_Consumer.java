@@ -22,8 +22,8 @@ public class ProposalController_Consumer {
 	ProposalClientService proposalClientService;
 
 	@PostMapping("/feign/proposal/addProposal")
-	public ResponseEntity<Proposal> addProposal(@RequestBody Proposal proposalData) {
-		return proposalClientService.addProposal(proposalData);
+	public ResponseEntity<List<Proposal>> addProposal(@RequestBody List<Proposal> proposalDataList) {
+		return proposalClientService.addProposal(proposalDataList);
 	}
 
 	@GetMapping("/feign/proposal/getUserProposal/{userId}")

@@ -1,8 +1,6 @@
 package com.fsd.mod.entities;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,37 +25,32 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Training {
 
-	@ManyToOne(targetEntity = Skill.class)
-	@JoinColumn(name = "skill_id")
-	private Skill skill;
-
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "trainings")
-//	@JoinTable(name = "user", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-//			@JoinColumn(name = "training_id") })
-	private Set<User> users = new HashSet<>();
-
-	@ManyToOne(targetEntity = Mentor.class)
-	@JoinColumn(name = "mentor_id")
-	private Long mentorId;
+	
 
 	@Id
 	@Column(name = "training_id")
 	private Long trainingId;
+	
+//	@JsonBackReference(value = "user")
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	private User user;
+
+//	@JsonBackReference(value = "mentor")
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+	private Mentor mentor;
+
+//	@JsonBackReference(value = "skill")
+	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
+	private Skill skill;
 
 	@Column(name = "status")
 	private String status;
 
 	@Column(name = "progress")
 	private Integer progress = 0;
-
-	@Column(name = "fees")
-	private Float fees = 0.0f;
-
-	@Column(name = "time_slot")
-	private String timeSlot;
-
-	@Column(name = "commission_amount")
-	private Float commissionAmount = 0.0f;
 
 	@Column(name = "rating")
 	private Integer rating = 0;
@@ -68,8 +63,5 @@ public class Training {
 
 	@Column(name = "amount_received")
 	private Float amountReceived = 0.0f;
-
-	@Column(name = "razorpay_payment_id")
-	private String razorpayPaymentId;
 
 }

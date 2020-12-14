@@ -4,7 +4,6 @@ import { MentorService } from 'src/app/service/mentorService/mentor.service';
 import { Router } from '@angular/router';
 import { MentorModule } from 'src/app/module/mentor.module';
 import { NgForm } from '@angular/forms';
-import { SkillModule } from 'src/app/module/skill.module';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SkillService } from 'src/app/service/skillService/skill.service';
 

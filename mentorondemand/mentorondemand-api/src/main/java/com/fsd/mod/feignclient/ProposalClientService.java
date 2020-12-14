@@ -14,7 +14,7 @@ import com.fsd.mod.entities.Proposal;
 @FeignClient(value = "mentorondemand-proposal")
 public interface ProposalClientService {
 	@PostMapping("/proposal/addProposal")
-	public ResponseEntity<Proposal> addProposal(@RequestBody Proposal proposalData);
+	public ResponseEntity<List<Proposal>> addProposal(@RequestBody List<Proposal> proposalDataList);
 
 	@GetMapping("/proposal/getUserProposal/{userId}")
 	public ResponseEntity<List<Proposal>> getUserProposal(@PathVariable("userId") Long userId);

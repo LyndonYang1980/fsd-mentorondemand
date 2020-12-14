@@ -36,21 +36,4 @@ export class MentorListComponent implements OnInit {
   mentorElaborate(mentor: MentorModule) {
     this.onSelectingMentor.emit(mentor);
   }
-
-  sendProposal(selectedSkills: SkillModule[]) {
-    for (let i = 0; i < selectedSkills.length; i++) {
-      let skillItem: SkillModule = selectedSkills[i];
-      let proposalData = new ProposalModule(this.userLoggedIn.userId, this.theMentor.mentorId, skillItem.skillId,
-        true, false, false, 0, 0, null);
-      this.proposalService.addProposal(proposalData)
-        .subscribe((data) => {
-          console.log("Successfully connected");
-          console.log(data)
-            ;
-        }, (err) => {
-          console.log("Connection Not sent");
-        });
-    }
-
-  }
 }

@@ -8,7 +8,7 @@ spring:
     show-sql: true 
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     
    application:
     name: mentorondemand-mentor 
@@ -22,7 +22,7 @@ spring:
     data-username: root
     data-password: root
     platform: mysql    
-    data: classpath:data.sql 
+#    data: classpath:data.sql 
     continue-on-error: true
     
     
