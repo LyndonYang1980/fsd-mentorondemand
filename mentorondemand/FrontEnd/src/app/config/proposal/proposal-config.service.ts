@@ -17,4 +17,9 @@ export class ProposalConfigService {
     var theId = '${'+userId+'}';
     return (this.proposlAPIUrl + "/getUserProposal/" + theId);
   }
+
+  getMentorProposalUrl(mentorId: number) {
+    var theId = mentorId;
+    return (this.proposlAPIUrl + "/getMentorProposal/" + theId);
+  }
 }

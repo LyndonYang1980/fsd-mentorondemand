@@ -26,25 +26,24 @@ import lombok.experimental.Accessors;
 public class Training {
 
 	
-
 	@Id
 	@Column(name = "training_id")
 	private Long trainingId;
 	
-//	@JsonBackReference(value = "user")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private User user;
+//	@JsonManagedReference(value = "user")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	private Long userId;
 
-//	@JsonBackReference(value = "mentor")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
-	private Mentor mentor;
+//	@JsonManagedReference(value = "mentor")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+	private Long mentorId;
 
-//	@JsonBackReference(value = "skill")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
-	private Skill skill;
+//	@JsonManagedReference(value = "skill")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
+	private Long skillId;
 
 	@Column(name = "status")
 	private String status;

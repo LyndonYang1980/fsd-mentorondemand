@@ -32,7 +32,7 @@ export class UserService {
   }
 
   public getUser(userId: number) {
-    return this.httpClient.get<UserModule[]>(this.userConfig.getUserUrl(userId), httpOptions);
+    return this.httpClient.get<UserModule>(this.userConfig.getUserUrl(userId), httpOptions);
   }
 
   public addUser(userData: UserModule): Observable<UserModule> {

@@ -1,0 +1,36 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <h5>Your Received Proposals</h5>
+    <table class="table table-striped">
+        <thead>
+            <tr class="tr">
+                <th scope="col">Skill Name</th>
+                <th scope="col">Sent from User</th>
+                <th scope="col">User Email</th>
+                <th scope="col">Contact No.</th>
+                <th scope="col">Accept/Reject</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let proposalData of mentorProposalList">
+                <td>
+                    <app-proposal-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
+                    </app-proposal-detail-skill-item>
+                </td>
+                <td class="td">
+                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userName'">
+                    </app-proposal-detail-user-item>
+                </td>
+                <td class="td">
+                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userEmail'">
+                    </app-proposal-detail-user-item>
+                </td>
+                <td class="td">
+                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'contactNumber'">
+                    </app-proposal-detail-user-item>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

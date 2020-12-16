@@ -54,7 +54,7 @@ public interface MentorClientService {
 	@PostMapping(value = "/skills/addSkill")
 	public ResponseEntity<Skill> addSkill(@RequestBody Skill skill);
 
-	@GetMapping(value = "/skills/{mentorId}")
+	@GetMapping(value = "/skills/{skillId}")
 	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId);
 
 	@PostMapping(value = "/skills/{mentorId}")

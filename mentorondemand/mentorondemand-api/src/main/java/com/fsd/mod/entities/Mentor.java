@@ -16,8 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,7 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Mentor {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "mentor_id")
@@ -55,17 +54,23 @@ public class Mentor {
 
 	@Column(name = "active")
 	private boolean active;
-	
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
-	private Set<Skill> skills;
-	
-//	@JsonManagedReference(value = "proposals")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "mentor")
+	private Set<Skill> skills = new HashSet<>();
+
+//	@JsonBackReference(value = "skills")
+//	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentor", targetEntity = Skill.class)
+//	private Set<Skill> skills = new HashSet<>();
+
+//	@JsonBackReference(value = "proposals")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
 
-//	@JsonManagedReference(value = "trainings")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "mentor")
+//	@JsonBackReference(value = "trainings")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
 
 //	@Column(name = "reg_code")

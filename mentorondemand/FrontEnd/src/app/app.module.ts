@@ -28,7 +28,9 @@ import { ProposalBtnComponent } from './component/proposal-btn/proposal-btn.comp
 import { ProposalModalComponent } from './component/proposal-modal/proposal-modal.component';
 import { MessageModalComponent } from './component/message-modal/message-modal.component';
 import { MentorProposalComponent } from './component/mentor-dashboard/mentor-proposal/mentor-proposal.component';
-
+import { ProposalDetailComponent } from './component/proposal-detail/proposal-detail.component';
+import { ProposalDetailUserItemComponent } from './component/proposal-detail-user-item/proposal-detail-user-item.component';
+import { ProposalDetailSkillItemComponent } from './component/proposal-detail-skill-item/proposal-detail-skill-item.component';
 
 
 const routes: Routes = [
@@ -41,7 +43,7 @@ const routes: Routes = [
   { path : 'userpage' , component : UserDashboardComponent},
   { path : 'mentorpage' , component :MentorDashboardComponent},
   { path : 'payments' , component : PaymentComponent},
-  // { path : 'connections' , component : MentorConnectionComponent}
+  { path : 'mentorproposal' , component : MentorProposalComponent}
 
 ];
 
@@ -65,7 +67,10 @@ const routes: Routes = [
     ProposalBtnComponent,
     ProposalModalComponent,
     MessageModalComponent,
-    MentorProposalComponent
+    MentorProposalComponent,
+    ProposalDetailComponent,
+    ProposalDetailUserItemComponent,
+    ProposalDetailSkillItemComponent,
   ],
   imports: [
     BrowserModule,

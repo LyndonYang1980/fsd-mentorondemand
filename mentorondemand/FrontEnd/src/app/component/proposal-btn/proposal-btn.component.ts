@@ -74,7 +74,7 @@ export class ProposalBtnComponent implements OnInit {
     for (let i = 0; i < this.selectedSkills.length; i++) {
 
       let skillItem: SkillModule = this.selectedSkills[i];
-      let proposalData = new ProposalModule(null, this.userLoggedIn, this.mentorData, skillItem,
+      let proposalData = new ProposalModule(null, this.userLoggedIn.userId, this.mentorData.mentorId, skillItem.skillId,
         true, null, null);
       proposalDataList.push(proposalData);
     }

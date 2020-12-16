@@ -20,11 +20,11 @@ export class SkillConfigService {
   }
 
   getSkillUrl(skillId: number): string {
-    return (this.skillAPIUrl + "/${skillId}");
+    return (this.skillAPIUrl + "/" + skillId);
   }
 
   getMentorSkillsUrl(mentorId: number): string {
-    return (this.skillAPIUrl + "/getMentorSkills/${mentorId}");
+    return (this.skillAPIUrl + "/getMentorSkills/" + mentorId);
   }
 
   constructor() { }

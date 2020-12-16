@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -24,26 +25,26 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Proposal {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "proposal_id")
 	private Long proposalId;
-	
-//	@JsonBackReference(value = "user")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private User user;
 
-//	@JsonBackReference(value = "mentor")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
-	private Mentor mentor;
+//	@JsonManagedReference(value = "user")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	private Long userId;
 
-//	@JsonBackReference(value = "skill")
-	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
-	private Skill skill;
+//	@JsonManagedReference(value = "mentor")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+	private Long mentorId;
+
+//	@JsonManagedReference(value = "skill")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+//	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
+	private Long skillId;
 
 	@Column(name = "user_proposal")
 	private boolean userProposal;
@@ -54,22 +55,22 @@ public class Proposal {
 	@Column(name = "user_reconfirm_proposal")
 	private Boolean userReconfirmProposal;
 
-	public Proposal(Long proposalId, User user, Mentor mentor, Skill skill, boolean userProposal,
+	public Proposal(Long proposalId, Long userId, Long mentorId, Long skillId, boolean userProposal,
 			Boolean mentorProposal, Boolean userReconfirmProposal) {
 		super();
 		this.proposalId = proposalId;
-		this.user = user;
-		this.mentor = mentor;
-		this.skill = skill;
+		this.userId = userId;
+		this.mentorId = mentorId;
+		this.skillId = skillId;
 		this.userProposal = userProposal;
 		this.mentorProposal = mentorProposal;
 		this.userReconfirmProposal = userReconfirmProposal;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Proposal [user=" + user + ", mentor=" + mentor + ", skill=" + skill + ", proposalId=" + proposalId
-				+ ", userProposal=" + userProposal + ", mentorProposal=" + mentorProposal + ", userReconfirmProposal="
-				+ userReconfirmProposal + "]";
+		return "Proposal [proposalId=" + proposalId + ", userId=" + userId + ", mentorId=" + mentorId + ", skillId="
+				+ skillId + ", userProposal=" + userProposal + ", mentorProposal=" + mentorProposal
+				+ ", userReconfirmProposal=" + userReconfirmProposal + "]";
 	}
 }

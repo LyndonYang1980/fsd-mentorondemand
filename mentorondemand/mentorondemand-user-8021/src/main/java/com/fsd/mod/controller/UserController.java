@@ -34,7 +34,7 @@ public class UserController {
 		}
 	}
 
-	@RequestMapping("/users/{id}")
+	@RequestMapping("/users/{userId}")
 	public ResponseEntity<User> getUser(@PathVariable Long userId) {
 
 		User user = userService.getUser(userId);
@@ -60,7 +60,7 @@ public class UserController {
 		}
 	}
 
-	@PutMapping(value = "/users/{id}")
+	@PutMapping(value = "/users/{userId}")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		User updUser = userService.updateUser(user);
 		if (updUser != null) {
@@ -70,7 +70,7 @@ public class UserController {
 		}
 	}
 
-	@DeleteMapping(value = "/users/{id}")
+	@DeleteMapping(value = "/users/{userId}")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
 		Boolean delFlag = userService.deleteUser(userId);
 		if (delFlag) {

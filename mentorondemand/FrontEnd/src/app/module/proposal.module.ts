@@ -5,9 +5,9 @@ import { SkillModule } from './skill.module';
 export class ProposalModule {
   constructor(
     public proposal_id:number,
-    public user: UserModule,
-    public mentor: MentorModule,
-    public skill: SkillModule,
+    public userId: number,
+    public mentorId: number,
+    public skillId: number,
     public userProposal:boolean,
     public mentorProposal:boolean,
     public userReconfirmProposal:boolean

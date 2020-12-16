@@ -1,5 +1,6 @@
 import { SkillModule } from './skill.module';
 import { TrainingModule } from './training.module';
+import { ProposalModule } from './proposal.module';
 
 export class MentorModule {
   constructor( 
@@ -12,6 +13,7 @@ export class MentorModule {
     public rating: number,
     public active: boolean,
     public skills: SkillModule[],
+    public proposals: ProposalModule[],
     public trainings: TrainingModule[]
     )
   { }

@@ -36,15 +36,6 @@ public class ProposalController {
 		}
 	}
 
-	@GetMapping("/proposal/getMentorProposal/{mentorId}")
-	public ResponseEntity<List<Proposal>> getMentorProposal(@PathVariable("mentorId") Long mentorId) {
-		List<Proposal> mentorProposal = proposalService.getMentorProposal(mentorId);
-		if (mentorProposal != null)
-			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.OK);
-		else
-			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.CONFLICT);
-	}
-	
 	@GetMapping("/proposal/getUserProposal/{userId}")
 	public ResponseEntity<List<Proposal>> getUserProposal(@PathVariable("userId") Long userId) {
 		List<Proposal> userProposal = proposalService.getUserProposal(userId);
@@ -53,4 +44,14 @@ public class ProposalController {
 		else
 			return new ResponseEntity<List<Proposal>>(userProposal, HttpStatus.CONFLICT);
 	}
+
+	@GetMapping("/proposal/getMentorProposal/{mentorId}")
+	public ResponseEntity<List<Proposal>> getMentorProposal(@PathVariable("mentorId") Long mentorId) {
+		List<Proposal> mentorProposal = proposalService.getMentorProposal(mentorId);
+		if (mentorProposal != null)
+			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.OK);
+		else
+			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.CONFLICT);
+	}
+
 }

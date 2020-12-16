@@ -1,4 +1,5 @@
 import { TrainingModule } from './training.module';
+import { ProposalModule } from './proposal.module';
 
 export class UserModule {
   constructor(
@@ -9,6 +10,7 @@ export class UserModule {
     public contactNumber:number,
     public userPassword:string,
     public status:string,
+    public proposals: ProposalModule[],
     public trainings: TrainingModule[]
   ){}
 } 

@@ -13,8 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,14 +42,21 @@ public class Skill {
 	@Column(name = "prerequisites", nullable = true)
 	private String prerequisites;
 
-//	@JsonManagedReference(value = "proposals")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "skill")
+//	@JsonBackReference(value = "proposals")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-	
-//	@JsonManagedReference(value = "trainings")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "skill")
+
+//	@JsonBackReference(value = "trainings")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
-	
+
+//	@JsonManagedReference(value = "mentor")
+//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, targetEntity = Mentor.class)
+//	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+//	private Mentor mentor;
+
 //	@JsonIgnore
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")
 //	private Set<Mentor> mentors;

@@ -23,8 +23,8 @@ public class ProposalService {
 		List<Proposal> savedProposalList = new ArrayList<>();
 
 		for (Proposal proposalData : proposalDataList) {
-			Proposal existingProposal = proposalRepo.findByUserIdAndMentorIdAndSkillId(proposalData.getUser().getUserId(),
-					proposalData.getMentor().getMentorId(), proposalData.getSkill().getSkillId());
+			Proposal existingProposal = proposalRepo.findByUserIdAndMentorIdAndSkillId(proposalData.getUserId(),
+					proposalData.getMentorId(), proposalData.getSkillId());
 			if (existingProposal == null) {
 				System.out.println("Saved proposal: " + proposalData.toString());
 				savedProposalList.add(proposalRepo.save(proposalData));
@@ -34,7 +34,6 @@ public class ProposalService {
 		}
 
 		return savedProposalList;
-
 	}
 
 	public List<Proposal> getUserProposal(Long userId) {

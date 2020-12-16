@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -28,12 +29,14 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class User {
 	
-//	@JsonManagedReference(value = "proposals")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
+//	@JsonBackReference(value = "proposals")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
 	
-//	@JsonManagedReference(value = "trainings")
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
+//	@JsonBackReference(value = "trainings")
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
 
 	@Id

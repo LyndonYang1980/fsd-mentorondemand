@@ -26,7 +26,7 @@ public class SkillController_Consumer {
 		return mentorClientService.getSkills();
 	}
 
-	@GetMapping("/feign/skills/{id}")
+	@GetMapping("/feign/skills/{skillId}")
 	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId) {
 		return mentorClientService.getSkill(skillId);
 	}

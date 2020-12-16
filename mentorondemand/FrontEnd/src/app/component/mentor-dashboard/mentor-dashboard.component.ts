@@ -6,6 +6,7 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SkillService } from 'src/app/service/skillService/skill.service';
+import { SkillModule } from 'src/app/module/skill.module';
 
 @Component({
   selector: 'app-mentor-dashboard',
@@ -15,15 +16,15 @@ import { SkillService } from 'src/app/service/skillService/skill.service';
 export class MentorDashboardComponent implements OnInit {
 
   mentorData: MentorModule;
-  mentorSkillList = [];
+  mentorSkillList: any
   skillList = [];
   selectedItems = [];
-  dropdownSettings:IDropdownSettings = {};
+  dropdownSettings: IDropdownSettings = {};
 
-  constructor(private mentorConfig:MentorConfigService,
-              private mentorService:MentorService,
-              private skillService:SkillService,
-              private router:Router) { }
+  constructor(private mentorConfig: MentorConfigService,
+    private mentorService: MentorService,
+    private skillService: SkillService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getMentorDetail();
@@ -40,12 +41,12 @@ export class MentorDashboardComponent implements OnInit {
     };
   }
 
-  getMentorDetail(){
+  getMentorDetail() {
     this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
     console.log("Mentor logged in: " + this.mentorData.mentorName);
   }
 
-  getSkills() {    
+  getSkills() {
     this.skillService.getSkills().subscribe((data) => {
       console.log("Retrieved skill list: " + data);
       this.skillList = data;
@@ -54,6 +55,13 @@ export class MentorDashboardComponent implements OnInit {
 
   getMentorSkills() {
     this.mentorSkillList = this.mentorData.skills;
+    // this.skillService.getMentorSkills(this.mentorData.mentorId).subscribe(
+    //   (data) => {
+    //     this.mentorSkillList = data;
+    //   }, (error) => {
+    //     console.log(error);
+    //   }
+    // )
     console.log("Mentor skills: " + this.skillList);
   }
 

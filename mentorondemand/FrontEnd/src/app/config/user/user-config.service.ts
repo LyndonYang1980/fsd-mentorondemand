@@ -13,8 +13,8 @@ export class UserConfigService {
     return (this.userAPIUrl + "/getUsers");
   }
 
-  getUserUrl(id: number): string{
-    return (this.userAPIUrl + "/{id}");
+  getUserUrl(userId: number): string{
+    return (this.userAPIUrl + "/" + userId);
   }
 
   // URL for adding a user

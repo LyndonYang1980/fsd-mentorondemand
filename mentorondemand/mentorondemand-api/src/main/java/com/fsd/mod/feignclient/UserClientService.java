@@ -19,16 +19,16 @@ public interface UserClientService {
 	@RequestMapping("/users/getUsers")
 	public ResponseEntity<List<User>> getUsers();
 
-	@RequestMapping("/users/{id}")
+	@RequestMapping("/users/{userId}")
 	public ResponseEntity<User> getUser(@PathVariable Long userId);
 
 	@PostMapping(value = "/users/addUser")
 	public ResponseEntity<User> addUser(@RequestBody User user);
 
-	@PutMapping(value = "/users/{id}")
+	@PutMapping(value = "/users/{userId}")
 	public ResponseEntity<User> updateUser(@RequestBody User user);
 
-	@DeleteMapping(value = "/users/{id}")
+	@DeleteMapping(value = "/users/{userId}")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId);
 
 	@PostMapping(value = "/users/login")

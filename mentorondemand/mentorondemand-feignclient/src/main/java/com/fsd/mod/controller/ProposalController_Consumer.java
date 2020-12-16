@@ -30,4 +30,9 @@ public class ProposalController_Consumer {
 	public ResponseEntity<List<Proposal>> getUserProposal(@PathVariable("userId") Long userId) {
 		return proposalClientService.getUserProposal(userId);
 	}
+
+	@GetMapping("feign/proposal/getMentorProposal/{mentorId}")
+	public ResponseEntity<List<Proposal>> getMentorProposal(@PathVariable("mentorId") Long mentorId) {
+		return proposalClientService.getMentorProposal(mentorId);
+	}
 }

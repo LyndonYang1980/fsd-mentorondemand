@@ -30,7 +30,7 @@ export class SkillService {
     private httpClient: HttpClient, 
     private skillConfig: SkillConfigService, private router: Router) { 
     
-      this.loggedMentor = JSON.parse(localStorage.getItem('mentor'));
+      // this.loggedMentor = JSON.parse(localStorage.getItem('mentor'));
     }
   
   setSkills(skill: SkillModule, mentorId: number): Observable<SkillModule>{
@@ -49,8 +49,8 @@ export class SkillService {
     return this.httpClient.get<SkillModule>(this.skillConfig.getSkillUrl(skillId), httpOptions);
   }
 
-  getMentorSkills(): Observable<SkillModule>{
-    var mentorId = this.loggedMentor.mentorId;
-    return this.httpClient.get<SkillModule>(this.skillConfig.getMentorSkillsUrl(mentorId), httpOptions);
+  getMentorSkills(mentorId: number): Observable<SkillModule[]>{
+    let id = mentorId;
+    return this.httpClient.get<SkillModule[]>(this.skillConfig.getMentorSkillsUrl(id), httpOptions);
   }
 }

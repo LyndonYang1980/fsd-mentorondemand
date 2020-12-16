@@ -28,7 +28,7 @@ public class UserController_Consumer {
 		return userClientService.getUsers();
 	}
 
-	@GetMapping("/feign/users/{id}")
+	@GetMapping("/feign/users/{userId}")
 	public ResponseEntity<User> getUser(@PathVariable Long userId) {
 		return userClientService.getUser(userId);
 	}
@@ -38,12 +38,12 @@ public class UserController_Consumer {
 		return userClientService.addUser(user);
 	}
 
-	@PutMapping(value = "/feign/users/{id}")
+	@PutMapping(value = "/feign/users/{userId}")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
 		return userClientService.updateUser(user);
 	}
 
-	@DeleteMapping(value = "/feign/users/{id}")
+	@DeleteMapping(value = "/feign/users/{userId}")
 	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
 		return userClientService.deleteUser(userId);
 	}

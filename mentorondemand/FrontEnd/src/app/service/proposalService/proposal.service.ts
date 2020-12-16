@@ -25,4 +25,8 @@ export class ProposalService {
   getUserProposal(userId: number): Observable<ProposalModule[]> {
     return this.httpClient.get<ProposalModule[]>(this.proposalConfig.getUserProposalUrl(userId));
   }
+
+  getMentorProposal(mentorId: number): Observable<ProposalModule[]> {
+    return this.httpClient.get<ProposalModule[]>(this.proposalConfig.getMentorProposalUrl(mentorId));
+  }
 }
