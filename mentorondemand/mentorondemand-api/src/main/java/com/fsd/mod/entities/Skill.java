@@ -42,20 +42,13 @@ public class Skill {
 	@Column(name = "prerequisites", nullable = true)
 	private String prerequisites;
 
-//	@JsonBackReference(value = "proposals")
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-
-//	@JsonBackReference(value = "trainings")
+	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
-
-//	@JsonManagedReference(value = "mentor")
-//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, targetEntity = Mentor.class)
-//	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
-//	private Mentor mentor;
 
 //	@JsonIgnore
 //	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "skills")

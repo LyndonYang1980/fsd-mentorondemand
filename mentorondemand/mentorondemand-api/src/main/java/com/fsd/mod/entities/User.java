@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,15 +31,17 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class User {
-	
-//	@JsonBackReference(value = "proposals")
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-	
-//	@JsonBackReference(value = "trainings")
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
+
+//	@JsonIgnore
+//	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
+//	private Set<Training> trainings = new HashSet<>();
+
+	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@JoinTable(name = "user_training", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "training_id", referencedColumnName = "training_id"))
 	private Set<Training> trainings = new HashSet<>();
 
 	@Id
@@ -49,17 +54,17 @@ public class User {
 
 	@Column(name = "user_password")
 	private String userPassword;
-	
+
 	@Column(name = "user_email")
 	private String userEmail;
 
 	@Column(name = "contact_number")
 	private Long contactNumber;
-	
+
 	@Column(name = "user_birthday")
 	private Date userBirthday;
-	
-	@Column(name = "status", columnDefinition="tinyint(1) default 1")
+
+	@Column(name = "status", columnDefinition = "tinyint(1) default 1")
 	private boolean status = false;
 
 }

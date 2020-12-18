@@ -29,4 +29,19 @@ export class ProposalService {
   getMentorProposal(mentorId: number): Observable<ProposalModule[]> {
     return this.httpClient.get<ProposalModule[]>(this.proposalConfig.getMentorProposalUrl(mentorId));
   }
+
+  acceptProposal(proposalData: ProposalModule): Observable<ProposalModule> {
+    let proposalId: number = proposalData.proposalId;
+    return this.httpClient.put<ProposalModule>(this.proposalConfig.acceptProposalUrl(proposalId), proposalData, httpOptions);
+  }
+
+  rejectProposal(proposalData: ProposalModule): Observable<ProposalModule> {
+    let proposalId: number = proposalData.proposalId;
+    return this.httpClient.put<ProposalModule>(this.proposalConfig.rejectProposalUrl(proposalId), proposalData, httpOptions);
+  }
+
+  reconfirmProposal(proposalData: ProposalModule): Observable<ProposalModule> {
+    let proposalId: number = proposalData.proposalId;
+    return this.httpClient.put<ProposalModule>(this.proposalConfig.reconfirmProposalUrl(proposalId), proposalData, httpOptions);
+  }
 }

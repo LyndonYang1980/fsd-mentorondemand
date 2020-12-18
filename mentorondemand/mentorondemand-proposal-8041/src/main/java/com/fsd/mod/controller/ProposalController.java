@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +53,36 @@ public class ProposalController {
 			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.OK);
 		else
 			return new ResponseEntity<List<Proposal>>(mentorProposal, HttpStatus.CONFLICT);
+	}
+
+	@PutMapping("/proposal/acceptProposal/{proposalId}")
+	public ResponseEntity<Proposal> acceptProposal(@PathVariable("proposalId") Long proposalId) {
+
+		Proposal targetProposal = proposalService.acceptProposal(proposalId);
+		if (targetProposal != null)
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.OK);
+		else
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.NOT_MODIFIED);
+	}
+
+	@PutMapping("/proposal/rejectProposal/{proposalId}")
+	public ResponseEntity<Proposal> rejectProposal(@PathVariable("proposalId") Long proposalId) {
+
+		Proposal targetProposal = proposalService.rejectProposal(proposalId);
+		if (targetProposal != null)
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.OK);
+		else
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.NOT_MODIFIED);
+	}
+	
+	@PutMapping("/proposal/reconfirmProposal/{proposalId}")
+	public ResponseEntity<Proposal> reconfirmProposal(@PathVariable("proposalId") Long proposalId) {
+
+		Proposal targetProposal = proposalService.reconfirmProposal(proposalId);
+		if (targetProposal != null)
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.OK);
+		else
+			return new ResponseEntity<Proposal>(targetProposal, HttpStatus.NOT_MODIFIED);
 	}
 
 }

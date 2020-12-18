@@ -10,11 +10,11 @@ import { ProposalService } from 'src/app/service/proposalService/proposal.servic
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 
 @Component({
-  selector: 'app-proposal-btn',
-  templateUrl: './proposal-btn.component.html',
-  styleUrls: ['./proposal-btn.component.css']
+  selector: 'app-proposal-user-btn',
+  templateUrl: './proposal-user-btn.component.html',
+  styleUrls: ['./proposal-user-btn.component.css']
 })
-export class ProposalBtnComponent implements OnInit {
+export class ProposalUserBtnComponent implements OnInit {
 
   @Input() mentorData: MentorModule;
   @Input() isUserLoggedIn: string;

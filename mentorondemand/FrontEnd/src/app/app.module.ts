@@ -24,13 +24,17 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
-import { ProposalBtnComponent } from './component/proposal-btn/proposal-btn.component';
+import { ProposalUserBtnComponent } from './component/proposal-user-btn/proposal-user-btn.component';
 import { ProposalModalComponent } from './component/proposal-modal/proposal-modal.component';
 import { MessageModalComponent } from './component/message-modal/message-modal.component';
-import { MentorProposalComponent } from './component/mentor-dashboard/mentor-proposal/mentor-proposal.component';
+import { MentorProposalComponent } from './component/mentor-proposal/mentor-proposal.component';
 import { ProposalDetailComponent } from './component/proposal-detail/proposal-detail.component';
 import { ProposalDetailUserItemComponent } from './component/proposal-detail-user-item/proposal-detail-user-item.component';
 import { ProposalDetailSkillItemComponent } from './component/proposal-detail-skill-item/proposal-detail-skill-item.component';
+import { ProposalMentorBtnComponent } from './component/proposal-mentor-btn/proposal-mentor-btn.component';
+import { UserProposalComponent } from './component/user-proposal/user-proposal.component';
+import { ProposalDetailMentorItemComponent } from './component/proposal-detail-mentor-item/proposal-detail-mentor-item.component';
+import { ProposalUserConfirmBtnComponent } from './component/proposal-user-confirm-btn/proposal-user-confirm-btn.component';
 
 
 const routes: Routes = [
@@ -43,7 +47,8 @@ const routes: Routes = [
   { path : 'userpage' , component : UserDashboardComponent},
   { path : 'mentorpage' , component :MentorDashboardComponent},
   { path : 'payments' , component : PaymentComponent},
-  { path : 'mentorproposal' , component : MentorProposalComponent}
+  { path : 'mentorproposal' , component : MentorProposalComponent},
+  { path : 'userproposal' , component : UserProposalComponent}
 
 ];
 
@@ -64,13 +69,17 @@ const routes: Routes = [
     UserDashboardComponent,
     PaymentComponent,
     MentorSkillsComponent,
-    ProposalBtnComponent,
+    ProposalUserBtnComponent,
     ProposalModalComponent,
     MessageModalComponent,
     MentorProposalComponent,
     ProposalDetailComponent,
     ProposalDetailUserItemComponent,
     ProposalDetailSkillItemComponent,
+    ProposalMentorBtnComponent,
+    UserProposalComponent,
+    ProposalDetailMentorItemComponent,
+    ProposalUserConfirmBtnComponent,
   ],
   imports: [
     BrowserModule,

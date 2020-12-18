@@ -10,7 +10,7 @@ export class MessageModalComponent implements OnInit {
 
   title: string;
   msg: string;
-  onConfirm:any;
+  onClick:any;
 
   constructor(private bsModalRef: BsModalRef) { 
     console.log("Message Module: " + this.bsModalRef.content);
@@ -21,5 +21,6 @@ export class MessageModalComponent implements OnInit {
 
   click(){
     this.bsModalRef.hide();
+    this.onClick("");
   }
 }

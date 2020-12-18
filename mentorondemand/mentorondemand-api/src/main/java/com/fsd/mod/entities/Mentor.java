@@ -58,17 +58,11 @@ public class Mentor {
 	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
 	private Set<Skill> skills = new HashSet<>();
-
-//	@JsonBackReference(value = "skills")
-//	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentor", targetEntity = Skill.class)
-//	private Set<Skill> skills = new HashSet<>();
-
-//	@JsonBackReference(value = "proposals")
+	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-
-//	@JsonBackReference(value = "trainings")
+	
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();

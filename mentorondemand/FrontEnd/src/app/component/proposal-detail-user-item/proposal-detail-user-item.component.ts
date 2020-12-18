@@ -20,12 +20,11 @@ export class ProposalDetailUserItemComponent implements OnInit {
   }
 
   getUserData() {
-    let userId: number = this.userId;
-    this.userService.getUser(userId).subscribe(
+    this.userService.getUser(this.userId).subscribe(
       (data) => {
         this.userData = data;
       }, (err) => {
-        console.log("No skill found by id:" + userId.toString);
+        console.log("No mentor found by id:" + this.userId.toString);
       }
     )
   }

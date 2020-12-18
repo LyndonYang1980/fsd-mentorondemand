@@ -27,7 +27,7 @@ export class MentorDashboardComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getMentorDetail();
+    this.getLoginMentor();
     this.getMentorSkills();
     this.getSkills();
 
@@ -41,7 +41,7 @@ export class MentorDashboardComponent implements OnInit {
     };
   }
 
-  getMentorDetail() {
+  getLoginMentor() {
     this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
     console.log("Mentor logged in: " + this.mentorData.mentorName);
   }
@@ -55,13 +55,6 @@ export class MentorDashboardComponent implements OnInit {
 
   getMentorSkills() {
     this.mentorSkillList = this.mentorData.skills;
-    // this.skillService.getMentorSkills(this.mentorData.mentorId).subscribe(
-    //   (data) => {
-    //     this.mentorSkillList = data;
-    //   }, (error) => {
-    //     console.log(error);
-    //   }
-    // )
     console.log("Mentor skills: " + this.skillList);
   }
 

@@ -35,7 +35,7 @@ public class MentorController {
 		}
 	}
 
-	@GetMapping("/mentors/{id}")
+	@GetMapping("/mentors/{mentorId}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
 		Mentor mentorData = mentorService.getMentor(mentorId);
 		if (mentorData != null) {

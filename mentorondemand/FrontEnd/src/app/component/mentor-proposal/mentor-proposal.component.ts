@@ -20,46 +20,16 @@ export class MentorProposalComponent implements OnInit {
   skillData: SkillModule;
   userData: UserModule;
 
-  constructor(private proposalService: ProposalService, 
-    private userService: UserService, 
+  constructor(private proposalService: ProposalService,
+    private userService: UserService,
     private skillService: SkillService) { }
 
   ngOnInit(): void {
-    this.getMentorDetail();
+    this.getLoginMentor();
     this.getMentorProposalData();
   }
 
-  getSkillData() {
-    let skillId: number = this.proposalData.skillId;
-    this.skillService.getSkill(skillId).subscribe(
-      (data) => {
-        this.skillData = data;
-      }, (err) => {
-        console.log("No skill found by id:" + skillId.toString);
-      }
-    )
-  }
-
-  getUserData() {
-    let userId: number = this.proposalData.userId;
-    this.userService.getUser(userId).subscribe(
-      (data) => {
-        this.userData = data;
-      }, (err) => {
-        console.log("No skill found by id:" + userId.toString);
-      }
-    )
-  }
-
-  handleRetSkillData(retSkillData: SkillModule) {
-    this.skillData = retSkillData;
-  }
-
-  handleRetUserData(retUserData: UserModule) {
-    this.userData = retUserData;
-  }
-
-  getMentorDetail() {
+  getLoginMentor() {
     this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
     console.log("Mentor logged in: " + this.mentorData.mentorName);
   }

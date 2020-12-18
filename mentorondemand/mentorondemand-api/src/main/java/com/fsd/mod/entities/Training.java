@@ -1,18 +1,17 @@
 package com.fsd.mod.entities;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,10 +29,14 @@ public class Training {
 	@Column(name = "training_id")
 	private Long trainingId;
 	
+	@JsonIgnore
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "trainings")
+	private Set<User> users = new HashSet<>();
+	
 //	@JsonManagedReference(value = "user")
 //	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 //	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-	private Long userId;
+//	private Long userId;
 
 //	@JsonManagedReference(value = "mentor")
 //	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

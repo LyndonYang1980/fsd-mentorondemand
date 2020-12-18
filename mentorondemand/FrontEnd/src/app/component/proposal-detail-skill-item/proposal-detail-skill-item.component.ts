@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SkillService } from 'src/app/service/skillService/skill.service';
-import { ProposalService } from 'src/app/service/proposalService/proposal.service';
 import { SkillModule } from 'src/app/module/skill.module';
 
 @Component({

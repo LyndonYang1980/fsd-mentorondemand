@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-    <!-- Default panel contents -->
+    <br>
     <h5>Your Received Proposals</h5>
     <table class="table table-striped">
         <thead>
@@ -18,17 +18,23 @@
                     <app-proposal-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
                     </app-proposal-detail-skill-item>
                 </td>
-                <td class="td">
+                <td>
                     <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userName'">
                     </app-proposal-detail-user-item>
                 </td>
-                <td class="td">
+                <td>
                     <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userEmail'">
                     </app-proposal-detail-user-item>
                 </td>
-                <td class="td">
+                <td>
                     <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'contactNumber'">
                     </app-proposal-detail-user-item>
+                </td>
+                <td *ngIf="proposalData.mentorProposal != null">
+                    {{(proposalData.mentorProposal == true) ? 'Accepted' : 'Rejected'}} 
+                </td>
+                <td *ngIf="proposalData.mentorProposal == null">
+                    <app-proposal-mentor-btn [proposalData]="proposalData"></app-proposal-mentor-btn>
                 </td>
             </tr>
         </tbody>

@@ -27,7 +27,7 @@ public class MentorController_Consumer {
 		return mentorClientService.getMentors();
 	}
 
-	@GetMapping("/feign/mentors/{id}")
+	@GetMapping("/feign/mentors/{mentorId}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
 		return mentorClientService.getMentor(mentorId);
 	}

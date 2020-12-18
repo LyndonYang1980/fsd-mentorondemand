@@ -21,7 +21,7 @@ public interface MentorClientService {
 	@GetMapping(value = "/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors();
 
-	@GetMapping(value = "/mentors/{id}")
+	@GetMapping(value = "/mentors/{mentorId}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId);
 	
 	@PostMapping(value = "/mentors/addMentor")
@@ -45,7 +45,7 @@ public interface MentorClientService {
 	@PutMapping(value = "/calendars")
 	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar);
 
-	@DeleteMapping(value = "/calendars/{id}")
+	@DeleteMapping(value = "/calendars/{calendarId}")
 	public void deleteCalendar(@PathVariable Long calendarId);
 
 	@GetMapping(value = "/skills/getSkills")

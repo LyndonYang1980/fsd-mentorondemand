@@ -38,12 +38,12 @@ public class CalendarController_Consumer {
 		return mentorClientService.addCalendar(calendar);
 	}
 
-	@PutMapping(value = "/feign/calendars/{id}")
+	@PutMapping(value = "/feign/calendars/{calendarId}")
 	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar) {
 		return mentorClientService.updateCalendar(calendar);
 	}
 
-	@DeleteMapping("/feign/calendars/{id}")
+	@DeleteMapping("/feign/calendars/{calendarId}")
 	public void deleteCalendar(@PathVariable Long calendarId) {
 		mentorClientService.deleteCalendar(calendarId);
 	}
