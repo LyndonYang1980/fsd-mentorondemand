@@ -32,22 +32,22 @@ public class ProposalController_Consumer {
 		return proposalClientService.getUserProposal(userId);
 	}
 
-	@GetMapping("feign/proposal/getMentorProposal/{mentorId}")
+	@GetMapping("/feign/proposal/getMentorProposal/{mentorId}")
 	public ResponseEntity<List<Proposal>> getMentorProposal(@PathVariable("mentorId") Long mentorId) {
 		return proposalClientService.getMentorProposal(mentorId);
 	}
 
-	@PutMapping("feign/proposal/acceptProposal/{proposalId}")
+	@PutMapping("/feign/proposal/acceptProposal/{proposalId}")
 	public ResponseEntity<Proposal> acceptProposal(@PathVariable("proposalId") Long proposalId) {
 		return proposalClientService.acceptProposal(proposalId);
 	}
 
-	@PutMapping("feign/proposal/rejectProposal/{proposalId}")
+	@PutMapping("/feign/proposal/rejectProposal/{proposalId}")
 	public ResponseEntity<Proposal> rejectProposal(@PathVariable("proposalId") Long proposalId) {
 		return proposalClientService.rejectProposal(proposalId);
 	}
 
-	@PutMapping("feign/proposal/reconfirmProposal/{proposalId}")
+	@PutMapping("/feign/proposal/reconfirmProposal/{proposalId}")
 	public ResponseEntity<Proposal> reconfirmProposal(@PathVariable("proposalId") Long proposalId) {
 		return proposalClientService.reconfirmProposal(proposalId);
 	}

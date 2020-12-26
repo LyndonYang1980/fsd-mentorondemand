@@ -3,6 +3,7 @@ package com.fsd.mod.feignclient;
 import java.util.List;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,19 +19,22 @@ public interface TrainingClientService {
 	@GetMapping("/trainings")
 	public List<Training> getTrainings();
 	
-	@RequestMapping("/trainings/{trainingId}")
+	@GetMapping("/trainings/{trainingId}")
 	public Training getTraining(@PathVariable Long trainingId);
 	
+	@PostMapping("/trainings/existingTraining")
+	public Training findExistingTraining(@RequestBody Training trainingData);
+	
 	@PostMapping(value = "/trainings")
-	public void addTraining(@RequestBody Training training);
+	public ResponseEntity<Training> addTraining(@RequestBody Training training);
 	
 	@PutMapping(value = "/trainings")
 	public void updateTraining(@RequestBody Training training);
 	
-	@RequestMapping(value = "/trainings/user/{userId}")
-	public List<Training> getUserTrainings(@PathVariable Long userId);
+	@GetMapping(value = "/trainings/user/{userId}")
+	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId);
 	
-	@RequestMapping(value = "/trainings/mentor/{mentorId}/{skillId}")
-	public List<Training> getMentorTrainings(@PathVariable Long mentorId, @PathVariable Long skillId);
+	@GetMapping(value = "/trainings/mentor/{mentorId}")
+	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable Long mentorId);
 	
 }

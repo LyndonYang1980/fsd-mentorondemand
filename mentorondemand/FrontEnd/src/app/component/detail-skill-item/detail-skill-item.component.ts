@@ -3,11 +3,11 @@ import { SkillService } from 'src/app/service/skillService/skill.service';
 import { SkillModule } from 'src/app/module/skill.module';
 
 @Component({
-  selector: 'app-proposal-detail-skill-item',
-  templateUrl: './proposal-detail-skill-item.component.html',
-  styleUrls: ['./proposal-detail-skill-item.component.css']
+  selector: 'app-detail-skill-item',
+  templateUrl: './detail-skill-item.component.html',
+  styleUrls: ['./detail-skill-item.component.css']
 })
-export class ProposalDetailSkillItemComponent implements OnInit {
+export class DetailSkillItemComponent implements OnInit {
 
   @Input() showProperty: string;
   @Input() skillId: number;

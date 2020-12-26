@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProposalModule } from 'src/app/module/proposal.module';
 import { ProposalService } from 'src/app/service/proposalService/proposal.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,6 +12,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 export class ProposalUserConfirmBtnComponent implements OnInit {
 
   @Input() proposalData: ProposalModule;
+  @Output() retProposalData = new EventEmitter<ProposalModule>();
   bsModalRef: BsModalRef;
 
   constructor(private proposalService: ProposalService, private bsModalService: BsModalService) { }
@@ -30,6 +31,7 @@ export class ProposalUserConfirmBtnComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(MessageModalComponent, { initialState });
 
     this.bsModalRef.content.onClick = () => {
+      this.retProposalData.emit(this.proposalData);
       location.reload();
     }
   }
@@ -40,6 +42,7 @@ export class ProposalUserConfirmBtnComponent implements OnInit {
       (data) => {
         if (data != null) {
           msg = "Proposal got confirmed!";
+          this.proposalData = data;
         } else {
           msg = "Proposal not confirmed due to error!";
         }

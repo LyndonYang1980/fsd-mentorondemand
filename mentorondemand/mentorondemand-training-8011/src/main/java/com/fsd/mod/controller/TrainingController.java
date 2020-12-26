@@ -3,6 +3,8 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
 import com.fsd.mod.service.TrainingService;
 
@@ -27,14 +30,27 @@ public class TrainingController {
 		return trainingService.getTrainings();
 	}
 
-	@RequestMapping("/trainings/{trainingId}")
+	@GetMapping("/trainings/{trainingId}")
 	public Training getTraining(@PathVariable Long trainingId) {
 		return trainingService.getTraining(trainingId);
 	}
 
+	@PostMapping("/trainings/existingTraining")
+	public Training findExistingTraining(@RequestBody Training trainingData) {
+		Training existingTrain = trainingService.findExistingTraining(trainingData);
+		return existingTrain;
+	}
+
 	@PostMapping(value = "/trainings")
-	public void addTraining(@RequestBody Training training) {
-		trainingService.addTraining(training);
+	public ResponseEntity<Training> addTraining(@RequestBody Training trainingData) {
+		Training addedTraining = null;
+		try {
+			addedTraining = trainingService.saveTraining(trainingData);
+			return new ResponseEntity<Training>(addedTraining, HttpStatus.ACCEPTED);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Training>(addedTraining, HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 
 	@PutMapping(value = "/trainings")
@@ -42,13 +58,24 @@ public class TrainingController {
 		trainingService.updateTraining(training);
 	}
 
-	@RequestMapping(value = "/trainings/user/{userId}")
-	public List<Training> getUserTrainings(@PathVariable Long userId) {
-		return trainingService.getUserTrainings(userId);
+	@GetMapping(value = "/trainings/user/{userId}")
+	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId) {
+		List<Training> userTrainings = trainingService.getMentorTraining(userId);
+		if (userTrainings != null) {
+			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.FOUND);
+		} else {
+			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.NOT_FOUND);
+		}
 	}
 
-	@RequestMapping(value = "/trainings/mentor/{mentorId}/{skillId}")
-	public List<Training> getMentorTrainings(@PathVariable Long mentorId, @PathVariable Long skillId) {
-		return trainingService.getMentorTrainings(mentorId, skillId);
+	@GetMapping(value = "/trainings/mentor/{mentorId}")
+	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable Long mentorId) {
+		List<Training> mentorTrainings = trainingService.getMentorTraining(mentorId);
+		if (mentorTrainings != null) {
+			return new ResponseEntity<List<Training>>(mentorTrainings, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<List<Training>>(mentorTrainings, HttpStatus.NOT_FOUND);
+		}
 	}
+
 }

@@ -28,11 +28,21 @@ export class UserProposalComponent implements OnInit {
 
   getUserProposalData() {
     let userId = this.userLoggedIn.userId;
-    this.proposalService.getMentorProposal(userId).subscribe((data) => {
-      this.userProposalList = data;
+    this.proposalService.getUserProposal(userId).subscribe((data) => {
+      this.userProposalList = data.sort((n1, n2) => n1.proposalId - n2.proposalId);
     }, (error) => {
       console.log(error);
     })
   }
 
+  handleRetProposalData(retProposalData: ProposalModule){
+    let index:number = this.userLoggedIn.proposals.findIndex(proposalItem=>{
+      return proposalItem.proposalId === retProposalData.proposalId;
+    });
+
+    if (index > -1) {
+      this.userLoggedIn.proposals.splice(index,1,retProposalData);   
+      localStorage.setItem('mentorLoggedIn', JSON.stringify(this.userLoggedIn));   
+    }
+  }
 }

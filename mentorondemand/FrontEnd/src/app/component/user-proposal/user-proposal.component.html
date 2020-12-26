@@ -10,38 +10,41 @@
                 <th scope="col">Mentor Email</th>
                 <th scope="col">Contact No.</th>
                 <th scope="col">Mentor's Confirmation</th>
-                <th scope="col">Need Your Final Confirm?</th>
+                <th scope="col">Your Final Confirmation</th>
             </tr>
         </thead>
 
         <tbody>
             <tr *ngFor="let proposalData of userProposalList">
                 <td>
-                    <app-proposal-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
-                    </app-proposal-detail-skill-item>
+                    <app-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
+                    </app-detail-skill-item>
                 </td>
                 <td>
-                    <app-proposal-detail-mentor-item [mentorId]="proposalData.mentorId" [showProperty]="'mentorName'">
-                    </app-proposal-detail-mentor-item>
+                    <app-detail-mentor-item [mentorId]="proposalData.mentorId" [showProperty]="'mentorName'">
+                    </app-detail-mentor-item>
                 </td>
                 <td>
-                    <app-proposal-detail-mentor-item [mentorId]="proposalData.mentorId" [showProperty]="'mentorEmail'">
-                    </app-proposal-detail-mentor-item>
+                    <app-detail-mentor-item [mentorId]="proposalData.mentorId" [showProperty]="'mentorEmail'">
+                    </app-detail-mentor-item>
                 </td>
                 <td>
-                    <app-proposal-detail-mentor-item [mentorId]="proposalData.mentorId"
+                    <app-detail-mentor-item [mentorId]="proposalData.mentorId"
                         [showProperty]="'contactNumber'">
-                    </app-proposal-detail-mentor-item>
+                    </app-detail-mentor-item>
                 </td>
                 <td>
                     {{(proposalData.mentorProposal == null)? 'Pending' : (proposalData.mentorProposal == true) ? 'Accepted' : 'Rejected'}}
                 </td>
                 <td *ngIf="proposalData.userReconfirmProposal == null && proposalData.mentorProposal == true">
-                    <app-proposal-user-confirm-btn [proposalData]="proposalData">
+                    <app-proposal-user-confirm-btn [proposalData]="proposalData" (retProposalData)="handleRetProposalData($event)">
                     </app-proposal-user-confirm-btn>
                 </td>
                 <td *ngIf="proposalData.userReconfirmProposal == null && proposalData.mentorProposal != true ">
                     N/A
+                </td>
+                <td *ngIf="proposalData.userReconfirmProposal != null && proposalData.mentorProposal == true ">
+                    {{(proposalData.userReconfirmProposal == true) ? "Confirmed" : ""}}
                 </td>
             </tr>
         </tbody>

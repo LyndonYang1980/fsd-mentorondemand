@@ -7,6 +7,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
@@ -26,17 +28,14 @@ public class Training {
 
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "training_id")
 	private Long trainingId;
-	
-	@JsonIgnore
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "trainings")
-	private Set<User> users = new HashSet<>();
 	
 //	@JsonManagedReference(value = "user")
 //	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 //	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
-//	private Long userId;
+	private Long userId;
 
 //	@JsonManagedReference(value = "mentor")
 //	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)

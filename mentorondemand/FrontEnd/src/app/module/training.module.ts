@@ -4,15 +4,15 @@ import { MentorModule } from './mentor.module';
 
 export class TrainingModule {
   constructor(
-    public training_id: number,
+    public trainingId: number,
     public userId: number,
     public mentorId: number,
     public skillId: number,
     public status: string,
     public progress: number,
     public rating: number,
-    public start_date: Date,
-    public end_date: Date,
-    public amount_received: number
-  ){}
+    public startDate: Date,
+    public endDate: Date,
+    public amountReceived: number
+  ) { }
 } 

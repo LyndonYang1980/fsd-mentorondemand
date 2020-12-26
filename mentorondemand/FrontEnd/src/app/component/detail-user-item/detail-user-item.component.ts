@@ -3,11 +3,11 @@ import { UserService } from 'src/app/service/userService/user.service';
 import { UserModule } from 'src/app/module/user.module';
 
 @Component({
-  selector: 'app-proposal-detail-user-item',
-  templateUrl: './proposal-detail-user-item.component.html',
-  styleUrls: ['./proposal-detail-user-item.component.css']
+  selector: 'app-detail-user-item',
+  templateUrl: './detail-user-item.component.html',
+  styleUrls: ['./detail-user-item.component.css']
 })
-export class ProposalDetailUserItemComponent implements OnInit {
+export class DetailUserItemComponent implements OnInit {
 
   @Input() showProperty: string;
   @Input() userId: number;

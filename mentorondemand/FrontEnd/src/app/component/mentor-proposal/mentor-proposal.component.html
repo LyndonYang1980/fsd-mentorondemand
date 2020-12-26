@@ -15,26 +15,26 @@
         <tbody>
             <tr *ngFor="let proposalData of mentorProposalList">
                 <td>
-                    <app-proposal-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
-                    </app-proposal-detail-skill-item>
+                    <app-detail-skill-item [skillId]="proposalData.skillId" [showProperty]="'skillName'">
+                    </app-detail-skill-item>
                 </td>
                 <td>
-                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userName'">
-                    </app-proposal-detail-user-item>
+                    <app-detail-user-item [userId]="proposalData.userId" [showProperty]="'userName'">
+                    </app-detail-user-item>
                 </td>
                 <td>
-                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'userEmail'">
-                    </app-proposal-detail-user-item>
+                    <app-detail-user-item [userId]="proposalData.userId" [showProperty]="'userEmail'">
+                    </app-detail-user-item>
                 </td>
                 <td>
-                    <app-proposal-detail-user-item [userId]="proposalData.userId" [showProperty]="'contactNumber'">
-                    </app-proposal-detail-user-item>
+                    <app-detail-user-item [userId]="proposalData.userId" [showProperty]="'contactNumber'">
+                    </app-detail-user-item>
                 </td>
                 <td *ngIf="proposalData.mentorProposal != null">
                     {{(proposalData.mentorProposal == true) ? 'Accepted' : 'Rejected'}} 
                 </td>
                 <td *ngIf="proposalData.mentorProposal == null">
-                    <app-proposal-mentor-btn [proposalData]="proposalData"></app-proposal-mentor-btn>
+                    <app-proposal-mentor-btn [proposalData]="proposalData" (retProposalData)="handleRetProposalData($event)"></app-proposal-mentor-btn>
                 </td>
             </tr>
         </tbody>

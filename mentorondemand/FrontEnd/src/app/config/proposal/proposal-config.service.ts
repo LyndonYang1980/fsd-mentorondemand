@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ProposalModule } from 'src/app/module/proposal.module';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +14,7 @@ export class ProposalConfigService {
   }
 
   getUserProposalUrl(userId: number) {
-    var theId = '${' + userId + '}';
-    return (this.proposlAPIUrl + "/getUserProposal/" + theId);
+    return (this.proposlAPIUrl + "/getUserProposal/" + userId);
   }
 
   getMentorProposalUrl(mentorId: number) {

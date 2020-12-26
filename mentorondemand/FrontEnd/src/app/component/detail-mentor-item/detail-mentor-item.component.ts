@@ -3,11 +3,11 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { MentorService } from 'src/app/service/mentorService/mentor.service';
 
 @Component({
-  selector: 'app-proposal-detail-mentor-item',
-  templateUrl: './proposal-detail-mentor-item.component.html',
-  styleUrls: ['./proposal-detail-mentor-item.component.css']
+  selector: 'app-detail-mentor-item',
+  templateUrl: './detail-mentor-item.component.html',
+  styleUrls: ['./detail-mentor-item.component.css']
 })
-export class ProposalDetailMentorItemComponent implements OnInit {
+export class DetailMentorItemComponent implements OnInit {
   
   @Input() showProperty: string;
   @Input() mentorId: number;

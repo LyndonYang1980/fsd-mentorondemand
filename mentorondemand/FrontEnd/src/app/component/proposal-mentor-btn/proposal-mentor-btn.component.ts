@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ProposalService } from 'src/app/service/proposalService/proposal.service';
 import { ProposalModule } from 'src/app/module/proposal.module';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
+import { TrainingDetailModalComponent } from '../training-detail-modal/training-detail-modal.component';
 
 @Component({
   selector: 'app-proposal-mentor-btn',
@@ -12,6 +13,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 export class ProposalMentorBtnComponent implements OnInit {
 
   @Input() proposalData: ProposalModule;
+  @Output() retProposalData = new EventEmitter<ProposalModule>();
   bsModalRef: BsModalRef;
 
   constructor(private proposalService: ProposalService, private bsModalService: BsModalService) { }
@@ -30,20 +32,29 @@ export class ProposalMentorBtnComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(MessageModalComponent, { initialState });
 
     this.bsModalRef.content.onClick = () => {
-      this.refreshPage();
+      this.retProposalData.emit(this.proposalData);      
     }
   }
 
-  refreshPage(){
-    location.reload();
+  showTrainingDetailModal(){
+    const initialState = {
+      title: 'Information'
+    };
+
+    this.bsModalRef = this.bsModalService.show(TrainingDetailModalComponent, {initialState});
+    this.bsModalRef.content.onSubmit = ()=>{
+      
+    }
   }
 
   acceptProposal() {
+
     let msg: string;
     this.proposalService.acceptProposal(this.proposalData).subscribe(
       (data) => {
         if (data != null) {
           msg = "Proposal accepted!";
+          this.proposalData = data;
         } else {
           msg = "Proposal not accepted due to error!";
         }
@@ -61,6 +72,7 @@ export class ProposalMentorBtnComponent implements OnInit {
       (data) => {
         if (data != null) {
           msg = "Proposal rejected!";
+          this.proposalData = data;
         } else {
           msg = "Proposal not rejected due to error!";
         }

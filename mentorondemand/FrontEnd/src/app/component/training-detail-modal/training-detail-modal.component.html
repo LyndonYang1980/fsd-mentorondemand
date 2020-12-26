@@ -1,0 +1,41 @@
+<form [formGroup]="trainingForm" (ngSubmit)="submit()" novalidate>
+
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+            </div>
+
+            <div class="input-group mb-auto">
+                <label>Fee</label>
+                <div class="input-group-prepend">
+                    <span class="input-group-text">$</span>
+                </div>
+                <input formControlName="fee" type="text" id="fee" #fee class="form-control"
+                    aria-label="Amount (to the nearest dollar)">
+                <div *ngIf="formErrors.fee">{{ formErrors.fee }}</div>
+            </div>
+
+            <div class="input-group mb-auto">
+                <label>Training Start Date</label>
+                <input formControlName="startDate" type="text" id="startDate" placeholder="Datepicker"
+                    class="form-control" bsDatepicker [bsValue]="bsValue" [minDate]="minDate" [maxDate]="maxDate"
+                    [daysDisabled]="[6,0]" [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }">
+                <div *ngIf="formErrors.startDate">{{ formErrors.startDate }}</div>
+            </div>
+
+            <div class="input-group mb-auto">
+                <label>Training End Date</label>
+                <input formControlName="endDate" type="text" id="startDate" placeholder="Datepicker"
+                    class="form-control" bsDatepicker [bsValue]="bsValue" [minDate]="minDate" [maxDate]="maxDate"
+                    [daysDisabled]="[6,0]" [bsConfig]="{ isAnimated: true, dateInputFormat: 'YYYY-MM-DD' }">
+                <div *ngIf="formErrors.endDate">{{ formErrors.endDate }}</div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="submit" id="submitBtn" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                <button type="button" id="cancelBtn" class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</form>

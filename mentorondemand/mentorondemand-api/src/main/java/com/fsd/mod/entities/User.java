@@ -31,18 +31,16 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class User {
-
-	@JsonIgnore
+	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-
-//	@JsonIgnore
-//	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
-//	private Set<Training> trainings = new HashSet<>();
-
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinTable(name = "user_training", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "training_id", referencedColumnName = "training_id"))
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
+
+//	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//	@JoinTable(name = "user_training", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "training_id", referencedColumnName = "training_id"))
+//	private Set<Training> trainings = new HashSet<>();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

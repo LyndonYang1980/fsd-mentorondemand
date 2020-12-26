@@ -59,7 +59,7 @@ public class Mentor {
 	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
 	private Set<Skill> skills = new HashSet<>();
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
 	

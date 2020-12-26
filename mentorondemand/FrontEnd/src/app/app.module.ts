@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
@@ -21,6 +20,7 @@ import { UserDashboardComponent } from './component/user-dashboard/user-dashboar
 import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
@@ -28,27 +28,29 @@ import { ProposalUserBtnComponent } from './component/proposal-user-btn/proposal
 import { ProposalModalComponent } from './component/proposal-modal/proposal-modal.component';
 import { MessageModalComponent } from './component/message-modal/message-modal.component';
 import { MentorProposalComponent } from './component/mentor-proposal/mentor-proposal.component';
-import { ProposalDetailComponent } from './component/proposal-detail/proposal-detail.component';
-import { ProposalDetailUserItemComponent } from './component/proposal-detail-user-item/proposal-detail-user-item.component';
-import { ProposalDetailSkillItemComponent } from './component/proposal-detail-skill-item/proposal-detail-skill-item.component';
+import { DetailUserItemComponent } from './component/detail-user-item/detail-user-item.component';
+import { DetailSkillItemComponent } from './component/detail-skill-item/detail-skill-item.component';
 import { ProposalMentorBtnComponent } from './component/proposal-mentor-btn/proposal-mentor-btn.component';
 import { UserProposalComponent } from './component/user-proposal/user-proposal.component';
-import { ProposalDetailMentorItemComponent } from './component/proposal-detail-mentor-item/proposal-detail-mentor-item.component';
+import { DetailMentorItemComponent } from './component/detail-mentor-item/detail-mentor-item.component';
 import { ProposalUserConfirmBtnComponent } from './component/proposal-user-confirm-btn/proposal-user-confirm-btn.component';
+import { TrainingDetailModalComponent } from './component/training-detail-modal/training-detail-modal.component';
+import { MentorTrainingsComponent } from './component/mentor-trainings/mentor-trainings.component';
 
 
 const routes: Routes = [
-  { path : '' , component : HomeComponent},
-  { path : 'mentor' , component : MentorSearchComponent},
-  { path : 'login' , component : LoginComponent},
-  { path : 'mentorLogin' , component : MentorLoginComponent},
-  { path : 'userSignUp' , component : SignUpComponent},
-  { path : 'mentorSignUp' , component : MentorSignupComponent},
-  { path : 'userpage' , component : UserDashboardComponent},
-  { path : 'mentorpage' , component :MentorDashboardComponent},
-  { path : 'payments' , component : PaymentComponent},
-  { path : 'mentorproposal' , component : MentorProposalComponent},
-  { path : 'userproposal' , component : UserProposalComponent}
+  { path: '', component: HomeComponent },
+  { path: 'mentor', component: MentorSearchComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'mentorLogin', component: MentorLoginComponent },
+  { path: 'userSignUp', component: SignUpComponent },
+  { path: 'mentorSignUp', component: MentorSignupComponent },
+  { path: 'userpage', component: UserDashboardComponent },
+  { path: 'mentorpage', component: MentorDashboardComponent },
+  { path: 'payments', component: PaymentComponent },
+  { path: 'mentorproposal', component: MentorProposalComponent },
+  { path: 'userproposal', component: UserProposalComponent },
+  { path: 'mentortraining', component: MentorTrainingsComponent }
 
 ];
 
@@ -73,13 +75,14 @@ const routes: Routes = [
     ProposalModalComponent,
     MessageModalComponent,
     MentorProposalComponent,
-    ProposalDetailComponent,
-    ProposalDetailUserItemComponent,
-    ProposalDetailSkillItemComponent,
+    DetailUserItemComponent,
+    DetailSkillItemComponent,
     ProposalMentorBtnComponent,
     UserProposalComponent,
-    ProposalDetailMentorItemComponent,
+    DetailMentorItemComponent,
     ProposalUserConfirmBtnComponent,
+    TrainingDetailModalComponent,
+    MentorTrainingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,11 +94,13 @@ const routes: Routes = [
     NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     ModalModule,
     ModalModule.forRoot()
   ],
   providers: [
-    BsModalRef
+    BsModalRef,
+    BsDatepickerConfig
   ],
   bootstrap: [AppComponent]
 })
