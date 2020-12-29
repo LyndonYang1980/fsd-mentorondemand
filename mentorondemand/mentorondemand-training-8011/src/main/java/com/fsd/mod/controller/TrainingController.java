@@ -32,7 +32,8 @@ public class TrainingController {
 
 	@GetMapping("/trainings/{trainingId}")
 	public Training getTraining(@PathVariable Long trainingId) {
-		return trainingService.getTraining(trainingId);
+		Training training = trainingService.getTraining(trainingId); 
+		return training;
 	}
 
 	@PostMapping("/trainings/existingTraining")
@@ -60,9 +61,9 @@ public class TrainingController {
 
 	@GetMapping(value = "/trainings/user/{userId}")
 	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId) {
-		List<Training> userTrainings = trainingService.getMentorTraining(userId);
+		List<Training> userTrainings = trainingService.getUserTraining(userId);
 		if (userTrainings != null) {
-			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.FOUND);
+			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.NOT_FOUND);
 		}

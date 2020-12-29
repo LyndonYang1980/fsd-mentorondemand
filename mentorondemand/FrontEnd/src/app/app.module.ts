@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
@@ -36,6 +37,8 @@ import { DetailMentorItemComponent } from './component/detail-mentor-item/detail
 import { ProposalUserConfirmBtnComponent } from './component/proposal-user-confirm-btn/proposal-user-confirm-btn.component';
 import { TrainingDetailModalComponent } from './component/training-detail-modal/training-detail-modal.component';
 import { MentorTrainingsComponent } from './component/mentor-trainings/mentor-trainings.component';
+import { UserTrainingsComponent } from './component/user-trainings/user-trainings.component';
+import { MentorTrainingDetailsComponent } from './component/mentor-training-details/mentor-training-details.component';
 
 
 const routes: Routes = [
@@ -50,7 +53,9 @@ const routes: Routes = [
   { path: 'payments', component: PaymentComponent },
   { path: 'mentorproposal', component: MentorProposalComponent },
   { path: 'userproposal', component: UserProposalComponent },
-  { path: 'mentortraining', component: MentorTrainingsComponent }
+  { path: 'mentortraining', component: MentorTrainingsComponent },
+  { path: 'usertraining', component: UserTrainingsComponent },
+  { path: 'trainingdetail', component: MentorTrainingDetailsComponent }
 
 ];
 
@@ -83,20 +88,23 @@ const routes: Routes = [
     ProposalUserConfirmBtnComponent,
     TrainingDetailModalComponent,
     MentorTrainingsComponent,
+    UserTrainingsComponent,
+    MentorTrainingDetailsComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
-    NgMultiSelectDropDownModule.forRoot(),
     BrowserAnimationsModule,
+    ModalModule,
+    RouterModule.forRoot(routes),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    ModalModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     BsModalRef,

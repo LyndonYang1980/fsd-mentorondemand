@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <h5>Mentor's Training Courses</h5>
+    <!-- Table -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Skill</th>
+                <th scope="col">Fee</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Progress</th>
+                <th scope="col">Status</th>
+                <th scope="col">Mentor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tr" *ngFor="let training of userTrainingList">
+                <td>
+                    <app-detail-skill-item [skillId]="training.skillId" [showProperty]="'skillName'">
+                    </app-detail-skill-item>
+                </td>
+                <td>{{training.fee}}</td>
+                <td>{{training.startDate}}</td>
+                <td>{{training.endDate}}</td>
+                <td>{{training.progress}}</td>
+                <td>{{training.status}}</td>
+                <td>
+                    <app-detail-mentor-item [mentorId]="training.mentorId" [showProperty]="'mentorName'">
+                    </app-detail-mentor-item>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

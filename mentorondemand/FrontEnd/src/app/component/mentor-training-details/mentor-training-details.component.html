@@ -1,0 +1,87 @@
+<h5>Training Detail</h5>
+
+<form [formGroup]="trainingForm" (ngSubmit)="onSubmit()">
+
+    <div class="col-md-6 offset-6 d-lg-inline-block align-top uk-grid-margin">
+        <div class="float-right">
+            <button type="submit" class="btn btn-outline-dark"
+                *ngIf="trainingData.status != 'started' && trainingData.status != 'completed'">Save</button>
+        </div>
+        <!-- <div class="float-right">
+            <button type="button" class="btn btn-outline-dark"
+                *ngIf="trainingData.status != 'started' && trainingData.status != 'completed'">Set Start</button>
+        </div> -->
+    </div>
+    <p></p>
+
+    <div class="col-md-6 d-lg-inline-block align-top">
+        <div class="shadow mb-5 p-5 bg-white rounded">
+            <fieldset id="bfedit">
+                <div hidden class="form-group">
+                    <input formControlName="trainingId" type="text" id="trainingId" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Start Date: </label>
+                    <div class="col-sm-8 input-group">
+                        <div class="input-group-append">
+                            <button class="ui-icon-calendar" (click)="startDate.toggle()" type="button"></button>
+                        </div>
+                        <input class="form-control" formControlName="startDate" name="startDate" ngbDatepicker
+                            #startDate="ngbDatepicker" [displayMonths]="true" [navigation]="true"
+                            [showWeekNumbers]="true">
+                        <div *ngIf="formErrors.startDate">{{ formErrors.startDate }}</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="endDate">End Date: </label>
+                    <div class="col-sm-8 input-group">
+                        <div class="input-group-append">
+                            <button class="ui-icon-calendar" (click)="endDate.toggle()" type="button"></button>
+                        </div>
+                        <input formControlName="endDate" type="text" class="form-control" name="endDate"
+                            #endDate="ngbDatepicker" ngbDatepicker [displayMonths]="true" [navigation]="true"
+                            [showWeekNumbers]="true">
+                        <div *ngIf="formErrors.endDate">{{ formErrors.endDate }}</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fee">Fee: </label>
+                    <div class="col-sm-8 input-group">
+                        <input formControlName="fee" type="text" id="fee" class="form-control" aria-label="fee">
+                        <div *ngIf="formErrors.fee">{{ formErrors.fee }}</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="status">Status: </label>
+                    <div class="col-sm-8 input-group">
+                        <input formControlName="status" type="text" id="status" class="form-control" aria-label="status"
+                            readonly="true">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="progress">Progress: </label>
+                    <div class="col-sm-8 input-group">
+                        <input formControlName="progress" type="text" id="progress" class="form-control"
+                            aria-label="progress" readonly="true">
+                    </div>
+
+                </div>
+            </fieldset>
+        </div>
+    </div>
+
+    <div class="col-md-6 d-lg-inline-block align-top">
+        <div class="shadow mb-5 p-5 bg-white rounded">
+            <label for="mentorSkill">Amount Received: </label>
+            <div class="col-sm-8">
+                <input formControlName="amountReceived" type="text" id="amountReceived" class="form-control"
+                    aria-label="Amount" readonly="true">
+            </div>
+        </div>
+    </div>
+</form>

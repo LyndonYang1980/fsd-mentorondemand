@@ -4,6 +4,7 @@ import { SkillService } from 'src/app/service/skillService/skill.service';
 import { TrainingService } from 'src/app/service/trainingService/training.service';
 import { MentorModule } from 'src/app/module/mentor.module';
 import { TrainingModule } from 'src/app/module/training.module';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mentor-trainings',
@@ -15,9 +16,9 @@ export class MentorTrainingsComponent implements OnInit {
   mentorData: MentorModule;
   mentorTrainingList: TrainingModule[];
 
-  constructor(private userService: UserService,
-    private skillService: SkillService,
-    private trainingService: TrainingService) { }
+  constructor(private skillService: SkillService,
+    private trainingService: TrainingService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.getLoginMentor();
@@ -37,6 +38,14 @@ export class MentorTrainingsComponent implements OnInit {
     }, (error) => {
       console.log(error);
     })
+  }
+
+  openTrainingDetail(trainingId: number) {
+    this.router.navigate(['trainingdetail'], {
+      queryParams: {
+        trainingId: trainingId
+      }
+    });
   }
 
 }

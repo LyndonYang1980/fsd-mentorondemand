@@ -92,7 +92,7 @@ export class MentorProposalComponent implements OnInit {
           if (userData == null) {
             this.msg = "User won't be added to training because the user no longer existed";
           } else {
-            let newTraining: TrainingModule = new TrainingModule(null, userId, mentorId, skillId, "proposed", 0, null, null, null, 0);
+            let newTraining: TrainingModule = new TrainingModule(null, userId, mentorId, skillId, null, "proposed", 0, null, null, null, 0);
 
             this.trainingService.findExistingTraining(newTraining).subscribe(
               (result) => {

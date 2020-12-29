@@ -23,6 +23,10 @@ export class TrainingService {
     return this.httpClient.post<TrainingModule>(this.trainingConfig.addTrainingUrl(), training, httpOptions);
   }
 
+  updateTraining(training: TrainingModule): Observable<TrainingModule> {
+    return this.httpClient.put<TrainingModule>(this.trainingConfig.updTrainingUrl(), training, httpOptions);
+  }
+
   getTrainings(): Observable<TrainingModule[]> {
     return this.httpClient.get<TrainingModule[]>(this.trainingConfig.getTrainingsUrl(), httpOptions);
   }
@@ -40,8 +44,8 @@ export class TrainingService {
     return this.httpClient.get<TrainingModule[]>(this.trainingConfig.getMentorTrainingUrl(mentorId), httpOptions);
   }
 
-  getUserTraining(userId: number): Observable<TrainingModule> {
-    return this.httpClient.get<TrainingModule>(this.trainingConfig.getUserTrainingUrl(userId), httpOptions);
+  getUserTraining(userId: number): Observable<TrainingModule[]> {
+    return this.httpClient.get<TrainingModule[]>(this.trainingConfig.getUserTrainingUrl(userId), httpOptions);
   }
 
 }

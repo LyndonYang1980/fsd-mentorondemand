@@ -1,19 +1,15 @@
 package com.fsd.mod.entities;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,6 +42,9 @@ public class Training {
 //	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
 //	@JoinColumn(name = "skill_id", referencedColumnName = "skill_id")
 	private Long skillId;
+	
+	@Column(name = "fee")
+	private Float fee;
 
 	@Column(name = "status")
 	private String status;
@@ -57,9 +56,11 @@ public class Training {
 	private Integer rating = 0;
 
 	@Column(name = "start_date")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date startDate;
 
 	@Column(name = "end_date")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date endDate;
 
 	@Column(name = "amount_received")

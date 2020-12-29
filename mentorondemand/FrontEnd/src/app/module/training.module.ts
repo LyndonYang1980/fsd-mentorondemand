@@ -8,6 +8,7 @@ export class TrainingModule {
     public userId: number,
     public mentorId: number,
     public skillId: number,
+    public fee: number,
     public status: string,
     public progress: number,
     public rating: number,

@@ -33,9 +33,11 @@ export class TrainingConfigService {
 
   getUserTrainingUrl(userId: number) {
     return this.trainingAPIUrl + "/user/" + userId;
+    // return "http://localhost:8011/trainings/user/" + userId;
   }
 
   getMentorTrainingUrl(mentorId: number) {
     return this.trainingAPIUrl + "/mentor/" + mentorId;
+    // return "http://localhost:8011/trainings/mentor/" + mentorId;
   }
 }
