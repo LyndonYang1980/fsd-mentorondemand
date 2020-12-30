@@ -11,10 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
 import com.fsd.mod.service.TrainingService;
 
@@ -32,7 +30,7 @@ public class TrainingController {
 
 	@GetMapping("/trainings/{trainingId}")
 	public Training getTraining(@PathVariable Long trainingId) {
-		Training training = trainingService.getTraining(trainingId); 
+		Training training = trainingService.getTraining(trainingId);
 		return training;
 	}
 
@@ -55,8 +53,16 @@ public class TrainingController {
 	}
 
 	@PutMapping(value = "/trainings")
-	public void updateTraining(@RequestBody Training training) {
-		trainingService.updateTraining(training);
+	public Training updateTraining(@RequestBody Training training) {
+		Training updTraining = null;
+
+		try {
+			updTraining = trainingService.updateTraining(training);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			return updTraining;
+		}
 	}
 
 	@GetMapping(value = "/trainings/user/{userId}")

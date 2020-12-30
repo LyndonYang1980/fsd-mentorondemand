@@ -1,6 +1,6 @@
 <div class="panel panel-default">
-    <!-- Default panel contents -->
-    <h5>Mentor's Training Courses</h5>
+    <br>
+    <h5>Your Trainings for Students</h5>
     <!-- Table -->
     <table class="table table-striped">
         <thead>
@@ -13,7 +13,7 @@
                 <th scope="col">Amount Received</th>
                 <th scope="col">Status</th>
                 <th scope="col">Student</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -26,14 +26,14 @@
                 <td>{{training.startDate}}</td>
                 <td>{{training.endDate}}</td>
                 <td>{{training.progress}}</td>
-                <td>{{training.fee}}</td>
+                <td>{{training.amountReceived}}</td>
                 <td>{{training.status}}</td>
                 <td>
                     <app-detail-user-item [userId]="training.userId" [showProperty]="'userName'">
                     </app-detail-user-item>
                 </td>
                 <td>
-                    <button class="btn btn-outline-dark" type="button" (click)="openTrainingDetail(training.trainingId)">Edit</button>
+                    <button class="btn btn-outline-dark" type="button" (click)="openTrainingDetail(training.trainingId)">Open</button>
                 </td>
             </tr>
         </tbody>

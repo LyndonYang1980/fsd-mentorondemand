@@ -28,7 +28,7 @@ public interface TrainingClientService {
 	public ResponseEntity<Training> addTraining(@RequestBody Training training);
 
 	@PutMapping(value = "/trainings")
-	public void updateTraining(@RequestBody Training training);
+	public Training updateTraining(@RequestBody Training training);
 
 	@GetMapping(value = "/trainings/user/{userId}")
 	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId);

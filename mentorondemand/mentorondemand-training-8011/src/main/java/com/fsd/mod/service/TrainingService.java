@@ -38,8 +38,9 @@ public class TrainingService {
 		return trainingRepo.save(trainingData);
 	}
 
-	public void updateTraining(Training training) {
-		trainingRepo.save(training);
+	@Transactional
+	public Training updateTraining(Training training) {
+		return trainingRepo.save(training);
 	}
 
 	public List<Training> getUserTraining(Long userId) {

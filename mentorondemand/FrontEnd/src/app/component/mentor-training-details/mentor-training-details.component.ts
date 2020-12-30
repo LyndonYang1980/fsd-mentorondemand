@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TrainingService } from 'src/app/service/trainingService/training.service';
 import { TrainingModule } from 'src/app/module/training.module';
-import { FormBuilder, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap'
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-mentor-training-details',
@@ -22,6 +23,7 @@ export class MentorTrainingDetailsComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   startDate: Date;
   endDate: Date;
+  editMode: boolean;
   title: string;
   msg: string;
 
@@ -51,28 +53,30 @@ export class MentorTrainingDetailsComponent implements OnInit {
   ) { };
 
   ngOnInit(): void {
-
+    this.bsConfig = Object.assign({}, { isAnimated: true, dateInputFormat: 'YYYY-MM-DD' });
     this.getParams();
   }
 
   buildForm() {
+
+    let sDate: Date = (this.trainingData.startDate == null) ? null : new Date(this.trainingData.startDate);
+    let eDate: Date = (this.trainingData.endDate == null) ? null : new Date(this.trainingData.endDate);
+
     this.trainingForm = this.formBuilder.group(
       {
-        trainingId: [this.trainingData.trainingId],
-        startDate: [this.trainingData.startDate, Validators.required],
-        endDate: [this.trainingData.endDate, Validators.required],
-        fee: [this.trainingData.fee, Validators.required],
-        status: [this.trainingData.status],
-        progress: [this.trainingData.progress],
-        amountReceived: [this.trainingData.amountReceived]
+        trainingId: [{ value: this.trainingData.trainingId, disabled: true }],
+        startDate: [{ value: sDate, disabled: true }, Validators.required],
+        endDate: [{ value: eDate, disabled: true }, Validators.required],
+        fee: [{ value: this.trainingData.fee, disabled: true }, Validators.required],
+        status: [{ value: this.trainingData.status, disabled: true }],
+        progress: [{ value: this.trainingData.progress, disabled: true }],
+        amountReceived: [{ value: this.trainingData.amountReceived, disabled: true }]
       }
     );
 
     this.trainingForm.valueChanges.subscribe(
       data => this.onValueChange(data)
     );
-
-    document.getElementById('startDate').focus();
   }
 
   onValueChange(data?: any) {
@@ -95,21 +99,27 @@ export class MentorTrainingDetailsComponent implements OnInit {
     }
   }
 
+  onEdit(){
+    this.trainingForm.get('startDate').enable({emitEvent: false});
+    this.trainingForm.get('endDate').enable({emitEvent: false});
+    this.trainingForm.get('fee').enable({emitEvent: false});
+  }
+
   onSubmit() {
 
-    let tId:number = this.trainingData.trainingId;
-    let uId:number = this.trainingData.userId;
-    let mId:number = this.trainingData.mentorId;
-    let sId:number = this.trainingData.skillId;
-    let fee:number = this.trainingForm.get('fee').value;
-    let status:string = this.trainingForm.get('status').value;
-    let progress:number = this.trainingForm.get('progress').value;
-    let rating:number = this.trainingData.rating;
-    let sDate:Date = this.handleNgbDate(this.trainingForm.get('startDate').value);
-    let eDate:Date = this.handleNgbDate(this.trainingForm.controls['endDate'].value);
+    let tId: number = this.trainingData.trainingId;
+    let uId: number = this.trainingData.userId;
+    let mId: number = this.trainingData.mentorId;
+    let sId: number = this.trainingData.skillId;
+    let fee: number = this.trainingForm.get('fee').value;
+    let status: string = this.trainingForm.get('status').value;
+    let progress: number = this.trainingForm.get('progress').value;
+    let rating: number = this.trainingData.rating;
+    let sDate: Date = this.trainingForm.get('startDate').value;
+    let eDate: Date = this.trainingForm.controls['endDate'].value;
     let amountReceived = this.trainingForm.get('amountReceived').value;
 
-    let updTraining:TrainingModule = new TrainingModule(tId, uId, mId, sId, fee, status, progress, rating, sDate, eDate, amountReceived);
+    let updTraining: TrainingModule = new TrainingModule(tId, uId, mId, sId, fee, status, progress, rating, sDate, eDate, amountReceived);
     this.trainingService.updateTraining(updTraining).subscribe(
       (training) => {
         if (training != null) {
@@ -120,11 +130,6 @@ export class MentorTrainingDetailsComponent implements OnInit {
         this.showMsgModal(this.msg);
       }
     )
-  }
-
-  handleNgbDate(ngbDate:any): Date{
-    let myDate = new Date(ngbDate.year, ngbDate.month-1, ngbDate.day);
-    return myDate;
   }
 
   showMsgModal(msg: string) {

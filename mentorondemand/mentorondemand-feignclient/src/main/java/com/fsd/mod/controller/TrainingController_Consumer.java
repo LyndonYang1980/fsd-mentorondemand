@@ -44,8 +44,8 @@ public class TrainingController_Consumer {
 	}
 
 	@PutMapping(value = "/feign/trainings")
-	public void updateTraining(@RequestBody Training training) {
-		trainingClientService.updateTraining(training);
+	public Training updateTraining(@RequestBody Training training) {
+		return trainingClientService.updateTraining(training);
 	}
 
 	@GetMapping(value = "/feign/trainings/user/{userId}")
