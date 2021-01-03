@@ -4,6 +4,8 @@ import { ProposalModule } from 'src/app/module/proposal.module';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { TrainingDetailModalComponent } from '../training-detail-modal/training-detail-modal.component';
+import { TrainingModule } from 'src/app/module/training.module';
+import { TrainingService } from 'src/app/service/trainingService/training.service';
 
 @Component({
   selector: 'app-proposal-mentor-btn',
@@ -12,11 +14,13 @@ import { TrainingDetailModalComponent } from '../training-detail-modal/training-
 })
 export class ProposalMentorBtnComponent implements OnInit {
 
+  @Input() trainingData: TrainingModule;
   @Input() proposalData: ProposalModule;
   @Output() retProposalData = new EventEmitter<ProposalModule>();
   bsModalRef: BsModalRef;
+  msg: string;
 
-  constructor(private proposalService: ProposalService, private bsModalService: BsModalService) { }
+  constructor(private trainingService: TrainingService, private proposalService: ProposalService, private bsModalService: BsModalService) { }
 
   ngOnInit(): void {
   }
@@ -32,54 +36,45 @@ export class ProposalMentorBtnComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(MessageModalComponent, { initialState });
 
     this.bsModalRef.content.onClick = () => {
-      this.retProposalData.emit(this.proposalData);      
-    }
-  }
-
-  showTrainingDetailModal(){
-    const initialState = {
-      title: 'Information'
-    };
-
-    this.bsModalRef = this.bsModalService.show(TrainingDetailModalComponent, {initialState});
-    this.bsModalRef.content.onSubmit = ()=>{
-      
+      // this.retProposalData.emit(this.proposalData);
+      location.reload();
     }
   }
 
   acceptProposal() {
 
-    let msg: string;
-    this.proposalService.acceptProposal(this.proposalData).subscribe(
+    this.trainingData.status = "confirmed";
+    this.trainingService.updateTraining(this.trainingData).subscribe(
       (data) => {
         if (data != null) {
-          msg = "Proposal accepted!";
-          this.proposalData = data;
+          this.msg = "Training proposal confirmed";
+          this.trainingData = data;
         } else {
-          msg = "Proposal not accepted due to error!";
+          this.msg = "Training proposal not confirmed due to error!";
         }
-        this.showMsgModal(msg);
+        this.showMsgModal(this.msg);
       }, (err) => {
-        msg = "Proposal not modified due to error!";
-        this.showMsgModal(msg);
+        this.msg = "Training proposal not modified due to error!";
+        this.showMsgModal(this.msg);
       }
     )
   }
 
   rejectProposal() {
-    let msg: string;
-    this.proposalService.rejectProposal(this.proposalData).subscribe(
+
+    this.trainingData.status = "rejected";
+    this.trainingService.updateTraining(this.trainingData).subscribe(
       (data) => {
         if (data != null) {
-          msg = "Proposal rejected!";
-          this.proposalData = data;
+          this.msg = "Training proposal rejected";
+          this.trainingData = data;
         } else {
-          msg = "Proposal not rejected due to error!";
+          this.msg = "Training proposal not rejected due to error!";
         }
-        this.showMsgModal(msg);
+        this.showMsgModal(this.msg);
       }, (err) => {
-        msg = "Proposal not modified due to error!";
-        this.showMsgModal(msg);
+        this.msg = "Training proposal not rejected due to error!";
+        this.showMsgModal(this.msg);
       }
     )
   }

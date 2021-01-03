@@ -89,5 +89,11 @@ public class MentorController {
 
 		return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
 	}
+	
+	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
+	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey) {
+		
+		return mentorService.searchMentorByKey(searchKey);
+	}
 
 }

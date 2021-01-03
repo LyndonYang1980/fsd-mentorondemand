@@ -1,9 +1,10 @@
 <br>
-<form class="form-inline mb-2">
-    <div class="form-group mb-2">
-        <input type="text" class="form-control" id="searchKey" placeholder="Search">
-    </div>
+<form [formGroup]="searchForm" class="form-inline mb-2" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <button type="submit" class="btn btn-primary mb-2">Search</button>
+        <input type="text" formControlName="searchKey" class="form-control" id="searchKey" placeholder="Search">
+    </div>
+    <span>&nbsp;&nbsp;&nbsp;</span>
+    <div class="form-group">    
+        <button type="submit" class="btn btn-outline-dark">Search</button>
     </div>    
 </form>

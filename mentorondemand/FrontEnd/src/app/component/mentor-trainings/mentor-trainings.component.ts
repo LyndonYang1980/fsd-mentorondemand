@@ -40,8 +40,8 @@ export class MentorTrainingsComponent implements OnInit {
     })
   }
 
-  openTrainingDetail(trainingId: number) {
-    this.router.navigate(['trainingdetail'], {
+  viewTrainingDetail(trainingId: number) {
+    this.router.navigate(['mentortrainingdetails'], {
       queryParams: {
         trainingId: trainingId
       }

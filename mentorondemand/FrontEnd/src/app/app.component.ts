@@ -7,8 +7,8 @@ import { Component, OnChanges, OnInit, NgZone } from '@angular/core';
 })
 export class AppComponent implements OnInit, OnChanges {
   title = 'FrontEnd';
-  isUserLoggedIn: string = "no";
-  isMentorLoggedIn: string = "no"
+  isUserLoggedIn: string = "false";
+  isMentorLoggedIn: string = "false"
 
   constructor() {
    

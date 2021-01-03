@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
 import com.fsd.mod.repository.TrainingRepo;
 
@@ -37,6 +38,25 @@ public class TrainingService {
 
 		return trainingRepo.save(trainingData);
 	}
+	
+	@Transactional
+	public List<Training> saveTrainings(List<Training> trainingList) {
+
+		List<Training> savedTrainingList = new ArrayList<>();
+
+		for (Training trainingData : trainingList) {
+			Training existingTraining = trainingRepo.findExistingTrainingForUser(trainingData.getUserId(),
+					trainingData.getMentorId(), trainingData.getSkillId());
+			if (existingTraining == null) {
+				savedTrainingList.add(trainingRepo.save(trainingData));
+			} else {
+				System.out.println("Existing training: " + trainingData.toString());
+			}
+		}
+
+		return savedTrainingList;
+	}
+
 
 	@Transactional
 	public Training updateTraining(Training training) {

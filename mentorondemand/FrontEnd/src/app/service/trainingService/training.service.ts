@@ -23,6 +23,10 @@ export class TrainingService {
     return this.httpClient.post<TrainingModule>(this.trainingConfig.addTrainingUrl(), training, httpOptions);
   }
 
+  addTrainings(trainings: TrainingModule[]): Observable<TrainingModule[]> {
+    return this.httpClient.post<TrainingModule[]>(this.trainingConfig.addTrainingsUrl(), trainings, httpOptions);
+  }
+
   updateTraining(training: TrainingModule): Observable<TrainingModule> {
     return this.httpClient.put<TrainingModule>(this.trainingConfig.updTrainingUrl(), training, httpOptions);
   }

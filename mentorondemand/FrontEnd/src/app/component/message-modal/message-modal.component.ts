@@ -12,9 +12,7 @@ export class MessageModalComponent implements OnInit {
   msg: string;
   onClick:any;
 
-  constructor(private bsModalRef: BsModalRef) { 
-    console.log("Message Module: " + this.bsModalRef.content);
-  }
+  constructor(private bsModalRef: BsModalRef) {}
 
   ngOnInit(): void {
   }

@@ -46,5 +46,10 @@ public class MentorController_Consumer {
 	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor){
 		return mentorClientService.loginMentor(mentor);
 	}
+	
+	@GetMapping("/feign/mentors/searchMentorByKey/{searchKey}")
+	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey){
+		return mentorClientService.searchMentorByKey(searchKey);
+	}
 
 }

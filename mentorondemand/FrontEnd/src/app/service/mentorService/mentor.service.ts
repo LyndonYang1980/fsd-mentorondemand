@@ -52,4 +52,8 @@ export class MentorService {
   getMentorByUserProposal(mentorIdArray:number[]):Observable<MentorModule[]>{
     return this.httpClient.post<MentorModule[]>(this.mentorConfig.getMentorProposalByUserUrl(), mentorIdArray);
   }
+
+  searchMentorByKey(searchKey: string):Observable<MentorModule[]>{
+    return this.httpClient.get<MentorModule[]>(this.mentorConfig.searchMentorByKeyUrl(searchKey), httpOptions);
+  }
 }

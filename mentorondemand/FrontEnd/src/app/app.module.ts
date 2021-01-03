@@ -39,6 +39,8 @@ import { TrainingDetailModalComponent } from './component/training-detail-modal/
 import { MentorTrainingsComponent } from './component/mentor-trainings/mentor-trainings.component';
 import { UserTrainingsComponent } from './component/user-trainings/user-trainings.component';
 import { MentorTrainingDetailsComponent } from './component/mentor-training-details/mentor-training-details.component';
+import { UserTrainingDetailsComponent } from './component/user-training-details/user-training-details.component';
+import { MessageOkcancelModalComponent } from './component/message-okcancel-modal/message-okcancel-modal.component';
 
 
 const routes: Routes = [
@@ -55,7 +57,8 @@ const routes: Routes = [
   { path: 'userproposal', component: UserProposalComponent },
   { path: 'mentortraining', component: MentorTrainingsComponent },
   { path: 'usertraining', component: UserTrainingsComponent },
-  { path: 'trainingdetail', component: MentorTrainingDetailsComponent }
+  { path: 'mentortrainingdetails', component: MentorTrainingDetailsComponent },
+  { path: 'usertrainingdetails', component: UserTrainingDetailsComponent }
 
 ];
 
@@ -90,6 +93,8 @@ const routes: Routes = [
     MentorTrainingsComponent,
     UserTrainingsComponent,
     MentorTrainingDetailsComponent,
+    UserTrainingDetailsComponent,
+    MessageOkcancelModalComponent,
   ],
   imports: [
     NgbModule,

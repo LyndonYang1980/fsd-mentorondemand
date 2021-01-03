@@ -67,5 +67,9 @@ public class MentorService {
 		else
 			return false;
 	}
+	
+	public List<Mentor> searchMentorByKey(String searchKey){
+		return mentorRepo.searchMentorByKey(searchKey);
+	}
 
 }

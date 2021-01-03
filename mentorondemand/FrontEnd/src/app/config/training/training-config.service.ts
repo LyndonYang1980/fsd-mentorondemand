@@ -15,6 +15,10 @@ export class TrainingConfigService {
     return this.trainingAPIUrl;
   }
 
+  addTrainingsUrl() {
+    return this.trainingAPIUrl + "/addTrainings";
+  }
+
   getTrainingsUrl() {
     return this.trainingAPIUrl;
   }

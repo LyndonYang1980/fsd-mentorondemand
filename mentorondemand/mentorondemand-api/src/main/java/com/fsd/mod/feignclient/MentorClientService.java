@@ -62,5 +62,8 @@ public interface MentorClientService {
 
 	@GetMapping(value = "/skills/getMentorSkills/{mentorId}")
 	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId);
+	
+	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
+	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey);
 
 }

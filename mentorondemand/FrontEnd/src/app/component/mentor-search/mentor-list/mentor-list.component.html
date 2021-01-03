@@ -11,7 +11,7 @@
                 <th scope="col">Contact Number</th>
                 <th scope="col">Rating</th>
                 <th scope="col">Skills</th>
-                <th scope="col">Proposal?</th>
+                <th scope="col" *ngIf="isUserLoggedIn === 'true'">Proposal?</th>
             </tr>
         </thead>
         <tbody>
@@ -26,7 +26,7 @@
                 </td>
 
                 <td>
-                    <app-proposal-user-btn [isUserLoggedIn]="isUserLoggedIn" [userLoggedIn]="userLoggedIn" [mentorData]="mentorData"></app-proposal-user-btn>
+                    <app-proposal-user-btn [isUserLoggedIn]="isUserLoggedIn" [userLoggedIn]="userLoggedIn" [mentorData]="mentorData" *ngIf="isUserLoggedIn === 'true'"></app-proposal-user-btn>
                 </td>
             </tr>
         </tbody>

@@ -85,7 +85,7 @@ export class MentorProposalComponent implements OnInit {
       let mentorId = this.mentorData.mentorId;
       let userId = retProposalData.userId;
       let skillId = retProposalData.skillId;
-      let statusArr = ["proposed", "confirmed proposals"];
+      let statusArr = ["proposed", "confirmed"];
 
       this.userService.getUser(userId).subscribe(
         (userData) => {

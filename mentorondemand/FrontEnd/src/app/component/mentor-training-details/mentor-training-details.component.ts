@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MessageModalComponent } from '../message-modal/message-modal.component';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -23,7 +22,7 @@ export class MentorTrainingDetailsComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   startDate: Date;
   endDate: Date;
-  editMode: boolean;
+  editMode: boolean = false;
   title: string;
   msg: string;
 
@@ -99,14 +98,28 @@ export class MentorTrainingDetailsComponent implements OnInit {
     }
   }
 
-  onEdit(){
-    this.trainingForm.get('startDate').enable({emitEvent: false});
-    this.trainingForm.get('endDate').enable({emitEvent: false});
-    this.trainingForm.get('fee').enable({emitEvent: false});
+  onEdit() {
+    this.trainingForm.get('startDate').enable({ emitEvent: false });
+    this.trainingForm.get('endDate').enable({ emitEvent: false });
+    this.trainingForm.get('fee').enable({ emitEvent: false });
+    this.editMode = true;
   }
 
-  onSubmit() {
+  setStart() {
+    this.trainingData.status = "started";
+    this.trainingService.updateTraining(this.trainingData).subscribe(
+      (training) => {
+        if (training != null) {
+          this.msg = "Training set started";
+        } else {
+          this.msg = "Training failed being set started"
+        }
+        this.showMsgModal(this.msg);
+      }
+    )
+  }
 
+  genTrainingObj(): TrainingModule {
     let tId: number = this.trainingData.trainingId;
     let uId: number = this.trainingData.userId;
     let mId: number = this.trainingData.mentorId;
@@ -119,7 +132,12 @@ export class MentorTrainingDetailsComponent implements OnInit {
     let eDate: Date = this.trainingForm.controls['endDate'].value;
     let amountReceived = this.trainingForm.get('amountReceived').value;
 
-    let updTraining: TrainingModule = new TrainingModule(tId, uId, mId, sId, fee, status, progress, rating, sDate, eDate, amountReceived);
+    let retTraining: TrainingModule = new TrainingModule(tId, uId, mId, sId, fee, status, progress, rating, sDate, eDate, amountReceived);
+    return retTraining;
+  }
+
+  onSubmit() {
+    let updTraining: TrainingModule = this.genTrainingObj();
     this.trainingService.updateTraining(updTraining).subscribe(
       (training) => {
         if (training != null) {

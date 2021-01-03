@@ -42,6 +42,11 @@ public class TrainingController_Consumer {
 	public ResponseEntity<Training> addTraining(@RequestBody Training training) {
 		return trainingClientService.addTraining(training);
 	}
+	
+	@PostMapping(value = "/feign/trainings/addTrainings")
+	public ResponseEntity<List<Training>> addTrainings(@RequestBody List<Training> trainingList){
+		return trainingClientService.addTrainings(trainingList);
+	}
 
 	@PutMapping(value = "/feign/trainings")
 	public Training updateTraining(@RequestBody Training training) {

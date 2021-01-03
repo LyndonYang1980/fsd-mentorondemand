@@ -28,15 +28,11 @@ export class HeaderComponent implements OnInit, OnChanges {
     } else {
       this.isMentorLoggedIn = localStorage.getItem('isMentorLoggedIn');
     }
-    console.log("again running");
-    console.log(this.isUserLoggedIn + this.isMentorLoggedIn);
   }
 
   ngOnChanges() {
     this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
     this.isMentorLoggedIn = localStorage.getItem('isMentorLoggedIn');
-    console.log("changes inside running");
-    console.log(this.isUserLoggedIn + this.isMentorLoggedIn);
   }
 
 

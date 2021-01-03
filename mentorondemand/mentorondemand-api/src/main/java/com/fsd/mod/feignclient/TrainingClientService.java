@@ -26,6 +26,9 @@ public interface TrainingClientService {
 
 	@PostMapping(value = "/trainings")
 	public ResponseEntity<Training> addTraining(@RequestBody Training training);
+	
+	@PostMapping(value = "/trainings/addTrainings")
+	public ResponseEntity<List<Training>> addTrainings(@RequestBody List<Training> trainingList);
 
 	@PutMapping(value = "/trainings")
 	public Training updateTraining(@RequestBody Training training);

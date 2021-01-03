@@ -32,4 +32,8 @@ export class MentorConfigService {
   getMentorProposalByUserUrl(){
     return (this.mentorAPIUrl + "/getMentorProposalByUser");
   }
+
+  searchMentorByKeyUrl(searchKey: string){
+    return (this.mentorAPIUrl + "/searchMentorByKey/" + searchKey);
+  }
 }

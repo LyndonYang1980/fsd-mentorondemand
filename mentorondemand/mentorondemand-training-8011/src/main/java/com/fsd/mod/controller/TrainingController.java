@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
 import com.fsd.mod.service.TrainingService;
 
@@ -49,6 +50,19 @@ public class TrainingController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<Training>(addedTraining, HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+	
+	@PostMapping(value = "/trainings/addTrainings")
+	public ResponseEntity<List<Training>> addTrainings(@RequestBody List<Training> trainingList) {
+		
+		List<Training> addedTrainingList = null;
+		try {
+			addedTrainingList = trainingService.saveTrainings(trainingList);
+			return new ResponseEntity<List<Training>>(addedTrainingList, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<List<Training>>(addedTrainingList, HttpStatus.NOT_ACCEPTABLE);
 		}
 	}
 
