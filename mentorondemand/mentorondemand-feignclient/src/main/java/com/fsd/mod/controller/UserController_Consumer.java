@@ -49,7 +49,7 @@ public class UserController_Consumer {
 	}
 
 	@PostMapping(value = "/feign/users/login")
-	public ResponseEntity<User> loginUser(@RequestBody User user) {
+	public User loginUser(@RequestBody User user) {
 		return userClientService.loginUser(user);
 	}
 

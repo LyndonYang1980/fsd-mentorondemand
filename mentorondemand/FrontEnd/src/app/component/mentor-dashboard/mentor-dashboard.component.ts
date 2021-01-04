@@ -6,7 +6,6 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SkillService } from 'src/app/service/skillService/skill.service';
-import { SkillModule } from 'src/app/module/skill.module';
 
 @Component({
   selector: 'app-mentor-dashboard',
@@ -20,6 +19,7 @@ export class MentorDashboardComponent implements OnInit {
   skillList = [];
   selectedItems = [];
   dropdownSettings: IDropdownSettings = {};
+  msg: string = "";
 
   constructor(private mentorConfig: MentorConfigService,
     private mentorService: MentorService,
@@ -70,11 +70,16 @@ export class MentorDashboardComponent implements OnInit {
 
   onSubmit(f: NgForm) {
     this.mentorService.updateMentor(f.value)
-      .subscribe(() => {
-        console.log("The mentor updated");
-        this.router.navigate(['mentorpage'])
+      .subscribe((mentorData) => {
+        if (mentorData != null) {
+          this.msg = "Mentor data updated successfully!"
+          localStorage.setItem("mentorLoggedIn", JSON.stringify(mentorData));
+        } else {
+          this.msg = "Mentor data not updated due to error!"
+        }
       }, (error) => {
-        console.log(error);
+        this.msg = "Mentor data not updated due to error!"
+        location.reload();
       })
   }
 }

@@ -11,6 +11,8 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  loginFlag: boolean;
+  msg: string;
   constructor(private userService: UserService,
     private router: Router
   ) { }
@@ -20,16 +22,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit(userLoginForm: NgForm) {
     this.userService.loginUser(userLoginForm.value)
-      .subscribe((data) => {
-        localStorage.setItem('isUserLoggedIn', 'true');
-        localStorage.setItem('userLoggedIn', JSON.stringify(data));
-        this.router.navigate(['userpage']).then(() => {
-          console.log("Navigated to user home page")
-          location.reload();       
-        });
+      .subscribe((userData?) => {
+        if (userData != null) {
+          localStorage.setItem('isUserLoggedIn', 'true');
+          localStorage.setItem('userLoggedIn', JSON.stringify(userData));
+          this.router.navigate(['userpage']).then(() => {
+            location.reload();
+          });
+        } else {
+          this.loginFlag = false;
+          this.msg = "User name or password invalid"
+        }
       },
         (error) => {
-          console.log(error)
+          this.msg = "Login failed due to error"
         });
   }
 }

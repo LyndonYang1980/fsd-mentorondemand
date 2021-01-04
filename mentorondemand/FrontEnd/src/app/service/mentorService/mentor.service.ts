@@ -41,7 +41,7 @@ export class MentorService {
   }
 
   public updateMentor(mentorData: MentorModule): Observable<MentorModule> {
-    return this.httpClient.put<MentorModule>(this.mentorConfig.getMentorUpdUrl(), mentorData, httpOptions);
+    return this.httpClient.put<MentorModule>(this.mentorConfig.updMentorUrl(), mentorData, httpOptions);
   }
 
   public loginMentor(mentorData: MentorModule): Observable<MentorModule> {

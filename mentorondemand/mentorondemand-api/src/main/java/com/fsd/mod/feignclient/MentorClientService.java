@@ -23,15 +23,15 @@ public interface MentorClientService {
 
 	@GetMapping(value = "/mentors/{mentorId}")
 	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId);
-	
+
 	@PostMapping(value = "/mentors/addMentor")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor);
 
 	@PutMapping(value = "/mentors/updateMentor")
-	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor);
-	
+	public Mentor updateMentor(@RequestBody Mentor mentor);
+
 	@PostMapping("/mentors/login")
-	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor);
+	public Mentor loginMentor(@RequestBody Mentor mentor);
 
 	@GetMapping(value = "/calendars")
 	public ResponseEntity<List<Calendar>> getCalendars();
@@ -62,7 +62,7 @@ public interface MentorClientService {
 
 	@GetMapping(value = "/skills/getMentorSkills/{mentorId}")
 	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId);
-	
+
 	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
 	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey);
 

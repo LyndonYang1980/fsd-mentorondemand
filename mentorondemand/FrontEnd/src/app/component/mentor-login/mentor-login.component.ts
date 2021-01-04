@@ -11,26 +11,32 @@ import { NgForm } from '@angular/forms';
 })
 export class MentorLoginComponent implements OnInit {
 
-  constructor(private mentorConfig:MentorConfigService,
-              private mentorService:MentorService,
-              private router:Router) { }
+  loginFlag: boolean;
+  msg: string;
+
+  constructor(private mentorConfig: MentorConfigService,
+    private mentorService: MentorService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(mentorLoginForm: NgForm) {
     this.mentorService.loginMentor(mentorLoginForm.value)
-      .subscribe((data)=>{
-          localStorage.setItem('isMentorLoggedIn','true');
-          console.log("Mentor logged in: " + JSON.stringify(data));
-          localStorage.setItem('mentorLoggedIn',JSON.stringify(data));
+      .subscribe((mentorData) => {
+        if (mentorData != null) {
+          localStorage.setItem('isMentorLoggedIn', 'true');
+          localStorage.setItem('mentorLoggedIn', JSON.stringify(mentorData));
           this.router.navigate(['mentorpage']).then(() => {
-            console.log("Navigated to mentor dashboard")
-            location.reload();       
+            location.reload();
           });
-
-      },()=>{
-          console.log("No mentor found");
+        } else {
+          this.loginFlag = false;
+          this.msg = "Mentor name or password invalid"
+        }
+      }, (err) => {
+        this.loginFlag = false;
+        this.msg = "Login failed due to error"
       })
   }
 

@@ -27,7 +27,6 @@ public class MentorController {
 	@GetMapping("/mentors/getMentors")
 	public ResponseEntity<List<Mentor>> getMentors() {
 		List<Mentor> mentors = mentorService.getMentors();
-//		List<Mentor> mentors = mentorService.getAllMentorsAndSkills();
 		if (mentors != null) {
 			return new ResponseEntity<List<Mentor>>(mentors, HttpStatus.OK);
 		} else {
@@ -47,8 +46,7 @@ public class MentorController {
 
 	@PostMapping(value = "/mentors/addMentor")
 	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
-
-		System.out.println("To add mentor: " + mentor.toString());
+		
 		boolean existFlag = mentorService.isMentorExisted(mentor.getMentorEmail());
 		if (existFlag) {
 			System.out.println("Mentor already exist");
@@ -61,23 +59,13 @@ public class MentorController {
 	}
 
 	@PutMapping(value = "/mentors/updateMentor")
-	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
-		Mentor mentorData = mentorService.updateMentor(mentor);
-		if (mentorData != null) {
-			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_MODIFIED);
-		}
+	public Mentor updateMentor(@RequestBody Mentor mentor) {
+		return mentorService.updateMentor(mentor);
 	}
 
 	@PostMapping("/mentors/login")
-	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor) {
-		Mentor mentorData = mentorService.loginMentor(mentor.getMentorEmail(), mentor.getMentorPassword());
-		if (mentorData != null) {
-			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.NOT_FOUND);
-		}
+	public Mentor loginMentor(@RequestBody Mentor mentor) {
+		return mentorService.loginMentor(mentor.getMentorEmail(), mentor.getMentorPassword());
 	}
 
 	@PostMapping("/mentors/getMentorProposalByUser")
@@ -92,7 +80,6 @@ public class MentorController {
 	
 	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
 	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey) {
-		
 		return mentorService.searchMentorByKey(searchKey);
 	}
 

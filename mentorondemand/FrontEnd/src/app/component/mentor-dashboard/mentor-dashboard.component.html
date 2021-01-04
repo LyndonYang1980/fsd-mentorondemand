@@ -1,10 +1,13 @@
 <h5>Mentor Profile</h5>
 
 <form (ngSubmit)=onSubmit(f) #f="ngForm">
-   
+
+    <div class="col-md-6">
+        <span>{{msg}}</span>
+    </div>
     <div class="col-md-6 offset-6 d-lg-inline-block align-top uk-grid-margin">
         <div class="float-right">
-            <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Update</button>
+            <button type="submit" class="btn btn-outline-dark" [disabled]="!f.valid">Update</button>
         </div>
     </div>
     <p></p>
@@ -63,7 +66,7 @@
                             [(ngModel)]="mentorData.mentorExperience" #mentorExperience="ngModel" required min=2>
                         <span *ngIf="!mentorExperience.valid && mentorExperience.touched"></span>
                     </div>
-                </div> 
+                </div>
             </fieldset>
         </div>
     </div>
@@ -72,9 +75,9 @@
         <div class="shadow mb-5 p-5 bg-white rounded">
             <label for="mentorSkill">Skills: </label>
             <div class="col-sm-8">
-                <ng-multiselect-dropdown id="skills" name="skills" [placeholder]="'Your skills'"
-                    [data]="skillList" [(ngModel)]="mentorSkillList" [settings]="dropdownSettings"
-                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                <ng-multiselect-dropdown id="skills" name="skills" [placeholder]="'Your skills'" [data]="skillList"
+                    [(ngModel)]="mentorSkillList" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)">
                 </ng-multiselect-dropdown>
             </div>
         </div>

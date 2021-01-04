@@ -21,8 +21,8 @@ public class MentorService {
 		mentorRepo.findAll().forEach(list::add);
 		return list;
 	}
-	
-	public List<Mentor> getAllMentorsAndSkills(){
+
+	public List<Mentor> getAllMentorsAndSkills() {
 		List<Mentor> list = new ArrayList<>();
 		mentorRepo.getAllMentorsAndSkills().forEach(list::add);
 		return list;
@@ -49,8 +49,7 @@ public class MentorService {
 		oldMentor.setMentorExperience(mentor.getMentorExperience());
 		oldMentor.setMentorPassword(mentor.getMentorPassword());
 		oldMentor.setSkills(mentor.getSkills());
-		mentorRepo.save(oldMentor);
-		return oldMentor;		
+		return mentorRepo.save(oldMentor);
 	}
 
 	public void deleteMentor(Long id) {
@@ -60,15 +59,15 @@ public class MentorService {
 	public Mentor loginMentor(String mentorEmail, String mentorPassword) {
 		return mentorRepo.findByMentorEmailAndMentorPassword(mentorEmail, mentorPassword);
 	}
-	
+
 	public boolean isMentorExisted(String mentorEmail) {
-		if(mentorRepo.findByMentorEmail(mentorEmail) != null)
+		if (mentorRepo.findByMentorEmail(mentorEmail) != null)
 			return true;
 		else
 			return false;
 	}
-	
-	public List<Mentor> searchMentorByKey(String searchKey){
+
+	public List<Mentor> searchMentorByKey(String searchKey) {
 		return mentorRepo.searchMentorByKey(searchKey);
 	}
 

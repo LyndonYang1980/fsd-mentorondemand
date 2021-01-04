@@ -38,17 +38,17 @@ public class MentorController_Consumer {
 	}
 
 	@PutMapping(value = "/feign/mentors/updateMentor")
-	public ResponseEntity<Mentor> updateMentor(@RequestBody Mentor mentor) {
+	public Mentor updateMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.updateMentor(mentor);
 	}
-	
+
 	@PostMapping("/feign/mentors/login")
-	public ResponseEntity<Mentor> loginMentor(@RequestBody Mentor mentor){
+	public Mentor loginMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.loginMentor(mentor);
 	}
-	
+
 	@GetMapping("/feign/mentors/searchMentorByKey/{searchKey}")
-	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey){
+	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey) {
 		return mentorClientService.searchMentorByKey(searchKey);
 	}
 

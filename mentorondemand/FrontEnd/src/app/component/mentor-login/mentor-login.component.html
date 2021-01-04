@@ -8,6 +8,9 @@
             <input type="text" class="form-control" name="mentorEmail" placeholder="Mentor Email" ngModel required email
                 #emailLogin=ngModel>
             <span *ngIf="!emailLogin.valid && emailLogin.touched">Please enter a valid email</span>
+            <div>
+                <span *ngIf="!loginFlag && emailLogin.touched">{{msg}}</span>
+            </div>
         </div>
         <div class="form-group">
             <input type="password" class="form-control" name="mentorPassword" placeholder="Password" ngModel required
@@ -23,5 +26,4 @@
             <a href="#" class="pull-right">Forgot Password?</a>
         </div>
     </form>
-    <p class="text-center small">Don't have an account? <a href="#">Sign up here!</a></p>
 </div>

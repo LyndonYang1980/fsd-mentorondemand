@@ -32,7 +32,7 @@ public interface UserClientService {
 	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId);
 
 	@PostMapping(value = "/users/login")
-	public ResponseEntity<User> loginUser(@RequestBody User user);
+	public User loginUser(@RequestBody User user);
 
 	@PutMapping(value = "/users/updatePassword")
 	public ResponseEntity<User> updatePassword(@RequestBody User user);

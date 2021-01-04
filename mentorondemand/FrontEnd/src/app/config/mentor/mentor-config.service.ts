@@ -21,7 +21,7 @@ export class MentorConfigService {
     return (this.mentorAPIUrl + "/addMentor");
   }
 
-  getMentorUpdUrl(){
+  updMentorUrl(){
     return (this.mentorAPIUrl + "/updateMentor");
   }
 
