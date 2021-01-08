@@ -3,7 +3,6 @@ package com.fsd.mod.feignclient;
 import java.util.List;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,24 +16,24 @@ import com.fsd.mod.entities.User;
 public interface UserClientService {
 
 	@RequestMapping("/users/getUsers")
-	public ResponseEntity<List<User>> getUsers();
+	public List<User> getUsers();
 
 	@RequestMapping("/users/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable Long userId);
+	public User getUser(@PathVariable Long userId);
 
 	@PostMapping(value = "/users/addUser")
-	public ResponseEntity<User> addUser(@RequestBody User user);
+	public User addUser(@RequestBody User user);
 
-	@PutMapping(value = "/users/{userId}")
-	public ResponseEntity<User> updateUser(@RequestBody User user);
+	@PutMapping(value = "/users")
+	public User updateUser(@RequestBody User user);
 
 	@DeleteMapping(value = "/users/{userId}")
-	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId);
+	public Boolean deleteUser(@PathVariable Long userId);
 
 	@PostMapping(value = "/users/login")
 	public User loginUser(@RequestBody User user);
 
 	@PutMapping(value = "/users/updatePassword")
-	public ResponseEntity<User> updatePassword(@RequestBody User user);
+	public User updatePassword(@RequestBody User user);
 
 }

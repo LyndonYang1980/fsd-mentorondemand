@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
 import com.fsd.mod.repository.TrainingRepo;
 
@@ -38,7 +37,7 @@ public class TrainingService {
 
 		return trainingRepo.save(trainingData);
 	}
-	
+
 	@Transactional
 	public List<Training> saveTrainings(List<Training> trainingList) {
 
@@ -56,7 +55,6 @@ public class TrainingService {
 
 		return savedTrainingList;
 	}
-
 
 	@Transactional
 	public Training updateTraining(Training training) {

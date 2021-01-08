@@ -27,7 +27,7 @@ export class MentorLoginComponent implements OnInit {
         if (mentorData != null) {
           localStorage.setItem('isMentorLoggedIn', 'true');
           localStorage.setItem('mentorLoggedIn', JSON.stringify(mentorData));
-          this.router.navigate(['mentorpage']).then(() => {
+          this.router.navigate(['mentorProfile']).then(() => {
             location.reload();
           });
         } else {

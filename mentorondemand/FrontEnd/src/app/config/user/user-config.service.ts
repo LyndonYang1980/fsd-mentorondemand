@@ -22,6 +22,10 @@ export class UserConfigService {
     return (this.userAPIUrl + "/addUser");
   }
 
+  updUserUrl():string {
+    return (this.userAPIUrl);
+  }
+
   //URL for logging a user
   getUserLoginURL():string{
     return (this.userAPIUrl + "/login");

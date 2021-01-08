@@ -3,7 +3,6 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,27 +23,27 @@ public class UserController_Consumer {
 	UserClientService userClientService;
 
 	@GetMapping("/feign/users/getUsers")
-	public ResponseEntity<List<User>> getUsers() {
+	public List<User> getUsers() {
 		return userClientService.getUsers();
 	}
 
 	@GetMapping("/feign/users/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+	public User getUser(@PathVariable Long userId) {
 		return userClientService.getUser(userId);
 	}
 
 	@PostMapping(value = "/feign/users/addUser")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
+	public User addUser(@RequestBody User user) {
 		return userClientService.addUser(user);
 	}
 
-	@PutMapping(value = "/feign/users/{userId}")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	@PutMapping(value = "/feign/users")
+	public User updateUser(@RequestBody User user) {
 		return userClientService.updateUser(user);
 	}
 
 	@DeleteMapping(value = "/feign/users/{userId}")
-	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
+	public Boolean deleteUser(@PathVariable Long userId) {
 		return userClientService.deleteUser(userId);
 	}
 
@@ -54,7 +53,7 @@ public class UserController_Consumer {
 	}
 
 	@PutMapping(value = "/feign/users/updatePassword")
-	public ResponseEntity<User> updatePassword(@RequestBody User user) {
+	public User updatePassword(@RequestBody User user) {
 		return userClientService.updatePassword(user);
 	}
 

@@ -55,17 +55,21 @@ public class Mentor {
 	@Column(name = "active")
 	private boolean active;
 
-	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
+//	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+//	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))
+//	private Set<Skill> skills = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Skill.class)
 	private Set<Skill> skills = new HashSet<>();
 	
-//	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
 	
-	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Calendar.class)
+	private Set<Calendar> calendars = new HashSet<>();
 
 //	@Column(name = "reg_code")
 //	private String regCode = "";

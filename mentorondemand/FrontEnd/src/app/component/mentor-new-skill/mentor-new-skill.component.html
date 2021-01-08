@@ -1,0 +1,44 @@
+<h5>New Skill</h5>
+
+<form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+
+    <div class="col-md-6 offset-6 d-lg-inline-block align-top uk-grid-margin">
+        <div class="float-right">
+            <button type="submit" class="btn btn-outline-dark">Save</button>
+        </div>
+    </div>
+    <p></p>
+
+    <div class="col-md-6 d-lg-inline-block align-top">
+        <div class="shadow mb-5 p-5 bg-white rounded">
+            <fieldset id="bfedit">
+                <div class="form-group">
+                    <label for="startDate">Skill Name: </label>
+                    <div class="col-sm-8 input-group">
+                        <input type="text" formControlName="skillName" id="skillName" placeholder="Skill Name"
+                            class="form-control">
+                    </div>
+                    <div *ngIf="formErrors.skillName">{{ formErrors.skillName }}</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="fee">Pre-requisites: </label>
+                    <div class="col-sm-8 input-group">
+                        <input type="text" formControlName="prerequisites" id="prerequisites"
+                            placeholder="Pre-requisites" class="form-control">
+                    </div>
+                    <div *ngIf="formErrors.prerequisites">{{ formErrors.prerequisites }}</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="endDate">Years of Experience: </label>
+                    <div class="col-sm-8 input-group">
+                        <input type="text" formControlName="yearsOfExp" id="yearsOfExp"
+                            placeholder="Years of Experience" class="form-control">
+                    </div>
+                    <div *ngIf="formErrors.yearsOfExp">{{ formErrors.yearsOfExp }}</div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</form>

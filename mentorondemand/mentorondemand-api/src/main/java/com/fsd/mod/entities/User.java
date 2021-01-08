@@ -11,15 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,10 +24,10 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class User {
-	
+
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Proposal.class)
 	private Set<Proposal> proposals = new HashSet<>();
-	
+
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "userId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();
 
@@ -49,10 +42,10 @@ public class User {
 
 	@Column(name = "user_name")
 	private String userName;
-	
+
 	@Column(name = "first_name")
 	private String firstName;
-	
+
 	@Column(name = "last_name")
 	private String lastName;
 
@@ -65,8 +58,8 @@ public class User {
 	@Column(name = "contact_number")
 	private Long contactNumber;
 
-	@Column(name = "user_birthday")
-	private Date userBirthday;
+	@Column(name = "reg_date")
+	private Date regDate;
 
 	@Column(name = "status", columnDefinition = "tinyint(1) default 1")
 	private boolean status = false;

@@ -3,6 +3,8 @@ package com.fsd.mod.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,27 @@ public class SkillService {
 	 */
 	public Skill addSkill(Skill skill) {
 		return skillRepo.save(skill);
+	}
+
+	/**
+	 * @param skill
+	 * @return
+	 */
+	public Skill updateSkill(Skill skill) {
+		return skillRepo.save(skill);
+	}
+
+	/**
+	 * @param skill
+	 * @return
+	 */
+	public List<Skill> findExistingSkills(String skillName, Long mentorId) {
+		return skillRepo.findBySkillNameAndMentorId(skillName, mentorId);
+	}
+
+	public List<Skill> findExistingSkills(Skill skill) {
+		return skillRepo.findBySkillNameAndMentorIdAndSkillIdNot(skill.getSkillName(), skill.getMentorId(),
+				skill.getSkillId());
 	}
 
 	/**
@@ -70,5 +93,20 @@ public class SkillService {
 		List<Skill> skillList = new ArrayList<>();
 		skillList.addAll(mentor.getSkills());
 		return skillList;
+	}
+
+	/**
+	 * @param skillId
+	 * @return
+	 */
+	@Transactional
+	public boolean deleteSkill(Long skillId) {
+		try {
+			skillRepo.delete(skillId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

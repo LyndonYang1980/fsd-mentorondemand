@@ -1,7 +1,10 @@
 package com.fsd.mod.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,20 +40,47 @@ public class CalendarService {
 		return calendarRepo.findOne(calendarId);
 	}
 
+	@Transactional
 	public Calendar addCalendar(Calendar calendar) {
-		return calendarRepo.save(calendar);
+		try {
+			return calendarRepo.save(calendar);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
+	public List<Calendar> getMentorCalendars(Long mentorId) {
+		return calendarRepo.findByMentorId(mentorId);
+	}
+
+	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime) {
+		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime);
+	}
+	
+	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime, Long calendarId) {
+		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime, calendarId);
+	}
+
+	@Transactional
 	public Calendar saveCalendar(Calendar calendar) {
 		return calendarRepo.save(calendar);
 	}
 
+	@Transactional
 	public Calendar updateCalendar(Calendar calendar) {
 		return calendarRepo.save(calendar);
 	}
 
-	public void deleteCalendar(Long calendarId) {
-		calendarRepo.delete(calendarId);
+	@Transactional
+	public Boolean deleteCalendar(Long calendarId) {
+		try {
+			calendarRepo.delete(calendarId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }

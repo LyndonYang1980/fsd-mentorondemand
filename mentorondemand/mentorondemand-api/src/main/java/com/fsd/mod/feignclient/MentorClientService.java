@@ -34,36 +34,58 @@ public interface MentorClientService {
 	public Mentor loginMentor(@RequestBody Mentor mentor);
 
 	@GetMapping(value = "/calendars")
-	public ResponseEntity<List<Calendar>> getCalendars();
+	public List<Calendar> getCalendars();
 
 	@GetMapping(value = "/calendars/{calendarId}")
-	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId);
+	public Calendar getCalendar(@PathVariable Long calendarId);
+	
+	@PostMapping(value = "/calendars/findExistingCalendar1")
+	public List<Calendar> findExistingCalendar1(@RequestBody Calendar calendar);
+	
+	@PostMapping(value = "/calendars/findExistingCalendar2")
+	public List<Calendar> findExistingCalendar2(@RequestBody Calendar calendar);
+
+	@GetMapping(value = "/calendars/getMentorCalendars/{mentorId}")
+	public List<Calendar> getMentorCalendars(@PathVariable Long mentorId);
 
 	@PostMapping(value = "/calendars", produces = "application/json")
-	public ResponseEntity<Calendar> addCalendar(@RequestBody Calendar calendar);
+	public Calendar addCalendar(@RequestBody Calendar calendar);
 
 	@PutMapping(value = "/calendars")
-	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar);
+	public Calendar updateCalendar(@RequestBody Calendar calendar);
 
-	@DeleteMapping(value = "/calendars/{calendarId}")
-	public void deleteCalendar(@PathVariable Long calendarId);
+	@DeleteMapping("/calendars/{id}")
+	public Boolean deleteCalendar(@PathVariable Long calendarId);
 
 	@GetMapping(value = "/skills/getSkills")
 	public ResponseEntity<List<Skill>> getSkills();
 
 	@PostMapping(value = "/skills/addSkill")
-	public ResponseEntity<Skill> addSkill(@RequestBody Skill skill);
+	public Skill addSkill(@RequestBody Skill skill);
 
-	@GetMapping(value = "/skills/{skillId}")
-	public ResponseEntity<Skill> getSkill(@PathVariable Long skillId);
+	@PutMapping(value = "/skills")
+	public Skill updateSkill(@RequestBody Skill skill);
+
+	@GetMapping("/skills/{skillId}")
+	public Skill getSkill(@PathVariable Long skillId);
 
 	@PostMapping(value = "/skills/{mentorId}")
 	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId);
+
+	@PostMapping(value = "/skills/findExistingSkills1/{skillName}/{mentorId}")
+	public Boolean findExistingSkills(@PathVariable("skillName") String skillName,
+			@PathVariable("mentorId") Long mentorId);
+
+	@PostMapping(value = "/skills/findExistingSkills2")
+	public Boolean findExistingSkills(@RequestBody Skill skill);
 
 	@GetMapping(value = "/skills/getMentorSkills/{mentorId}")
 	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId);
 
 	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
 	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey);
+
+	@DeleteMapping(value = "/skills/{skillId}")
+	public Boolean deleteSkill(@PathVariable("skillId") Long skillId);
 
 }

@@ -28,6 +28,10 @@ export class MentorService {
     private mentorConfig: MentorConfigService,
     private router: Router) { }
 
+  getLoginMentor(): MentorModule {
+    return JSON.parse(localStorage.getItem("mentorLoggedIn"));
+  }
+
   public getMentors(): Observable<MentorModule[]> {
     return this.httpClient.get<MentorModule[]>(this.mentorConfig.getMentorsUrl(), httpOptions);
   }
@@ -49,11 +53,11 @@ export class MentorService {
     return returnMentor;
   }
 
-  getMentorByUserProposal(mentorIdArray:number[]):Observable<MentorModule[]>{
+  getMentorByUserProposal(mentorIdArray: number[]): Observable<MentorModule[]> {
     return this.httpClient.post<MentorModule[]>(this.mentorConfig.getMentorProposalByUserUrl(), mentorIdArray);
   }
 
-  searchMentorByKey(searchKey: string):Observable<MentorModule[]>{
+  searchMentorByKey(searchKey: string): Observable<MentorModule[]> {
     return this.httpClient.get<MentorModule[]>(this.mentorConfig.searchMentorByKeyUrl(searchKey), httpOptions);
   }
 }

@@ -3,8 +3,6 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,59 +23,34 @@ public class UserController {
 	UserService userService;
 
 	@RequestMapping("/users/getUsers")
-	public ResponseEntity<List<User>> getUsers() {
+	public List<User> getUsers() {
 		List<User> users = userService.getUsers();
-		if (users != null) {
-			return new ResponseEntity<List<User>>(users, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<List<User>>(users, HttpStatus.NOT_FOUND);
-		}
+		return users;
 	}
 
 	@RequestMapping("/users/{userId}")
-	public ResponseEntity<User> getUser(@PathVariable Long userId) {
+	public User getUser(@PathVariable Long userId) {
 
 		User user = userService.getUser(userId);
-		if (user != null) {
-			return new ResponseEntity<User>(user, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
-		}
+		return user;
 	}
 
 	@PostMapping(value = "/users/addUser")
-	public ResponseEntity<User> addUser(@RequestBody User user) {
-
-		System.out.println("To add user: " + user.toString());
-		boolean existFlag = userService.isUserExisted(user.getUserEmail());
-		if (existFlag) {
-			System.out.println("User already exist");
-			return new ResponseEntity<User>(user, HttpStatus.CONFLICT);
-		} else {
-			User addedUser = userService.addUser(user);
-			System.out.println("Use added: " + addedUser.toString());
-			return new ResponseEntity<User>(addedUser, HttpStatus.ACCEPTED);
-		}
+	public User addUser(@RequestBody User user) {
+		User addedUser = userService.addUser(user);
+		return addedUser;
 	}
 
-	@PutMapping(value = "/users/{userId}")
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
+	@PutMapping(value = "/users")
+	public User updateUser(@RequestBody User user) {
 		User updUser = userService.updateUser(user);
-		if (updUser != null) {
-			return new ResponseEntity<User>(updUser, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<User>(updUser, HttpStatus.NOT_MODIFIED);
-		}
+		return updUser;
 	}
 
 	@DeleteMapping(value = "/users/{userId}")
-	public ResponseEntity<Boolean> deleteUser(@PathVariable Long userId) {
+	public Boolean deleteUser(@PathVariable Long userId) {
 		Boolean delFlag = userService.deleteUser(userId);
-		if (delFlag) {
-			return new ResponseEntity<Boolean>(delFlag, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Boolean>(delFlag, HttpStatus.NOT_MODIFIED);
-		}
+		return delFlag;
 	}
 
 	@PostMapping(value = "/users/login")
@@ -86,7 +59,7 @@ public class UserController {
 	}
 
 	@PutMapping(value = "/users/updatePassword")
-	public ResponseEntity<User> updatePassword(@RequestBody User user) {
+	public User updatePassword(@RequestBody User user) {
 		return this.updateUser(user);
 	}
 

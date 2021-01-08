@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
         if (userData != null) {
           localStorage.setItem('isUserLoggedIn', 'true');
           localStorage.setItem('userLoggedIn', JSON.stringify(userData));
-          this.router.navigate(['userpage']).then(() => {
+          this.router.navigate(['userProfile']).then(() => {
             location.reload();
           });
         } else {

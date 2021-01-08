@@ -9,23 +9,35 @@ export class CalendarConfigService {
 
   private calendarAPIUrl = "http://localhost/feign/calendars";
 
-  getCalendarsUrl(){
+  getCalendarsUrl() {
     return (this.calendarAPIUrl);
   }
 
-  getCalendarUrl(calendarId: number){
-    return (this.calendarAPIUrl + "/${calendarId}");
+  getCalendarUrl(calendarId: number) {
+    return (this.calendarAPIUrl + "/" + calendarId);
   }
 
-  getCalendarAddedUrl(){
+  getMentorCalendarsUrl(mentorId: number) {
+    return (this.calendarAPIUrl + "/getMentorCalendars/" + mentorId);
+  }
+
+  findExistingCalendar1Url(){
+    return (this.calendarAPIUrl + "/findExistingCalendar1");
+  }
+
+  findExistingCalendar2Url(){
+    return (this.calendarAPIUrl + "/findExistingCalendar2");
+  }
+
+  addCalendarUrl() {
     return (this.calendarAPIUrl);
   }
 
-  getCalendarUpdUrl(){
+  updCalendarUrl() {
     return (this.calendarAPIUrl);
   }
 
-  getCalendarDelUrl(calendarId: number){
-    return (this.calendarAPIUrl + "${calendarId}");
+  delCalendarUrl(calendarId: number) {
+    return (this.calendarAPIUrl + "/" + calendarId);
   }
 }

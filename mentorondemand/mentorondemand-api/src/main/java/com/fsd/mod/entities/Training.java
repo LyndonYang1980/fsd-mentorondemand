@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -28,14 +30,10 @@ public class Training {
 	@Column(name = "training_id")
 	private Long trainingId;
 	
-//	@JsonManagedReference(value = "user")
-//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "user_id", referencedColumnName = "user_id")
+	@Column(name = "user_id")
 	private Long userId;
-
-//	@JsonManagedReference(value = "mentor")
-//	@ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-//	@JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id")
+	
+	@Column(name = "mentor_id")
 	private Long mentorId;
 
 //	@JsonManagedReference(value = "skill")

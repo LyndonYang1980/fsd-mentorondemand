@@ -6,6 +6,8 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SkillService } from 'src/app/service/skillService/skill.service';
+import { Time } from '@angular/common';
+import { CalendarModule } from 'src/app/module/calendar.module';
 
 @Component({
   selector: 'app-mentor-dashboard',
@@ -17,6 +19,7 @@ export class MentorDashboardComponent implements OnInit {
   mentorData: MentorModule;
   mentorSkillList: any
   skillList = [];
+  startDate: Date;
   selectedItems = [];
   dropdownSettings: IDropdownSettings = {};
   msg: string = "";

@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignUpComponent } from './component/sign-up/sign-up.component';
@@ -21,7 +20,8 @@ import { UserDashboardComponent } from './component/user-dashboard/user-dashboar
 import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker'
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { ModalModule, BsModalRef } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/mentor-skills.component';
@@ -41,6 +41,15 @@ import { UserTrainingsComponent } from './component/user-trainings/user-training
 import { MentorTrainingDetailsComponent } from './component/mentor-training-details/mentor-training-details.component';
 import { UserTrainingDetailsComponent } from './component/user-training-details/user-training-details.component';
 import { MessageOkcancelModalComponent } from './component/message-okcancel-modal/message-okcancel-modal.component';
+import { MentorCalendarsComponent } from './component/mentor-calendars/mentor-calendars.component';
+import { MentorCalendarDetailsComponent } from './component/mentor-calendar-details/mentor-calendar-details.component';
+import { MentorNewCalendarComponent } from './component/mentor-new-calendar/mentor-new-calendar.component';
+import { MentorSkillsetComponent } from './component/mentor-skillset/mentor-skillset.component';
+import { MentorSkillDetailsComponent } from './component/mentor-skill-details/mentor-skill-details.component';
+import { MentorNewSkillComponent } from './component/mentor-new-skill/mentor-new-skill.component';
+import { SkillMentorBtnComponent } from './component/skill-mentor-btn/skill-mentor-btn.component';
+import { CalendarMentorBtnComponent } from './component/calendar-mentor-btn/calendar-mentor-btn.component';
+import { UserProfileComponent } from './component/user-profile/user-profile.component';
 
 
 const routes: Routes = [
@@ -50,15 +59,23 @@ const routes: Routes = [
   { path: 'mentorLogin', component: MentorLoginComponent },
   { path: 'userSignUp', component: SignUpComponent },
   { path: 'mentorSignUp', component: MentorSignupComponent },
-  { path: 'userpage', component: UserDashboardComponent },
-  { path: 'mentorpage', component: MentorDashboardComponent },
+  { path: 'userDashboard', component: UserDashboardComponent },
+  { path: 'userProfile', component: UserProfileComponent},
+  { path: 'mentorProfile', component: MentorDashboardComponent },
   { path: 'payments', component: PaymentComponent },
   { path: 'mentorproposal', component: MentorProposalComponent },
   { path: 'userproposal', component: UserProposalComponent },
   { path: 'mentortraining', component: MentorTrainingsComponent },
   { path: 'usertraining', component: UserTrainingsComponent },
   { path: 'mentortrainingdetails', component: MentorTrainingDetailsComponent },
-  { path: 'usertrainingdetails', component: UserTrainingDetailsComponent }
+  { path: 'usertrainingdetails', component: UserTrainingDetailsComponent },
+  { path: 'mentorcalendars', component: MentorCalendarsComponent },
+  { path: 'mentorcalendardetails', component: MentorCalendarDetailsComponent },
+  { path: 'mentornewcalendar', component: MentorNewCalendarComponent },
+  { path: 'mentorskillset', component: MentorSkillsetComponent },
+  { path: 'mentorskilldetails', component: MentorSkillDetailsComponent },
+  { path: 'mentornewskill', component: MentorNewSkillComponent }
+
 
 ];
 
@@ -95,9 +112,17 @@ const routes: Routes = [
     MentorTrainingDetailsComponent,
     UserTrainingDetailsComponent,
     MessageOkcancelModalComponent,
+    MentorCalendarsComponent,
+    MentorCalendarDetailsComponent,
+    MentorNewCalendarComponent,
+    MentorSkillsetComponent,
+    MentorSkillDetailsComponent,
+    MentorNewSkillComponent,
+    SkillMentorBtnComponent,
+    CalendarMentorBtnComponent,
+    UserProfileComponent,
   ],
   imports: [
-    NgbModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -108,6 +133,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BsDropdownModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    TimepickerModule.forRoot(),
     ModalModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot()
   ],

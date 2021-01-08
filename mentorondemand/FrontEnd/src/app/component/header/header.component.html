@@ -5,16 +5,13 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+  <!-- Navigation for anonymous user -->
   <div class="collapse navbar-collapse" id="navbarCommon"
     *ngIf="isUserLoggedIn==='false' && isMentorLoggedIn==='false'">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
       </li>
-
-      <!-- <li class="nav-item" [routerLinkActive]="'/mentor'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/mentor">Mentors</a>
-      </li> -->
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -44,18 +41,23 @@
     </ul>
   </div>
 
+  <!-- Navigation for login mentor -->
   <div class="collapse navbar-collapse" id="navbarMentorLoggedIn" *ngIf="isMentorLoggedIn==='true'">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/mentorpage">Home</a>
+        <a class="nav-link" routerLink="/mentorProfile">Home</a>
       </li>
 
-      <!-- <li class="nav-item" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/mentorproposal">Proposal</a>
-      </li> -->
+      <li class="nav-item" [routerLinkActive]="'/mentorskillset'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/mentorskillset">Skill</a>
+      </li>
+
+      <li class="nav-item" [routerLinkActive]="'/mentorcalendars'" [routerLinkActiveOptions]="{exact: true}">
+        <a class="nav-link" routerLink="/mentorcalendars">Calendar</a>
+      </li>
 
       <li class="nav-item" [routerLinkActive]="'/mentortraining'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/mentortraining">Trainings</a>
+        <a class="nav-link" routerLink="/mentortraining">Training</a>
       </li>
 
       <li class="nav-item dropdown">
@@ -64,7 +66,7 @@
           Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/mentorpage">Update Profile</a>
+          <a class="dropdown-item" routerLink="/mentorProfile">Update Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/" (click)="getMentorLogOut()">Logout</a>
         </div>
@@ -73,15 +75,12 @@
     </ul>
   </div>
 
+  <!-- Navigation for login user -->
   <div class="collapse navbar-collapse" id="navbarUserLoggedIn" *ngIf="isUserLoggedIn==='true'">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/userpage">Home</a>
+        <a class="nav-link" routerLink="/userDashboard">Home</a>
       </li>
-
-      <!-- <li class="nav-item" [routerLinkActive]="'/userproposal'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/userproposal">Proposal</a>
-      </li> -->
 
       <li class="nav-item" [routerLinkActive]="'/usertraining'" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" routerLink="/usertraining">Courses</a>
@@ -93,7 +92,7 @@
           Profile
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" routerLink="/userpage">Update Profile</a>
+          <a class="dropdown-item" routerLink="/userProfile">Update Profile</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="/" (click)="getUserLogOut()">Logout</a>
         </div>

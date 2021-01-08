@@ -3,7 +3,6 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,27 +23,42 @@ public class CalendarController_Consumer {
 	MentorClientService mentorClientService;
 
 	@GetMapping("/feign/calendars")
-	public ResponseEntity<List<Calendar>> getCalendars() {
+	public List<Calendar> getCalendars() {
 		return mentorClientService.getCalendars();
 	}
 
 	@GetMapping("/feign/calendars/{calendarId}")
-	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId) {
+	public Calendar getCalendar(@PathVariable Long calendarId) {
 		return mentorClientService.getCalendar(calendarId);
 	}
 
+	@PostMapping(value = "/feign/calendars/findExistingCalendar1")
+	public List<Calendar> findExistingCalendar1(@RequestBody Calendar calendar) {
+		return mentorClientService.findExistingCalendar1(calendar);
+	}
+	
+	@PostMapping(value = "/feign/calendars/findExistingCalendar2")
+	public List<Calendar> findExistingCalendar2(@RequestBody Calendar calendar){
+		return mentorClientService.findExistingCalendar2(calendar);
+	}
+
+	@GetMapping("/feign/calendars/getMentorCalendars/{mentorId}")
+	public List<Calendar> getMentorCalendars(@PathVariable Long mentorId) {
+		return mentorClientService.getMentorCalendars(mentorId);
+	}
+
 	@PostMapping(value = "/feign/calendars", produces = "application/json")
-	public ResponseEntity<Calendar> addCalendar(@RequestBody Calendar calendar) {
+	public Calendar addCalendar(@RequestBody Calendar calendar) {
 		return mentorClientService.addCalendar(calendar);
 	}
 
 	@PutMapping(value = "/feign/calendars/{calendarId}")
-	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar) {
+	public Calendar updateCalendar(@RequestBody Calendar calendar) {
 		return mentorClientService.updateCalendar(calendar);
 	}
 
 	@DeleteMapping("/feign/calendars/{calendarId}")
-	public void deleteCalendar(@PathVariable Long calendarId) {
-		mentorClientService.deleteCalendar(calendarId);
+	public Boolean deleteCalendar(@PathVariable Long calendarId) {
+		return mentorClientService.deleteCalendar(calendarId);
 	}
 }

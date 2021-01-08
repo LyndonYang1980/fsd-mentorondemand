@@ -27,6 +27,10 @@ export class UserService {
     private userConfig: UserConfigService,
     private router: Router) { }
 
+  public getLoginUser(): UserModule {
+      return JSON.parse(localStorage.getItem('userLoggedIn'));
+    }
+
   public getUsers(): Observable<UserModule[]> {
     return this.httpClient.get<UserModule[]>(this.userConfig.getUsersUrl(), httpOptions);
   }
@@ -37,6 +41,10 @@ export class UserService {
 
   public addUser(userData: UserModule): Observable<UserModule> {
     return this.httpClient.post<UserModule>(this.userConfig.getUserAddedURL(), userData, httpOptions);
+  }
+
+  public updateUser(userData: UserModule): Observable<UserModule>{
+    return this.httpClient.put<UserModule>(this.userConfig.updUserUrl(), userData, httpOptions);
   }
   
   public loginUser(userData: UserModule): Observable<UserModule> {

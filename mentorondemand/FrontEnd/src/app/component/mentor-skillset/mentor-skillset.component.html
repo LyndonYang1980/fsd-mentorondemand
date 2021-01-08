@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <br>
+    <!-- Default panel contents -->
+    <h5>Skill Configuration</h5>
+    <div class="col-md-6 offset-6 d-lg-inline-block align-top uk-grid-margin">
+        <div class="float-right">
+            <button type="button" class="btn btn-outline-dark" (click)=newSkill()>New</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Skill Name</th>
+                <th scope="col">Prerequisites</th>
+                <th scope="col">Years of Experience</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tr" *ngFor="let skill of skillList">
+                <td>{{skill.skillName}}</td>
+                <td>{{skill.prerequisites}}</td>
+                <td>{{skill.yearsOfExp}}</td>
+                <td>
+                    <app-skill-mentor-btn [skillId]="skill.skillId"></app-skill-mentor-btn>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

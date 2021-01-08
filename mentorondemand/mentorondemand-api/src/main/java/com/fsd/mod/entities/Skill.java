@@ -33,19 +33,18 @@ public class Skill {
 	@Column(name = "skill_id")
 	private Long skillId;
 
+	@Column(name = "mentor_id")
+	private Long mentorId;
+
 	@Column(name = "skill_name", nullable = false)
 	private String skillName;
-
-	@Column(name = "skill_duration", nullable = true)
-	private int skillDuration;
 
 	@Column(name = "prerequisites", nullable = true)
 	private String prerequisites;
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Proposal.class)
-	private Set<Proposal> proposals = new HashSet<>();
-	
+	@Column(name = "year_of_exp", nullable = true)
+	private int yearsOfExp;
+
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "skillId", targetEntity = Training.class)
 	private Set<Training> trainings = new HashSet<>();

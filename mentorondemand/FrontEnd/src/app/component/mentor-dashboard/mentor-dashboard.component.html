@@ -10,11 +10,10 @@
             <button type="submit" class="btn btn-outline-dark" [disabled]="!f.valid">Update</button>
         </div>
     </div>
-    <p></p>
-
+    <br>
     <div class="col-md-6 d-lg-inline-block align-top">
         <div class="shadow mb-5 p-5 bg-white rounded">
-            <fieldset id="bfedit">
+            <fieldset>
                 <div class="form-group">
                     <input type="hidden" id="mentorId" name="mentorId" [(ngModel)]="mentorData.mentorId" />
                 </div>
@@ -72,14 +71,18 @@
     </div>
 
     <div class="col-md-6 d-lg-inline-block align-top">
-        <div class="shadow mb-5 p-5 bg-white rounded">
-            <label for="mentorSkill">Skills: </label>
-            <div class="col-sm-8">
-                <ng-multiselect-dropdown id="skills" name="skills" [placeholder]="'Your skills'" [data]="skillList"
-                    [(ngModel)]="mentorSkillList" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
+        <fieldset>
+            <div class="shadow mb-5 p-5 bg-white rounded">
+                <div class="form-group">
+                    <label for="mentorSkill">Skills: </label>
+                    <div class="col-sm-8">
+                        <ng-multiselect-dropdown id="skills" name="skills" [placeholder]="'Your skills'"
+                            [data]="skillList" [(ngModel)]="mentorSkillList" [settings]="dropdownSettings"
+                            (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
             </div>
-        </div>
+        </fieldset>
     </div>
 </form>

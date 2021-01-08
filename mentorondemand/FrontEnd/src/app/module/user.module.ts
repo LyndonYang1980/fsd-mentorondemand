@@ -5,8 +5,10 @@ export class UserModule {
   constructor(
     public userId: number,
     public userName: string,
+    public firstName: string,
+    public lastName: string,
     public userEmail: string,
-    public userBirthday: Date,
+    public regDate: Date,
     public contactNumber:number,
     public userPassword:string,
     public status:string,

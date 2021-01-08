@@ -1,0 +1,35 @@
+<div class="panel panel-default">
+    <br>
+    <!-- Default panel contents -->
+    <h5>Calendars</h5>
+    <div class="col-md-6 offset-6 d-lg-inline-block align-top uk-grid-margin">
+        <div class="float-right">
+            <button type="button" class="btn btn-outline-dark" (click)=newCalendar()>New</button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <br>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="tr" *ngFor="let calendar of calendarList">
+                <td>{{calendar.startDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{calendar.endDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{calendar.startTime | date:'mediumTime'}}</td>
+                <td>{{calendar.endTime | date:'mediumTime'}}</td>
+                <td>
+                   <app-calendar-mentor-btn [calendarId]="calendar.calendarId"></app-calendar-mentor-btn>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

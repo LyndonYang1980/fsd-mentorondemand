@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit, OnChanges {
       this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
     }
     if (localStorage.getItem('isMentorLoggedIn') === null) {
-      this.isMentorLoggedIn = 'true';
+      this.isMentorLoggedIn = 'false';
     } else {
       this.isMentorLoggedIn = localStorage.getItem('isMentorLoggedIn');
     }

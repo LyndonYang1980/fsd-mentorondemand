@@ -22,11 +22,11 @@ public class MentorService {
 		return list;
 	}
 
-	public List<Mentor> getAllMentorsAndSkills() {
-		List<Mentor> list = new ArrayList<>();
-		mentorRepo.getAllMentorsAndSkills().forEach(list::add);
-		return list;
-	}
+//	public List<Mentor> getAllMentorsAndSkills() {
+//		List<Mentor> list = new ArrayList<>();
+//		mentorRepo.getAllMentorsAndSkills().forEach(list::add);
+//		return list;
+//	}
 
 	public Mentor getMentor(Long id) {
 
@@ -49,6 +49,7 @@ public class MentorService {
 		oldMentor.setMentorExperience(mentor.getMentorExperience());
 		oldMentor.setMentorPassword(mentor.getMentorPassword());
 		oldMentor.setSkills(mentor.getSkills());
+		oldMentor.setCalendars(mentor.getCalendars());
 		return mentorRepo.save(oldMentor);
 	}
 

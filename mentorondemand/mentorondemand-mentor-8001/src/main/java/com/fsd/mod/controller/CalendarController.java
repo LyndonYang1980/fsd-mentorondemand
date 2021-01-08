@@ -3,8 +3,6 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,48 +22,52 @@ public class CalendarController {
 	@Autowired
 	CalendarService calendarService;
 
-	@GetMapping("/calendars")
-	public ResponseEntity<List<Calendar>> getCalendars() {
+	@GetMapping(value = "/calendars")
+	public List<Calendar> getCalendars() {
 		List<Calendar> calendars = calendarService.getCalendars();
-		if (calendars.size() > 0) {
-			return new ResponseEntity<List<Calendar>>(calendars, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<List<Calendar>>(calendars, HttpStatus.NOT_FOUND);
-		}
+		return calendars;
 	}
 
-	@GetMapping("/calendars/{calendarId}")
-	public ResponseEntity<Calendar> getCalendar(@PathVariable Long calendarId) {
+	@GetMapping(value = "/calendars/{calendarId}")
+	public Calendar getCalendar(@PathVariable Long calendarId) {
 		Calendar calendar = calendarService.getCalendar(calendarId);
-		if (calendar != null) {
-			return new ResponseEntity<Calendar>(calendar, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Calendar>(calendar, HttpStatus.NOT_FOUND);
-		}
+		return calendar;
+	}
+
+	@GetMapping(value = "/calendars/getMentorCalendars/{mentorId}")
+	public List<Calendar> getMentorCalendars(@PathVariable Long mentorId) {
+		List<Calendar> calendars = calendarService.getMentorCalendars(mentorId);
+		return calendars;
+	}
+
+	@PostMapping(value = "/calendars/findExistingCalendar1")
+	public List<Calendar> findExistingCalendar1(@RequestBody Calendar calendar) {
+		List<Calendar> calendars = calendarService.findExistingCalendar(calendar.getStartDate(), calendar.getEndDate(),
+				calendar.getStartTime(), calendar.getEndTime());
+		return calendars;
+	}
+
+	@PostMapping(value = "/calendars/findExistingCalendar2")
+	public List<Calendar> findExistingCalendar2(@RequestBody Calendar calendar) {
+		List<Calendar> calendars = calendarService.findExistingCalendar(calendar.getStartDate(), calendar.getEndDate(),
+				calendar.getStartTime(), calendar.getEndTime(), calendar.getCalendarId());
+		return calendars;
 	}
 
 	@PostMapping(value = "/calendars", produces = "application/json")
-	public ResponseEntity<Calendar> addCalendar(@RequestBody Calendar calendar) {
+	public Calendar addCalendar(@RequestBody Calendar calendar) {
 		Calendar addedCalendar = calendarService.addCalendar(calendar);
-		if (addedCalendar != null) {
-			return new ResponseEntity<Calendar>(addedCalendar, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Calendar>(addedCalendar, HttpStatus.NOT_MODIFIED);
-		}
+		return addedCalendar;
 	}
 
 	@PutMapping(value = "/calendars")
-	public ResponseEntity<Calendar> updateCalendar(@RequestBody Calendar calendar) {
+	public Calendar updateCalendar(@RequestBody Calendar calendar) {
 		Calendar updCalendar = calendarService.updateCalendar(calendar);
-		if (updCalendar != null) {
-			return new ResponseEntity<Calendar>(updCalendar, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Calendar>(updCalendar, HttpStatus.NOT_MODIFIED);
-		}
+		return updCalendar;
 	}
 
 	@DeleteMapping("/calendars/{id}")
-	public void deleteCalendar(@PathVariable Long calendarId) {
-		calendarService.deleteCalendar(calendarId);
+	public Boolean deleteCalendar(@PathVariable Long calendarId) {
+		return calendarService.deleteCalendar(calendarId);
 	}
 }
