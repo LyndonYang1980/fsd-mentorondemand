@@ -11,4 +11,5 @@ public interface SkillRepo extends CrudRepository<Skill, Long> {
 	public List<Skill> findBySkillNameAndMentorId(String skillName, Long mentorId);
 	
 	public List<Skill> findBySkillNameAndMentorIdAndSkillIdNot(String skillName, Long mentorId, Long skillId);
+	
 }

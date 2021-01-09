@@ -44,10 +44,6 @@
   <!-- Navigation for login mentor -->
   <div class="collapse navbar-collapse" id="navbarMentorLoggedIn" *ngIf="isMentorLoggedIn==='true'">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active" [routerLinkActive]="'/'" [routerLinkActiveOptions]="{exact: true}">
-        <a class="nav-link" routerLink="/mentorProfile">Home</a>
-      </li>
-
       <li class="nav-item" [routerLinkActive]="'/mentorskillset'" [routerLinkActiveOptions]="{exact: true}">
         <a class="nav-link" routerLink="/mentorskillset">Skill</a>
       </li>

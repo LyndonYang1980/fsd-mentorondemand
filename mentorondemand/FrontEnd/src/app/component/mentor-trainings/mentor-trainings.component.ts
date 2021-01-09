@@ -18,7 +18,7 @@ export class MentorTrainingsComponent implements OnInit {
 
   constructor(private skillService: SkillService,
     private trainingService: TrainingService,
-    private router: Router) {}
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getLoginMentor();
@@ -38,14 +38,6 @@ export class MentorTrainingsComponent implements OnInit {
     }, (error) => {
       console.log(error);
     })
-  }
-
-  viewTrainingDetail(trainingId: number) {
-    this.router.navigate(['mentortrainingdetails'], {
-      queryParams: {
-        trainingId: trainingId
-      }
-    });
   }
 
 }

@@ -43,14 +43,14 @@ public class CalendarController {
 	@PostMapping(value = "/calendars/findExistingCalendar1")
 	public List<Calendar> findExistingCalendar1(@RequestBody Calendar calendar) {
 		List<Calendar> calendars = calendarService.findExistingCalendar(calendar.getStartDate(), calendar.getEndDate(),
-				calendar.getStartTime(), calendar.getEndTime());
+				calendar.getStartTime(), calendar.getEndTime(), calendar.getMentorId());
 		return calendars;
 	}
 
 	@PostMapping(value = "/calendars/findExistingCalendar2")
 	public List<Calendar> findExistingCalendar2(@RequestBody Calendar calendar) {
 		List<Calendar> calendars = calendarService.findExistingCalendar(calendar.getStartDate(), calendar.getEndDate(),
-				calendar.getStartTime(), calendar.getEndTime(), calendar.getCalendarId());
+				calendar.getStartTime(), calendar.getEndTime(), calendar.getMentorId(), calendar.getCalendarId());
 		return calendars;
 	}
 
@@ -66,7 +66,7 @@ public class CalendarController {
 		return updCalendar;
 	}
 
-	@DeleteMapping("/calendars/{id}")
+	@DeleteMapping("/calendars/{calendarId}")
 	public Boolean deleteCalendar(@PathVariable Long calendarId) {
 		return calendarService.deleteCalendar(calendarId);
 	}

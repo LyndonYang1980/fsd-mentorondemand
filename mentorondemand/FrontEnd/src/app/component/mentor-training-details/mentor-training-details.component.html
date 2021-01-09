@@ -9,8 +9,6 @@
             <button type="button" class="btn btn-outline-dark"
                 *ngIf="editMode === false && trainingData.status=== 'proposed'" (click)="onEdit()">Edit</button>
             <span>&nbsp;&nbsp;&nbsp;</span>
-            <app-proposal-mentor-btn [trainingData]="trainingData" *ngIf="trainingData.status === 'proposed'">
-            </app-proposal-mentor-btn>
             <button type="button" class="btn btn-outline-dark"
                 *ngIf="editMode === false && trainingData.status === 'reconfirmed'" (click)="setStart()">Set
                 Start</button>

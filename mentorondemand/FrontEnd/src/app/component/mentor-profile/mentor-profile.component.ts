@@ -6,15 +6,13 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { NgForm } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { SkillService } from 'src/app/service/skillService/skill.service';
-import { Time } from '@angular/common';
-import { CalendarModule } from 'src/app/module/calendar.module';
 
 @Component({
-  selector: 'app-mentor-dashboard',
-  templateUrl: './mentor-dashboard.component.html',
-  styleUrls: ['./mentor-dashboard.component.css']
+  selector: 'app-mentor-profile',
+  templateUrl: './mentor-profile.component.html',
+  styleUrls: ['./mentor-profile.component.css']
 })
-export class MentorDashboardComponent implements OnInit {
+export class MentorProfileComponent implements OnInit {
 
   mentorData: MentorModule;
   mentorSkillList: any

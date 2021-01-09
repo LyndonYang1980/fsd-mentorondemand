@@ -54,7 +54,7 @@ public interface MentorClientService {
 	@PutMapping(value = "/calendars")
 	public Calendar updateCalendar(@RequestBody Calendar calendar);
 
-	@DeleteMapping("/calendars/{id}")
+	@DeleteMapping("/calendars/{calendarId}")
 	public Boolean deleteCalendar(@PathVariable Long calendarId);
 
 	@GetMapping(value = "/skills/getSkills")

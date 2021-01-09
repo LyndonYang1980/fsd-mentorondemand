@@ -13,11 +13,12 @@ public interface CalendarRepo extends CrudRepository<Calendar, Long> {
 
 	public List<Calendar> findByMentorId(Long mentorId);
 
-	@Query(value = "select * from calendar where date(start_date) = date(:startDate) and date(end_date) = date(:endDate) and time(start_time) = time(:startTime) and time(end_time) = time(:endTime)", nativeQuery = true)
+	@Query(value = "select * from calendar where date(start_date) = date(:startDate) and date(end_date) = date(:endDate) and time(start_time) = time(:startTime) and time(end_time) = time(:endTime) and mentor_id = :mentorId", nativeQuery = true)
 	public List<Calendar> findExistingCalendar(@Param("startDate") Date startDate, @Param("endDate") Date endDate,
-			@Param("startTime") Date startTime, @Param("endTime") Date endTime);
+			@Param("startTime") Date startTime, @Param("endTime") Date endTime, @Param("mentorId") Long mentorId);
 
-	@Query(value = "select * from calendar where date(start_date) = date(:startDate) and date(end_date) = date(:endDate) and time(start_time) = time(:startTime) and time(end_time) = time(:endTime) and calendar_id <> :calendarId", nativeQuery = true)
+	@Query(value = "select * from calendar where date(start_date) = date(:startDate) and date(end_date) = date(:endDate) and time(start_time) = time(:startTime) and time(end_time) = time(:endTime) and mentor_id = :mentorId and calendar_id <> :calendarId", nativeQuery = true)
 	public List<Calendar> findExistingCalendar(@Param("startDate") Date startDate, @Param("endDate") Date endDate,
-			@Param("startTime") Date startTime, @Param("endTime") Date endTime, @Param("calendarId") Long calendarId);
+			@Param("startTime") Date startTime, @Param("endTime") Date endTime, @Param("mentorId") Long mentorId,
+			@Param("calendarId") Long calendarId);
 }

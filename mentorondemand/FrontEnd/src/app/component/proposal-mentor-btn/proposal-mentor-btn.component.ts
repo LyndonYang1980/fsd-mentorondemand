@@ -6,6 +6,7 @@ import { MessageModalComponent } from '../message-modal/message-modal.component'
 import { TrainingDetailModalComponent } from '../training-detail-modal/training-detail-modal.component';
 import { TrainingModule } from 'src/app/module/training.module';
 import { TrainingService } from 'src/app/service/trainingService/training.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposal-mentor-btn',
@@ -20,7 +21,9 @@ export class ProposalMentorBtnComponent implements OnInit {
   bsModalRef: BsModalRef;
   msg: string;
 
-  constructor(private trainingService: TrainingService, private proposalService: ProposalService, private bsModalService: BsModalService) { }
+  constructor(
+    private trainingService: TrainingService, private bsModalService: BsModalService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -39,6 +42,14 @@ export class ProposalMentorBtnComponent implements OnInit {
       // this.retProposalData.emit(this.proposalData);
       location.reload();
     }
+  }
+
+  viewTrainingDetail() {
+    this.router.navigate(['mentortrainingdetails'], {
+      queryParams: {
+        trainingId: this.trainingData.trainingId
+      }
+    });
   }
 
   acceptProposal() {

@@ -15,9 +15,8 @@ import { SearchBarComponent } from './component/search-bar/search-bar.component'
 import { MentorItemComponent } from './component/mentor-search/mentor-item/mentor-item.component';
 import { MentorSearchComponent } from './component/mentor-search/mentor-search.component';
 import { MentorSignupComponent } from './component/mentor-signup/mentor-signup.component';
-import { MentorDashboardComponent } from './component/mentor-dashboard/mentor-dashboard.component';
+import { MentorProfileComponent } from './component/mentor-profile/mentor-profile.component';
 import { UserDashboardComponent } from './component/user-dashboard/user-dashboard.component';
-import { PaymentComponent } from './component/mentor-dashboard/payment/payment.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -61,8 +60,7 @@ const routes: Routes = [
   { path: 'mentorSignUp', component: MentorSignupComponent },
   { path: 'userDashboard', component: UserDashboardComponent },
   { path: 'userProfile', component: UserProfileComponent},
-  { path: 'mentorProfile', component: MentorDashboardComponent },
-  { path: 'payments', component: PaymentComponent },
+  { path: 'mentorProfile', component: MentorProfileComponent },
   { path: 'mentorproposal', component: MentorProposalComponent },
   { path: 'userproposal', component: UserProposalComponent },
   { path: 'mentortraining', component: MentorTrainingsComponent },
@@ -92,9 +90,8 @@ const routes: Routes = [
     MentorItemComponent,
     MentorSearchComponent,
     MentorSignupComponent,
-    MentorDashboardComponent,
+    MentorProfileComponent,
     UserDashboardComponent,
-    PaymentComponent,
     MentorSkillsComponent,
     ProposalUserBtnComponent,
     ProposalModalComponent,

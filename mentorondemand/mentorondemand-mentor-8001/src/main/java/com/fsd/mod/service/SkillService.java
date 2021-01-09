@@ -100,13 +100,7 @@ public class SkillService {
 	 * @return
 	 */
 	@Transactional
-	public boolean deleteSkill(Long skillId) {
-		try {
-			skillRepo.delete(skillId);
-			return true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	public void deleteSkill(Long skillId) {
+		skillRepo.delete(skillId);
 	}
 }

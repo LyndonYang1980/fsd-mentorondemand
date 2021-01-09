@@ -54,12 +54,14 @@ public class CalendarService {
 		return calendarRepo.findByMentorId(mentorId);
 	}
 
-	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime) {
-		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime);
+	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime,
+			Long mentorId) {
+		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime, mentorId);
 	}
-	
-	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime, Long calendarId) {
-		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime, calendarId);
+
+	public List<Calendar> findExistingCalendar(Date startDate, Date endDate, Date startTime, Date endTime,
+			Long mentorId, Long calendarId) {
+		return calendarRepo.findExistingCalendar(startDate, endDate, startTime, endTime, mentorId, calendarId);
 	}
 
 	@Transactional

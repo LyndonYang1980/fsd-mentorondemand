@@ -50,7 +50,7 @@ export class SkillMentorBtnComponent implements OnInit {
   deleteSkill(){
     this.skillService.deleteSkill(this.skillId).subscribe(
       (result)=>{
-        if (result) {
+        if (result == true) {
           this.msg = "Skill deleted successfully!";
         } else {
           this.msg = "Skill not deleted due to error";

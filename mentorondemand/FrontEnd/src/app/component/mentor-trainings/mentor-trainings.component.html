@@ -17,23 +17,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="tr" *ngFor="let training of mentorTrainingList">
+            <tr class="tr" *ngFor="let trainingData of mentorTrainingList">
                 <td>
-                    <app-detail-skill-item [skillId]="training.skillId" [showProperty]="'skillName'">
+                    <app-detail-skill-item [skillId]="trainingData.skillId" [showProperty]="'skillName'">
                     </app-detail-skill-item>
                 </td>
-                <td>{{training.fee}}</td>
-                <td>{{training.startDate}}</td>
-                <td>{{training.endDate}}</td>
-                <td>{{training.progress}}</td>
-                <td>{{training.amountReceived}}</td>
-                <td>{{training.status}}</td>
+                <td>{{trainingData.fee}}</td>
+                <td>{{trainingData.startDate}}</td>
+                <td>{{trainingData.endDate}}</td>
+                <td>{{trainingData.progress}}</td>
+                <td>{{trainingData.amountReceived}}</td>
+                <td>{{trainingData.status}}</td>
                 <td>
-                    <app-detail-user-item [userId]="training.userId" [showProperty]="'userName'">
+                    <app-detail-user-item [userId]="trainingData.userId" [showProperty]="'userName'">
                     </app-detail-user-item>
                 </td>
                 <td>
-                    <button class="btn btn-outline-dark" type="button" (click)="viewTrainingDetail(training.trainingId)">View Details</button>
+                    <app-proposal-mentor-btn [trainingData]="trainingData">
+                    </app-proposal-mentor-btn>
+                    <!-- <button class="btn btn-outline-dark" type="button" (click)="viewTrainingDetail(trainingData.trainingId)">View Details</button> -->
                 </td>
             </tr>
         </tbody>

@@ -91,7 +91,13 @@ public class SkillController {
 
 	@DeleteMapping(value = "/skills/{skillId}")
 	public Boolean deleteSkill(@PathVariable("skillId") Long skillId) {
-		return skillService.deleteSkill(skillId);
+		try {
+			skillService.deleteSkill(skillId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
