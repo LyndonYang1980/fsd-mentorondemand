@@ -12,7 +12,6 @@ import { HeaderComponent } from './component/header/header.component';
 import { HomeComponent } from './component/home/home.component';
 import { MentorListComponent } from './component/mentor-search/mentor-list/mentor-list.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
-import { MentorItemComponent } from './component/mentor-search/mentor-item/mentor-item.component';
 import { MentorSearchComponent } from './component/mentor-search/mentor-search.component';
 import { MentorSignupComponent } from './component/mentor-signup/mentor-signup.component';
 import { MentorProfileComponent } from './component/mentor-profile/mentor-profile.component';
@@ -49,6 +48,7 @@ import { MentorNewSkillComponent } from './component/mentor-new-skill/mentor-new
 import { SkillMentorBtnComponent } from './component/skill-mentor-btn/skill-mentor-btn.component';
 import { CalendarMentorBtnComponent } from './component/calendar-mentor-btn/calendar-mentor-btn.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
+import { MentorDetailsModalComponent } from './component/mentor-details-modal/mentor-details-modal.component';
 
 
 const routes: Routes = [
@@ -87,7 +87,6 @@ const routes: Routes = [
     HomeComponent,
     MentorListComponent,
     SearchBarComponent,
-    MentorItemComponent,
     MentorSearchComponent,
     MentorSignupComponent,
     MentorProfileComponent,
@@ -118,6 +117,7 @@ const routes: Routes = [
     SkillMentorBtnComponent,
     CalendarMentorBtnComponent,
     UserProfileComponent,
+    MentorDetailsModalComponent,
   ],
   imports: [
     BrowserModule,

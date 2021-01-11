@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MentorItemComponent } from './mentor-item.component';
+import { MentorDetailsModalComponent } from './mentor-details-modal.component';
 
-describe('MentorItemComponent', () => {
-  let component: MentorItemComponent;
-  let fixture: ComponentFixture<MentorItemComponent>;
+describe('MentorDetailsModalComponent', () => {
+  let component: MentorDetailsModalComponent;
+  let fixture: ComponentFixture<MentorDetailsModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MentorItemComponent ]
+      declarations: [ MentorDetailsModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MentorItemComponent);
+    fixture = TestBed.createComponent(MentorDetailsModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

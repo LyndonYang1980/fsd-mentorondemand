@@ -77,10 +77,7 @@ export class ProposalUserBtnComponent implements OnInit {
     for (let i = 0; i < this.selectedSkills.length; i++) {
 
       let skillItem: SkillModule = this.selectedSkills[i];
-      // let proposalData = new ProposalModule(null, this.userLoggedIn.userId, this.mentorData.mentorId, skillItem.skillId,
-      //   true, null, null);
       let proposedTraining = new TrainingModule(null, this.userLoggedIn.userId, this.mentorData.mentorId, skillItem.skillId, null, "proposed", 0, null, null, null, null);
-      // proposalDataList.push(proposalData);
       trainingDataList.push(proposedTraining);
     }
 
@@ -97,17 +94,6 @@ export class ProposalUserBtnComponent implements OnInit {
         msg = "Training not proposed - " + err;
         this.showMsgModal(msg);
       });
-    // this.proposalService.addProposal(proposalDataList)
-    //   .subscribe((data) => {
-    //     msg = "Proposal sent successfully!";
-    //     console.log(msg);
-    //     this.showMsgModal(msg);
-    //   },
-    //     (err) => {
-    //       msg = "Proposal sent failed - " + err;
-    //       console.log(msg);
-    //       this.showMsgModal(msg);
-    //     });
   }
 
 }

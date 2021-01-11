@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th scope="col">Mentor Name</th>
-                <th scope="col">Experience</th>                
+                <th scope="col">Experience</th>
                 <th scope="col">Email Address</th>
                 <th scope="col">Contact Number</th>
                 <th scope="col">Rating</th>
@@ -15,18 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="tr" *ngFor="let mentorData of mentorList" (click)="mentorElaborate(mentorData)">
-                <td>{{mentorData.mentorName}}</td>
-                <td>{{mentorData.mentorExperience}}</td>                
-                <td>{{mentorData.mentorEmail}}</td>
-                <td>{{mentorData.contactNumber}}</td>
-                <td>{{mentorData.rating}}</td>
-                <td>
+            <tr class="tr" *ngFor="let mentorData of mentorList">
+                <td (click)="showMentorDetailModal(mentorData)">{{mentorData.mentorName}}</td>
+                <td (click)="showMentorDetailModal(mentorData)">{{mentorData.mentorExperience}}</td>
+                <td (click)="showMentorDetailModal(mentorData)">{{mentorData.mentorEmail}}</td>
+                <td (click)="showMentorDetailModal(mentorData)">{{mentorData.contactNumber}}</td>
+                <td (click)="showMentorDetailModal(mentorData)">{{mentorData.rating}}</td>
+                <td (click)="showMentorDetailModal(mentorData)">
                     <app-mentor-skills [mentorData]="mentorData"></app-mentor-skills>
                 </td>
 
                 <td>
-                    <app-proposal-user-btn [isUserLoggedIn]="isUserLoggedIn" [userLoggedIn]="userLoggedIn" [mentorData]="mentorData" *ngIf="isUserLoggedIn === 'true'"></app-proposal-user-btn>
+                    <app-proposal-user-btn [isUserLoggedIn]="isUserLoggedIn" [userLoggedIn]="userLoggedIn"
+                        [mentorData]="mentorData" *ngIf="isUserLoggedIn === 'true'"></app-proposal-user-btn>
                 </td>
             </tr>
         </tbody>

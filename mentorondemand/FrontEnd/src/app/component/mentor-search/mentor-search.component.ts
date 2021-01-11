@@ -14,7 +14,7 @@ export class MentorSearchComponent implements OnInit {
   constructor(private mentorService: MentorService) { }
 
   ngOnInit() {
-    // this.getAllMentors();
+    
   }
   selectMentorEvent(mentorData: MentorModule) {
     this.mentorData = mentorData;
@@ -30,6 +30,5 @@ export class MentorSearchComponent implements OnInit {
 
   handleSearchResults(results: MentorModule[]){
     this.mentorList = results;
-    console.log("handleSearch");
   }
 }

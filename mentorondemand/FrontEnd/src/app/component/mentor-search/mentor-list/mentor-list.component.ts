@@ -2,7 +2,8 @@ import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { MentorModule } from 'src/app/module/mentor.module';
 import { UserModule } from 'src/app/module/user.module';
 import { HttpClient } from '@angular/common/http';
-import { ProposalService } from 'src/app/service/proposalService/proposal.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MentorDetailsModalComponent } from '../../mentor-details-modal/mentor-details-modal.component';
 
 @Component({
   selector: 'app-mentor-list',
@@ -11,14 +12,13 @@ import { ProposalService } from 'src/app/service/proposalService/proposal.servic
 })
 export class MentorListComponent implements OnInit {
 
+  mentorData: MentorModule;
   isUserLoggedIn: string;
   userLoggedIn: UserModule;
-
-  theMentor: MentorModule;
+  bsModalRef: BsModalRef;
   @Input() mentorList: MentorModule[];
-  @Output() onSelectingMentor = new EventEmitter<MentorModule>();
 
-  constructor(private proposalService: ProposalService,
+  constructor(private bsModalService: BsModalService,
     private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -26,12 +26,19 @@ export class MentorListComponent implements OnInit {
   }
 
   initData() {
-    console.log("Exporting mentor info...");
     this.userLoggedIn = JSON.parse(localStorage.getItem('userLoggedIn'));
     this.isUserLoggedIn = localStorage.getItem('isUserLoggedIn');
   }
 
-  mentorElaborate(mentor: MentorModule) {
-    this.onSelectingMentor.emit(mentor);
+  showMentorDetailModal(mentorData: MentorModule) {
+
+    const initialState = {
+      mentorData: mentorData
+    };
+
+    this.bsModalRef = this.bsModalService.show(MentorDetailsModalComponent, { initialState });
+    this.bsModalRef.content.onClick = () => {
+
+    }
   }
 }

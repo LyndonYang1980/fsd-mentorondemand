@@ -21,5 +21,12 @@ VALUES(2, '', 'HTML5', 4), (2, '', 'TypeScript', 3), (2, '', 'Angular', 3), (2, 
 INSERT INTO skill(mentor_id, prerequisites, skill_name, year_of_exp)
 VALUES(3, '', 'HTML5', 3), (3, '', 'Java', 4), (3, '', 'Python', 2), (3, '', 'Vue Js', 3), (3, '', 'Spring Boot', 2);
 
+INSERT INTO calendar (mentor_id, start_date, end_date, start_time, end_time)
+VALUES(1, '2021-01-01', '2021-01-29', '2021-01-01 09:00:00', '2021-01-01 11:00:00');
 
+INSERT INTO calendar (mentor_id, start_date, end_date, start_time, end_time)
+VALUES(2, '2021-02-01', '2021-02-15', '2021-01-01 13:00:00', '2021-01-01 15:00:00');
+
+INSERT INTO calendar (mentor_id, start_date, end_date, start_time, end_time)
+VALUES(3, '2021-02-16', '2021-02-25', '2021-01-01 15:00:00', '2021-01-01 17:00:00');
 

@@ -1,0 +1,64 @@
+<h5>Mentor Profile</h5>
+
+<form #f="ngForm">
+    <div class="col-lg-8 d-md-inline-block align-top">
+        <fieldset>
+            <div class="form-group">
+                <label for="mentorName">Name: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="mentorName" name="mentorName"
+                        placeholder="your full name" [(ngModel)]="mentorData.mentorName" readonly="true">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mentorEmail">Email: </label>
+                <div class="col-sm-8">
+                    <input class="form-control" id="mentorEmail" name="mentorEmail" [(ngModel)]="mentorData.mentorEmail"
+                        readonly="true">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mentorExperience">Rating: </label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="rating" name="rating"
+                        [(ngModel)]="mentorData.rating" readonly="true">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mentorExperience">Years Of Experience: </label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control" id="mentorExperience" name="mentorExperience"
+                        [(ngModel)]="mentorData.mentorExperience" readonly="true">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-lg-10">
+        <fieldset>
+            <div class="form-group">
+                <label for="contactNumber">Contact Number: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="contactNumber" name="contactNumber"
+                        [(ngModel)]="mentorData.contactNumber" readonly="true">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="mentorSkills">Skills: </label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="skills" name="skills" [(ngModel)]="skills"
+                        readonly="true"></textarea>
+                </div>
+
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="click()">OK</button>
+    </div>
+</form>
