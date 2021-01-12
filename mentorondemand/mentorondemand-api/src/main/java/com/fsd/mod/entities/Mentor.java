@@ -70,6 +70,10 @@ public class Mentor {
 	
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentorId", targetEntity = Calendar.class)
 	private Set<Calendar> calendars = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentor", targetEntity = Payment.class)
+	private Set<Payment> payments = new HashSet<>();
+	
 
 //	@Column(name = "reg_code")
 //	private String regCode = "";

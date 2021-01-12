@@ -2,8 +2,10 @@ package com.fsd.mod.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,9 +29,9 @@ public class Payment {
 	@Column(name = "payment_id")
 	private long paymentId;
 
-	@ManyToOne(targetEntity = Mentor.class)
+	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "mentor_id")
-	private Long mentorId;
+	private Mentor mentor;
 
 	@ManyToOne(targetEntity = Training.class)
 	@JoinColumn(name = "training_id")

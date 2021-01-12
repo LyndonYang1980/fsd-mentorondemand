@@ -7,7 +7,7 @@
         <div class="float-right">
             <button type="button" class="btn btn-outline-dark" *ngIf="trainingData.status === 'confirmed'"
                 (click)="onConfirm()">Confirm</button>
-            <button type="button" class="btn btn-outline-dark" (click)="onRating()">Rating</button>
+            <button type="button" class="btn btn-outline-dark" *ngIf="trainingData.status === 'In progress'" (click)="onRating()">Rating</button>
         </div>
     </div>
     <p></p>

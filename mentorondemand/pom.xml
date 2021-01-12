@@ -95,5 +95,6 @@
 		<module>mentorondemand-eureka-7001</module>
 		<module>mentorondemand-feignclient</module>
 		<module>mentorondemand-proposal-8041</module>
+		<module>mentorondemand-payment-8051</module>
 	</modules>
 </project>
