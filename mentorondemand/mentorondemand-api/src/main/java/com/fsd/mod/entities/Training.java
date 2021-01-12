@@ -60,6 +60,12 @@ public class Training {
 	@Column(name = "end_date")
 	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
 	private Date endDate;
+	
+	@Column(name = "start_time")
+	private Date startTime;
+
+	@Column(name = "end_time")
+	private Date endTime;
 
 	@Column(name = "amount_received")
 	private Float amountReceived = 0.0f;

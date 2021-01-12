@@ -7,6 +7,7 @@ import { TrainingDetailModalComponent } from '../training-detail-modal/training-
 import { TrainingModule } from 'src/app/module/training.module';
 import { TrainingService } from 'src/app/service/trainingService/training.service';
 import { Router } from '@angular/router';
+import { MessageOkcancelModalComponent } from '../message-okcancel-modal/message-okcancel-modal.component';
 
 @Component({
   selector: 'app-proposal-mentor-btn',
@@ -54,39 +55,57 @@ export class ProposalMentorBtnComponent implements OnInit {
 
   acceptProposal() {
 
-    this.trainingData.status = "confirmed";
-    this.trainingService.updateTraining(this.trainingData).subscribe(
-      (data) => {
-        if (data != null) {
-          this.msg = "Training proposal confirmed";
-          this.trainingData = data;
-        } else {
-          this.msg = "Training proposal not confirmed due to error!";
+    const initialState = {
+      title: 'Information',
+      msg: 'Are you sure to accept the proposed training?'
+    }
+
+    this.bsModalRef = this.bsModalService.show(MessageOkcancelModalComponent, { initialState });
+
+    this.bsModalRef.content.onClick = () => {
+      this.trainingData.status = "confirmed";
+      this.trainingService.updateTraining(this.trainingData).subscribe(
+        (training) => {
+          if (training != null) {
+            this.msg = "Training proposal confirmed";
+            this.trainingData = training;
+          } else {
+            this.msg = "Training proposal not confirmed due to error!";
+          }
+          this.showMsgModal(this.msg);
+        }, (err) => {
+          this.msg = "Training proposal not modified due to error!";
+          this.showMsgModal(this.msg);
         }
-        this.showMsgModal(this.msg);
-      }, (err) => {
-        this.msg = "Training proposal not modified due to error!";
-        this.showMsgModal(this.msg);
-      }
-    )
+      )
+    }
   }
 
   rejectProposal() {
 
-    this.trainingData.status = "rejected";
-    this.trainingService.updateTraining(this.trainingData).subscribe(
-      (data) => {
-        if (data != null) {
-          this.msg = "Training proposal rejected";
-          this.trainingData = data;
-        } else {
+    const initialState = {
+      title: 'Information',
+      msg: 'Are you sure to reject the proposed training?'
+    }
+
+    this.bsModalRef = this.bsModalService.show(MessageOkcancelModalComponent, { initialState });
+
+    this.bsModalRef.content.onClick = () => {
+      this.trainingData.status = "rejected";
+      this.trainingService.updateTraining(this.trainingData).subscribe(
+        (training) => {
+          if (training != null) {
+            this.msg = "Training proposal rejected";
+            this.trainingData = training;
+          } else {
+            this.msg = "Training proposal not rejected due to error!";
+          }
+          this.showMsgModal(this.msg);
+        }, (err) => {
           this.msg = "Training proposal not rejected due to error!";
+          this.showMsgModal(this.msg);
         }
-        this.showMsgModal(this.msg);
-      }, (err) => {
-        this.msg = "Training proposal not rejected due to error!";
-        this.showMsgModal(this.msg);
-      }
-    )
+      )
+    }
   }
 }

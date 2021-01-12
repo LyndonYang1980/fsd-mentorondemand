@@ -77,23 +77,23 @@ export class ProposalUserBtnComponent implements OnInit {
     for (let i = 0; i < this.selectedSkills.length; i++) {
 
       let skillItem: SkillModule = this.selectedSkills[i];
-      let proposedTraining = new TrainingModule(null, this.userLoggedIn.userId, this.mentorData.mentorId, skillItem.skillId, null, "proposed", 0, null, null, null, null);
+      let proposedTraining = new TrainingModule(null, this.userLoggedIn.userId, this.mentorData.mentorId,
+        skillItem.skillId, null, "proposed", 0, null, null, null, null, null, null);
       trainingDataList.push(proposedTraining);
     }
 
     this.trainingService.addTrainings(trainingDataList)
-    .subscribe((proposedTrainings) => {
-      if (proposedTrainings != null) {
-        msg = "Training proposed successfully!";
-      } else {
-        msg = "Training not proposed due to error or existing training found!";
-      }
-      this.showMsgModal(msg);
-    },
-      (err) => {
-        msg = "Training not proposed - " + err;
+      .subscribe((proposedTrainings) => {
+        if (proposedTrainings != null) {
+          msg = "Training proposed successfully!";
+        } else {
+          msg = "Training not proposed due to error or existing training found!";
+        }
         this.showMsgModal(msg);
-      });
+      },
+        (err) => {
+          msg = "Training not proposed - " + err;
+          this.showMsgModal(msg);
+        });
   }
-
 }

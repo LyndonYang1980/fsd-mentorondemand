@@ -14,6 +14,8 @@ export class TrainingModule {
     public rating: number,
     public startDate: Date,
     public endDate: Date,
+    public startTime: Date,
+    public endTime: Date,
     public amountReceived: number
   ) { }
 } 

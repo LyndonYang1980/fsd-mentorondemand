@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+    <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Rating</h5>
+                    </div>
+                    <div class="modal-body" *ngFor="let radio of radioList; let i=index">
+                            <label>
+                                    <input type="radio" [name]="radio.name" [value]="radio.value"
+                                            (change)="onRadioChange($event)"/>
+                                    {{radio.title}}
+                            </label>
+                    </div>
+                    
+                    <div class="modal-footer">
+                            <button type="submit" id="submitBtn" class="btn btn-secondary" disabled="setBtnAvailable()" data-dismiss="modal">OK</button>
+                            <button type="button" id="cancelBtn" class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
+                    </div>
+            </div>
+    </div>
+</form>

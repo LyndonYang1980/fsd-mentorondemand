@@ -26,13 +26,10 @@ import { MentorSkillsComponent } from './component/mentor-search/mentor-skills/m
 import { ProposalUserBtnComponent } from './component/proposal-user-btn/proposal-user-btn.component';
 import { ProposalModalComponent } from './component/proposal-modal/proposal-modal.component';
 import { MessageModalComponent } from './component/message-modal/message-modal.component';
-import { MentorProposalComponent } from './component/mentor-proposal/mentor-proposal.component';
 import { DetailUserItemComponent } from './component/detail-user-item/detail-user-item.component';
 import { DetailSkillItemComponent } from './component/detail-skill-item/detail-skill-item.component';
 import { ProposalMentorBtnComponent } from './component/proposal-mentor-btn/proposal-mentor-btn.component';
-import { UserProposalComponent } from './component/user-proposal/user-proposal.component';
 import { DetailMentorItemComponent } from './component/detail-mentor-item/detail-mentor-item.component';
-import { ProposalUserConfirmBtnComponent } from './component/proposal-user-confirm-btn/proposal-user-confirm-btn.component';
 import { TrainingDetailModalComponent } from './component/training-detail-modal/training-detail-modal.component';
 import { MentorTrainingsComponent } from './component/mentor-trainings/mentor-trainings.component';
 import { UserTrainingsComponent } from './component/user-trainings/user-trainings.component';
@@ -49,6 +46,7 @@ import { SkillMentorBtnComponent } from './component/skill-mentor-btn/skill-ment
 import { CalendarMentorBtnComponent } from './component/calendar-mentor-btn/calendar-mentor-btn.component';
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { MentorDetailsModalComponent } from './component/mentor-details-modal/mentor-details-modal.component';
+import { RatingModalComponent } from './component/rating-modal/rating-modal.component';
 
 
 const routes: Routes = [
@@ -61,8 +59,6 @@ const routes: Routes = [
   { path: 'userDashboard', component: UserDashboardComponent },
   { path: 'userProfile', component: UserProfileComponent},
   { path: 'mentorProfile', component: MentorProfileComponent },
-  { path: 'mentorproposal', component: MentorProposalComponent },
-  { path: 'userproposal', component: UserProposalComponent },
   { path: 'mentortraining', component: MentorTrainingsComponent },
   { path: 'usertraining', component: UserTrainingsComponent },
   { path: 'mentortrainingdetails', component: MentorTrainingDetailsComponent },
@@ -95,13 +91,10 @@ const routes: Routes = [
     ProposalUserBtnComponent,
     ProposalModalComponent,
     MessageModalComponent,
-    MentorProposalComponent,
     DetailUserItemComponent,
     DetailSkillItemComponent,
     ProposalMentorBtnComponent,
-    UserProposalComponent,
     DetailMentorItemComponent,
-    ProposalUserConfirmBtnComponent,
     TrainingDetailModalComponent,
     MentorTrainingsComponent,
     UserTrainingsComponent,
@@ -118,6 +111,7 @@ const routes: Routes = [
     CalendarMentorBtnComponent,
     UserProfileComponent,
     MentorDetailsModalComponent,
+    RatingModalComponent,
   ],
   imports: [
     BrowserModule,
