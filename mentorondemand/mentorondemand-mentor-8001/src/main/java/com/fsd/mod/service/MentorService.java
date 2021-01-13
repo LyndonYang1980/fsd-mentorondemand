@@ -22,9 +22,9 @@ public class MentorService {
 		return list;
 	}
 
-	public Mentor getMentor(Long id) {
+	public Mentor getMentor(Long mentorId) {
 
-		return mentorRepo.findOne(id);
+		return mentorRepo.findOne(mentorId);
 	}
 
 	public Mentor addMentor(Mentor mentor) {

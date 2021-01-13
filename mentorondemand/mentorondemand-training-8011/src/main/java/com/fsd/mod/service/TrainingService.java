@@ -68,4 +68,12 @@ public class TrainingService {
 	public List<Training> getMentorTraining(Long mentorId) {
 		return trainingRepo.findByMentorId(mentorId);
 	}
+
+	public List<Training> getMentorTrainingsByStatus(Long mentorId, String status) {
+		return trainingRepo.findByMentorIdAndStatus(mentorId, status);
+	}
+	
+	public List<Training> getTrainingsByStatus(String status) {
+		return trainingRepo.findByStatus(status);
+	}
 }

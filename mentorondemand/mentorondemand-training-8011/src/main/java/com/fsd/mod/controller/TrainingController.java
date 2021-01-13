@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.Proposal;
 import com.fsd.mod.entities.Training;
+import com.fsd.mod.service.TrainingProgressScheduler;
 import com.fsd.mod.service.TrainingService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -23,6 +24,9 @@ public class TrainingController {
 
 	@Autowired
 	TrainingService trainingService;
+	
+	@Autowired
+	TrainingProgressScheduler trainingScheduler;
 
 	@GetMapping("/trainings")
 	public List<Training> getTrainings() {
@@ -97,6 +101,11 @@ public class TrainingController {
 		} else {
 			return new ResponseEntity<List<Training>>(mentorTrainings, HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping(value = "/trainings/schedule")
+	public void trainingSchedule() {
+		trainingScheduler.calcTrainingProgress();
 	}
 
 }

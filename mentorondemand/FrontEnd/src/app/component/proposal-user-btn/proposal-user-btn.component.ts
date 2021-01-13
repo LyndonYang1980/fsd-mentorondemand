@@ -78,7 +78,7 @@ export class ProposalUserBtnComponent implements OnInit {
 
       let skillItem: SkillModule = this.selectedSkills[i];
       let proposedTraining = new TrainingModule(null, this.userLoggedIn.userId, this.mentorData.mentorId,
-        skillItem.skillId, null, "proposed", 0, null, null, null, null, null, null);
+        skillItem.skillId, null, "proposed", 0, 0, null, null, null, null, null);
       trainingDataList.push(proposedTraining);
     }
 

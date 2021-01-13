@@ -47,6 +47,7 @@ import { CalendarMentorBtnComponent } from './component/calendar-mentor-btn/cale
 import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { MentorDetailsModalComponent } from './component/mentor-details-modal/mentor-details-modal.component';
 import { RatingModalComponent } from './component/rating-modal/rating-modal.component';
+import { RatingComponent } from './component/rating/rating.component';
 
 
 const routes: Routes = [
@@ -112,6 +113,7 @@ const routes: Routes = [
     UserProfileComponent,
     MentorDetailsModalComponent,
     RatingModalComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -19,33 +20,28 @@ import lombok.experimental.Accessors;
 
 @Entity
 @Table(name = "payment")
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
 @Accessors(chain = true)
 public class Payment {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "payment_id")
-	private long paymentId;
+	private Long paymentId;
 
-	@ManyToOne(cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "mentor_id")
 	private Mentor mentor;
-
-	@ManyToOne(targetEntity = Training.class)
-	@JoinColumn(name = "training_id")
-	private Long trainingId;
-
+	
 	@Column(name = "amount")
-	private Float amount;
+	private double amount;
 
 	@Column(name = "pay_date")
 	private Date payDate;
-
-	@Column(name = "remarks")
-	private String remarks;
-
-	@Column(name = "skill_name")
-	private String skillName;
+	
+	@OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
+	@JoinColumn(name = "training_id", referencedColumnName = "training_id")
+	private Training training;
+	
 }

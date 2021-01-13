@@ -74,19 +74,4 @@ public class Mentor {
 	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, mappedBy = "mentor", targetEntity = Payment.class)
 	private Set<Payment> payments = new HashSet<>();
 	
-
-//	@Column(name = "reg_code")
-//	private String regCode = "";
-//
-//	@Column(name = "linkedin_url")
-//	private String linkedinUrl = null;
-
-//	@Column(name = "confirmed_signup")
-//	private Boolean confirmedSignUp = false;
-//
-//	@Column(name = "reset_password")
-//	private Boolean resetPassword = false;
-//
-//	@Column(name = "reset_password_date")
-//	private Date resetPasswordDate;
 }

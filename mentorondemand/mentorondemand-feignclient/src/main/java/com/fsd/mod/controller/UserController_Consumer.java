@@ -28,7 +28,7 @@ public class UserController_Consumer {
 	}
 
 	@GetMapping("/feign/users/{userId}")
-	public User getUser(@PathVariable Long userId) {
+	public User getUser(@PathVariable("userId") Long userId) {
 		return userClientService.getUser(userId);
 	}
 
@@ -43,7 +43,7 @@ public class UserController_Consumer {
 	}
 
 	@DeleteMapping(value = "/feign/users/{userId}")
-	public Boolean deleteUser(@PathVariable Long userId) {
+	public Boolean deleteUser(@PathVariable("userId") Long userId) {
 		return userClientService.deleteUser(userId);
 	}
 

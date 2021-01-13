@@ -87,7 +87,7 @@ export class MentorTrainingDetailsComponent implements OnInit {
         endTime: [{ value: eTime, disabled: true }, Validators.required],
         fee: [{ value: this.trainingData.fee, disabled: true }, Validators.required],
         status: [{ value: this.trainingData.status, disabled: true }],
-        rating: [{ value: this.trainingData.rating, disabled: true }],
+        // rating: [{ value: this.trainingData.rating, disabled: true }],
         progress: [{ value: this.trainingData.progress, disabled: true }],
         amountReceived: [{ value: this.trainingData.amountReceived, disabled: true }]
       }

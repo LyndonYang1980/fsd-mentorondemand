@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -24,7 +25,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class Training {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "training_id")
@@ -42,13 +42,13 @@ public class Training {
 	private Long skillId;
 	
 	@Column(name = "fee")
-	private Float fee;
+	private double fee;
 
 	@Column(name = "status")
 	private String status;
 
 	@Column(name = "progress")
-	private Integer progress = 0;
+	private double progress;
 
 	@Column(name = "rating")
 	private Integer rating = 0;
@@ -68,6 +68,6 @@ public class Training {
 	private Date endTime;
 
 	@Column(name = "amount_received")
-	private Float amountReceived = 0.0f;
+	private double amountReceived;
 
 }

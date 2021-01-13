@@ -1,0 +1,18 @@
+.stars-wrapper {
+  margin: 0;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.35rem;
+}
+
+.stars {
+  display: inline-block;
+  background: url(../../../assets/icon/StarYellow.png) no-repeat;
+  background-size: 2rem 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.inactive {
+  background-image: url(../../../assets/icon/StarGrey.png);
+}

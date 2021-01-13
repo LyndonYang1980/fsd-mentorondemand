@@ -29,7 +29,7 @@ public class SkillController_Consumer {
 	}
 
 	@GetMapping("/feign/skills/{skillId}")
-	public Skill getSkill(@PathVariable Long skillId) {
+	public Skill getSkill(@PathVariable("skillId") Long skillId) {
 		return mentorClientService.getSkill(skillId);
 	}
 
@@ -44,7 +44,7 @@ public class SkillController_Consumer {
 	}
 
 	@PostMapping(value = "/feign/skills/{mentorId}")
-	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable Long mentorId) {
+	public ResponseEntity<Skill> setSkills(@RequestBody Skill skill, @PathVariable("mentorId") Long mentorId) {
 		return mentorClientService.setSkills(skill, mentorId);
 	}
 
@@ -60,7 +60,7 @@ public class SkillController_Consumer {
 	}
 
 	@GetMapping(value = "/feign/skills/getMentorSkills/{mentorId}")
-	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable Long mentorId) {
+	public ResponseEntity<List<Skill>> getMentorSkills(@PathVariable("mentorId") Long mentorId) {
 		return mentorClientService.getMentorSkills(mentorId);
 	}
 

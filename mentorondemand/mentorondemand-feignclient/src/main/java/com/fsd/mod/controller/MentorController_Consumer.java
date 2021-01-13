@@ -23,17 +23,17 @@ public class MentorController_Consumer {
 	MentorClientService mentorClientService;
 
 	@GetMapping("/feign/mentors/getMentors")
-	public ResponseEntity<List<Mentor>> getMentors() {
+	public List<Mentor> getMentors() {
 		return mentorClientService.getMentors();
 	}
 
 	@GetMapping("/feign/mentors/{mentorId}")
-	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
+	public Mentor getMentor(@PathVariable("mentorId") Long mentorId) {
 		return mentorClientService.getMentor(mentorId);
 	}
 
 	@PostMapping(value = "/feign/mentors/addMentor")
-	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
+	public Mentor addMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.addMentor(mentor);
 	}
 

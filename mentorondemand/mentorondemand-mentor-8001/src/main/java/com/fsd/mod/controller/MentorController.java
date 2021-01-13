@@ -25,36 +25,26 @@ public class MentorController {
 	MentorService mentorService;
 
 	@GetMapping("/mentors/getMentors")
-	public ResponseEntity<List<Mentor>> getMentors() {
+	public List<Mentor> getMentors() {
 		List<Mentor> mentors = mentorService.getMentors();
-		if (mentors != null) {
-			return new ResponseEntity<List<Mentor>>(mentors, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<List<Mentor>>(mentors, HttpStatus.NOT_FOUND);
-		}
+		return mentors;
 	}
 
 	@GetMapping("/mentors/{mentorId}")
-	public ResponseEntity<Mentor> getMentor(@PathVariable Long mentorId) {
+	public Mentor getMentor(@PathVariable("mentorId") Long mentorId) {
 		Mentor mentorData = mentorService.getMentor(mentorId);
-		if (mentorData != null) {
-			return new ResponseEntity<Mentor>(mentorData, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Mentor>(mentorData, HttpStatus.NOT_FOUND);
-		}
+		return mentorData;
 	}
 
 	@PostMapping(value = "/mentors/addMentor")
-	public ResponseEntity<Mentor> addMentor(@RequestBody Mentor mentor) {
-		
+	public Mentor addMentor(@RequestBody Mentor mentor) {
+
 		boolean existFlag = mentorService.isMentorExisted(mentor.getMentorEmail());
 		if (existFlag) {
-			System.out.println("Mentor already exist");
-			return new ResponseEntity<Mentor>(mentor, HttpStatus.CONFLICT);
+			return mentor;
 		} else {
 			Mentor addedMentor = mentorService.addMentor(mentor);
-			System.out.println("Mentor added: " + addedMentor.toString());
-			return new ResponseEntity<Mentor>(addedMentor, HttpStatus.ACCEPTED);
+			return addedMentor;
 		}
 	}
 
@@ -77,7 +67,7 @@ public class MentorController {
 
 		return new ResponseEntity<List<Mentor>>(mentorList, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/mentors/searchMentorByKey/{searchKey}")
 	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey) {
 		return mentorService.searchMentorByKey(searchKey);

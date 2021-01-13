@@ -29,7 +29,7 @@ public class TrainingController_Consumer {
 	}
 
 	@GetMapping("/feign/trainings/{trainingId}")
-	public Training getTraining(@PathVariable Long trainingId) {
+	public Training getTraining(@PathVariable("trainingId") Long trainingId) {
 		return trainingClientService.getTraining(trainingId);
 	}
 
@@ -54,12 +54,12 @@ public class TrainingController_Consumer {
 	}
 
 	@GetMapping(value = "/feign/trainings/user/{userId}")
-	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId) {
+	public ResponseEntity<List<Training>> getUserTraining(@PathVariable("userId") Long userId) {
 		return trainingClientService.getUserTraining(userId);
 	}
 
 	@GetMapping(value = "/feign/trainings/mentor/{mentorId}")
-	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable Long mentorId) {
+	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable("mentorId") Long mentorId) {
 		return trainingClientService.getMentorTraining(mentorId);
 	}
 }

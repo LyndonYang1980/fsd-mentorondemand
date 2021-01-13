@@ -29,13 +29,13 @@ public class CalendarController {
 	}
 
 	@GetMapping(value = "/calendars/{calendarId}")
-	public Calendar getCalendar(@PathVariable Long calendarId) {
+	public Calendar getCalendar(@PathVariable("calendarId") Long calendarId) {
 		Calendar calendar = calendarService.getCalendar(calendarId);
 		return calendar;
 	}
 
 	@GetMapping(value = "/calendars/getMentorCalendars/{mentorId}")
-	public List<Calendar> getMentorCalendars(@PathVariable Long mentorId) {
+	public List<Calendar> getMentorCalendars(@PathVariable("mentorId") Long mentorId) {
 		List<Calendar> calendars = calendarService.getMentorCalendars(mentorId);
 		return calendars;
 	}
@@ -67,7 +67,7 @@ public class CalendarController {
 	}
 
 	@DeleteMapping("/calendars/{calendarId}")
-	public Boolean deleteCalendar(@PathVariable Long calendarId) {
+	public Boolean deleteCalendar(@PathVariable("calendarId") Long calendarId) {
 		return calendarService.deleteCalendar(calendarId);
 	}
 }
