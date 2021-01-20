@@ -20,9 +20,8 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    this.userService.addUser(f.value)
+    this.userService.signUp(f.value)
       .subscribe((data)=>{
-          console.log("User created");
           this.Route.navigate(['login'])
       },(error)=>{
         console.log("Error in adding user")

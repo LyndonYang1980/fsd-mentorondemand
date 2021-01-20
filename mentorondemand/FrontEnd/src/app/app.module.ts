@@ -48,6 +48,7 @@ import { UserProfileComponent } from './component/user-profile/user-profile.comp
 import { MentorDetailsModalComponent } from './component/mentor-details-modal/mentor-details-modal.component';
 import { RatingModalComponent } from './component/rating-modal/rating-modal.component';
 import { RatingComponent } from './component/rating/rating.component';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 
 const routes: Routes = [
@@ -132,7 +133,8 @@ const routes: Routes = [
   ],
   providers: [
     BsModalRef,
-    BsDatepickerConfig
+    BsDatepickerConfig,
+    authInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

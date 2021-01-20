@@ -1,0 +1,22 @@
+server:
+  port: 8110
+      
+eureka:
+  client: #Register client into Eureka service list
+    service-url: 
+       defaultZone: http://eureka7001.com:7001/eureka/      
+  instance:
+    instance-id: mentorondemand-authentication-8110
+    prefer-ip-address: true     #访问路径可以显示IP地址     
+    
+mod:
+  app:
+    jwtSecret: modSecretKey
+    jwtExpirationMs: 86400000
+
+info: 
+  app.name: fsd-mentorondemand
+  company.name: www.ibm.com
+  build.artifactId: mentorondemand-authentication-8110
+  build.version: 0.0.1-SNAPSHOT
+

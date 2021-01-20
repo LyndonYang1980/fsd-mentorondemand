@@ -39,17 +39,15 @@ export class UserService {
     return this.httpClient.get<UserModule>(this.userConfig.getUserUrl(userId), httpOptions);
   }
 
-  public addUser(userData: UserModule): Observable<UserModule> {
-    return this.httpClient.post<UserModule>(this.userConfig.getUserAddedURL(), userData, httpOptions);
+  public signUp(userData: UserModule): Observable<any> {
+    return this.httpClient.post<any>(this.userConfig.getUserAddedURL(), userData, httpOptions);
   }
 
   public updateUser(userData: UserModule): Observable<UserModule>{
     return this.httpClient.put<UserModule>(this.userConfig.updUserUrl(), userData, httpOptions);
   }
   
-  public loginUser(userData: UserModule): Observable<UserModule> {
-
-    console.log("Logging the user")
-    return this.httpClient.post<UserModule>(this.userConfig.getUserLoginURL(), userData, httpOptions);
+  public signIn(userData: UserModule): Observable<any> {
+    return this.httpClient.post<any>(this.userConfig.getUserLoginURL(), userData, httpOptions);
   }
 }

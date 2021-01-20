@@ -32,20 +32,20 @@ public class MentorController_Consumer {
 		return mentorClientService.getMentor(mentorId);
 	}
 
-	@PostMapping(value = "/feign/mentors/addMentor")
-	public Mentor addMentor(@RequestBody Mentor mentor) {
-		return mentorClientService.addMentor(mentor);
-	}
+//	@PostMapping(value = "/feign/mentors/addMentor")
+//	public Mentor addMentor(@RequestBody Mentor mentor) {
+//		return mentorClientService.addMentor(mentor);
+//	}
 
 	@PutMapping(value = "/feign/mentors/updateMentor")
 	public Mentor updateMentor(@RequestBody Mentor mentor) {
 		return mentorClientService.updateMentor(mentor);
 	}
 
-	@PostMapping("/feign/mentors/login")
-	public Mentor loginMentor(@RequestBody Mentor mentor) {
-		return mentorClientService.loginMentor(mentor);
-	}
+//	@PostMapping("/feign/mentors/login")
+//	public Mentor loginMentor(@RequestBody Mentor mentor) {
+//		return mentorClientService.loginMentor(mentor);
+//	}
 
 	@GetMapping("/feign/mentors/searchMentorByKey/{searchKey}")
 	public List<Mentor> searchMentorByKey(@PathVariable("searchKey") String searchKey) {

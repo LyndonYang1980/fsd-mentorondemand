@@ -32,10 +32,20 @@ public class UserController_Consumer {
 		return userClientService.getUser(userId);
 	}
 
-	@PostMapping(value = "/feign/users/addUser")
-	public User addUser(@RequestBody User user) {
-		return userClientService.addUser(user);
+	@GetMapping("feign/users/getUserByName/{userName}")
+	public User getUserByName(@PathVariable("userName") String userName) {
+		return userClientService.getUserByName(userName);
 	}
+
+	@GetMapping("feign/users/getUserByEmail/{userEmail}")
+	public User getUserByEmail(@PathVariable("userEmail") String userEmail) {
+		return userClientService.getUserByEmail(userEmail);
+	}
+
+//	@PostMapping(value = "/feign/users/signup")
+//	public User addUser(@RequestBody User user) {
+//		return userClientService.addUser(user);
+//	}
 
 	@PutMapping(value = "/feign/users")
 	public User updateUser(@RequestBody User user) {
@@ -47,10 +57,10 @@ public class UserController_Consumer {
 		return userClientService.deleteUser(userId);
 	}
 
-	@PostMapping(value = "/feign/users/login")
-	public User loginUser(@RequestBody User user) {
-		return userClientService.loginUser(user);
-	}
+//	@PostMapping(value = "/feign/users/signin")
+//	public User loginUser(@RequestBody User user) {
+//		return userClientService.loginUser(user);
+//	}
 
 	@PutMapping(value = "/feign/users/updatePassword")
 	public User updatePassword(@RequestBody User user) {

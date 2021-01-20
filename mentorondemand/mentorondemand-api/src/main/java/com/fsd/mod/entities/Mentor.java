@@ -54,6 +54,9 @@ public class Mentor {
 
 	@Column(name = "active")
 	private boolean active;
+	
+	@Column(name = "role")
+	private String role = "Mentor";
 
 //	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 //	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))

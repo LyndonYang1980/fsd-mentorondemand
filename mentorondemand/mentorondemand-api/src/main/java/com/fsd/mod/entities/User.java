@@ -64,4 +64,7 @@ public class User {
 	@Column(name = "status", columnDefinition = "tinyint(1) default 1")
 	private boolean status = false;
 
+	@Column(name = "role")
+	private String role = "User";
+
 }

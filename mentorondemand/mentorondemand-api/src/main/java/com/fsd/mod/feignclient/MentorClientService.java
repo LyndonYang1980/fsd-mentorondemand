@@ -30,8 +30,8 @@ public interface MentorClientService {
 	@PutMapping(value = "/mentors/updateMentor")
 	public Mentor updateMentor(@RequestBody Mentor mentor);
 
-	@PostMapping("/mentors/login")
-	public Mentor loginMentor(@RequestBody Mentor mentor);
+//	@PostMapping("/mentors/login")
+//	public Mentor loginMentor(@RequestBody Mentor mentor);
 
 	@GetMapping(value = "/calendars")
 	public List<Calendar> getCalendars();

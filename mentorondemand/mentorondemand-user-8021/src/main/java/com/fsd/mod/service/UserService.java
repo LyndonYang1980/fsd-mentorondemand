@@ -26,6 +26,14 @@ public class UserService {
 		return userRepo.findOne(userId);
 	}
 
+	public User getUserByEmail(String userEmail) {
+		return userRepo.findByUserEmail(userEmail);
+	}
+
+	public User getUserByName(String userName) {
+		return userRepo.findByUserName(userName);
+	}
+
 	public User addUser(User user) {
 		return userRepo.save(user);
 	}
@@ -47,13 +55,13 @@ public class UserService {
 			return false;
 		}
 	}
-	
+
 	public User userLogin(String userEmail, String userPassword) {
 		return userRepo.findByUserEmailAndUserPassword(userEmail, userPassword);
 	}
-	
+
 	public boolean isUserExisted(String userEmail) {
-		if(userRepo.findByUserEmail(userEmail)!=null)
+		if (userRepo.findByUserEmail(userEmail) != null)
 			return true;
 		else
 			return false;
