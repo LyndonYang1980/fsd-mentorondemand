@@ -3,6 +3,7 @@ import { MentorModule } from 'src/app/module/mentor.module';
 import { SkillModule } from 'src/app/module/skill.module';
 import { Router } from '@angular/router';
 import { SkillService } from 'src/app/service/skillService/skill.service';
+import { MentorService } from 'src/app/service/mentorService/mentor.service';
 
 @Component({
   selector: 'app-mentor-skillset',
@@ -15,17 +16,13 @@ export class MentorSkillsetComponent implements OnInit {
   skillList: SkillModule[];
   isMentorLoggedIn: string;
 
-  constructor(private skillService: SkillService, private router: Router) { }
+  constructor(private skillService: SkillService, private mentorService: MentorService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getLoginMentor();
+    this.mentorData = this.mentorService.getLoginMentor();
     this.getMentorSkillData();
   }
-
-  getLoginMentor() {
-    this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
-  }
-
+  
   getMentorSkillData() {
     this.skillService.getMentorSkills(this.mentorData.mentorId).subscribe(
       (skillList)=>{

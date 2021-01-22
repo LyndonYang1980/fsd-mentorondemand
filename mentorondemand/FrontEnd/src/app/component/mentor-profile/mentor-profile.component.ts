@@ -28,7 +28,7 @@ export class MentorProfileComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.getLoginMentor();
+    this.mentorData = this.mentorService.getLoginMentor();
     this.getMentorSkills();
     this.getSkills();
 
@@ -40,11 +40,6 @@ export class MentorProfileComponent implements OnInit {
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: false
     };
-  }
-
-  getLoginMentor() {
-    this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
-    console.log("Mentor logged in: " + this.mentorData.mentorName);
   }
 
   getSkills() {

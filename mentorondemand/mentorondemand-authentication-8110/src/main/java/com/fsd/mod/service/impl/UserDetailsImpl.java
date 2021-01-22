@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fsd.mod.entities.Mentor;
 import com.fsd.mod.entities.User;
 
 public class UserDetailsImpl implements UserDetails {
@@ -37,11 +38,21 @@ public class UserDetailsImpl implements UserDetails {
 	}
 
 	public static UserDetailsImpl build(User user) {
-		
+
 		List<GrantedAuthority> authorities = new ArrayList<>();
 		authorities.add(new SimpleGrantedAuthority(user.getRole()));
 
-		return new UserDetailsImpl(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(), authorities);
+		return new UserDetailsImpl(user.getUserId(), user.getUserName(), user.getUserEmail(), user.getUserPassword(),
+				authorities);
+	}
+
+	public static UserDetailsImpl build(Mentor mentor) {
+
+		List<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(mentor.getRole()));
+
+		return new UserDetailsImpl(mentor.getMentorId(), mentor.getMentorName(), mentor.getMentorEmail(),
+				mentor.getMentorPassword(), authorities);
 	}
 
 	@Override

@@ -1,12 +1,17 @@
 <div class="login-form">
     <form (ngSubmit)=onSubmit(userLoginForm) #userLoginForm="ngForm">
         <h2 class="text-center">User Login</h2>
+
         <div class="form-group">
-            <input type="text" class="form-control" name="userEmail" placeholder="User Email" ngModel required email
-                #emailLogin=ngModel>
-            <span *ngIf="!emailLogin.valid && emailLogin.touched">Please enter a valid email</span>
+            <input type="hidden" id="role" name="role" [(ngModel)]="role"/>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" name="userName" placeholder="User Name" ngModel required userName
+                #userName=ngModel>
+            <span *ngIf="!userName.valid && userName.touched">Please enter user name</span>
             <div>
-                <span *ngIf="!loginFlag && emailLogin.touched">{{msg}}</span>
+                <span *ngIf="!loginFlag && userName.touched">{{msg}}</span>
             </div>
         </div>
         <div class="form-group">

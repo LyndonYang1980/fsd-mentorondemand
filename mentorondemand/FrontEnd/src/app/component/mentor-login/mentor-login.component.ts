@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class MentorLoginComponent implements OnInit {
 
   loginFlag: boolean;
+  role:string = "MENTOR";
   msg: string;
 
   constructor(private mentorConfig: MentorConfigService,

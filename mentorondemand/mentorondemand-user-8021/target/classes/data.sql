@@ -1,7 +1,7 @@
 use mentorondemand;
 
 insert into user(user_name, user_password, user_email, reg_date, contact_number, status, role) 
-values('Adam', '11111111', 'Adam@cn.ibm.com', '2020-12-31', '12345678', 1, 'user');
+values('Adam', md5('11111111'), 'Adam@cn.ibm.com', '2020-12-31', '12345678', 1, 'user');
 
 insert into mentor(mentor_name, mentor_password, mentor_email, mentor_experience, contact_number, rating, active, role) 
 values('John', '11111111', 'John@cn.ibm.com', '2', '12345678', '3', 1, 'mentor');

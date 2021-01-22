@@ -21,23 +21,24 @@ import io.jsonwebtoken.UnsupportedJwtException;
 public class JwtUtils {
 	private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
-	@Value("${mod.app.jwtSecret}")
+	@Value("${jwtSecret}")
 	private String jwtSecret;
 
-	@Value("${mod.app.jwtExpirationMs}")
+	@Value("${jwtExpirationMs}")
 	private int jwtExpirationMs;
 
 	public String generateJwtToken(Authentication authentication) {
 
 		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
-		return Jwts.builder().setSubject((userPrincipal.getEmail())).setIssuedAt(new Date())
+		String jwtStr = Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();
+		return jwtStr;
 	}
 
-	public String getUserEmailFromJwtToken(String token) {
-		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+	public String getUserNameFromJwtToken(String token) {
+		String userName = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();
+		return userName;
 	}
 
 	public boolean validateJwtToken(String authToken) {

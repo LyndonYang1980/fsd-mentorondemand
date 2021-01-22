@@ -23,6 +23,12 @@ public interface MentorClientService {
 
 	@GetMapping(value = "/mentors/{mentorId}")
 	public Mentor getMentor(@PathVariable("mentorId") Long mentorId);
+	
+	@GetMapping("/mentors/getMentorByName/{mentorName}")
+	public Mentor getMentorByName(@PathVariable("mentorName") String mentorName);
+	
+	@GetMapping("/mentors/getMentorByEmail/{mentorEmail:.+}")
+	public Mentor getMentorByEmail(@PathVariable("mentorEmail") String mentorEmail);
 
 	@PostMapping(value = "/mentors/addMentor")
 	public Mentor addMentor(@RequestBody Mentor mentor);

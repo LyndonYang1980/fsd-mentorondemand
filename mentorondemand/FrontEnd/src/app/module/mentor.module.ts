@@ -13,6 +13,7 @@ export class MentorModule {
     public mentorExperience: number,
     public rating: number,
     public active: boolean,
+    public role: string,
     public skills: SkillModule[],
     public trainings: TrainingModule[],
     public calendars: CalendarModule[]

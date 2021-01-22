@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fsd.mod.entities.User;
 import com.fsd.mod.service.UserService;
 
+import feign.Param;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController {
@@ -41,10 +43,10 @@ public class UserController {
 		return user;
 	}
 
-	@GetMapping("/users/getUserByEmail/{userEmail}")
+	@GetMapping("/users/getUserByEmail/{userEmail:.+}")
 	public User getUserByEmail(@PathVariable("userEmail") String userEmail) {
-		User user = userService.getUserByEmail(userEmail);
-		return user;
+		User theUser = userService.getUserByEmail(userEmail);
+		return theUser;
 	}
 
 	@PostMapping(value = "/users/addUser")

@@ -16,15 +16,21 @@ public class MentorService {
 	MentorRepo mentorRepo;
 
 	public List<Mentor> getMentors() {
-
 		List<Mentor> list = new ArrayList<>();
 		mentorRepo.findAll().forEach(list::add);
 		return list;
 	}
 
 	public Mentor getMentor(Long mentorId) {
-
 		return mentorRepo.findOne(mentorId);
+	}
+
+	public Mentor getMentorByName(String mentorName) {
+		return mentorRepo.findByMentorName(mentorName);
+	}
+
+	public Mentor getMentorByEmail(String mentorEmail) {
+		return mentorRepo.findByMentorEmail(mentorEmail);
 	}
 
 	public Mentor addMentor(Mentor mentor) {

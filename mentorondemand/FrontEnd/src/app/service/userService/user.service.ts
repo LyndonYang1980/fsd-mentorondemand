@@ -50,4 +50,10 @@ export class UserService {
   public signIn(userData: UserModule): Observable<any> {
     return this.httpClient.post<any>(this.userConfig.getUserLoginURL(), userData, httpOptions);
   }
+
+  // public signIn(userData: UserModule): Observable<any> {
+  //   let userName = userData.userName;
+  //   let userPassword = userData.userPassword;
+  //   return this.httpClient.post(this.userConfig.getUserLoginURL(userName, userPassword), httpOptions);
+  // }
 }

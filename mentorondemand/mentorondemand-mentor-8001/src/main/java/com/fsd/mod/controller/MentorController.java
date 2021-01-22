@@ -35,6 +35,18 @@ public class MentorController {
 		Mentor mentorData = mentorService.getMentor(mentorId);
 		return mentorData;
 	}
+	
+	@GetMapping("/mentors/getMentorByName/{mentorName}")
+	public Mentor getMentorByName(@PathVariable("mentorName") String mentorName) {
+		Mentor mentor = mentorService.getMentorByName(mentorName);
+		return mentor;
+	}
+
+	@GetMapping("/mentors/getMentorByEmail/{mentorEmail:.+}")
+	public Mentor getMentorByEmail(@PathVariable("mentorEmail") String mentorEmail) {
+		Mentor mentor = mentorService.getMentorByEmail(mentorEmail);
+		return mentor;
+	}
 
 	@PostMapping(value = "/mentors/addMentor")
 	public Mentor addMentor(@RequestBody Mentor mentor) {

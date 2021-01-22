@@ -4,6 +4,7 @@ import { SkillService } from 'src/app/service/skillService/skill.service';
 import { TrainingService } from 'src/app/service/trainingService/training.service';
 import { UserModule } from 'src/app/module/user.module';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/service/userService/user.service';
 
 @Component({
   selector: 'app-user-trainings',
@@ -15,12 +16,11 @@ export class UserTrainingsComponent implements OnInit {
   userData: UserModule;
   userTrainingList: TrainingModule[];
 
-  constructor(private skillService: SkillService,
-    private trainingService: TrainingService,
-    private router: Router) { }
+  constructor(private skillService: SkillService, private trainingService: TrainingService,
+    private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getLoginUser();
+    this.userData = this.userService.getLoginUser();
     this.getUserTrainingData();
   }
 

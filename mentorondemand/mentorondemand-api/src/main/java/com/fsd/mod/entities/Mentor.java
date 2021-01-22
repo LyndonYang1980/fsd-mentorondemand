@@ -56,7 +56,7 @@ public class Mentor {
 	private boolean active;
 	
 	@Column(name = "role")
-	private String role = "Mentor";
+	private String role;
 
 //	@ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
 //	@JoinTable(name = "mentor_skills", joinColumns = @JoinColumn(name = "mentor_id", referencedColumnName = "mentor_id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "skill_id"))

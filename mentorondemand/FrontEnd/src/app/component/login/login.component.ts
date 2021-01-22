@@ -13,7 +13,7 @@ import { TokenStorageService } from 'src/app/service/tokenStorageService/token-s
 export class LoginComponent implements OnInit {
 
   loginFlag: boolean;
-  role: string;
+  role: string = "USER";
   msg: string;
   constructor(private userService: UserService,
     private tokenService: TokenStorageService,
@@ -30,7 +30,8 @@ export class LoginComponent implements OnInit {
       .subscribe((data?) => {
         if (data != null) {
           this.tokenService.saveToken(data.accessToken);
-          this.tokenService.saveUser(data);
+          this.tokenService.saveUser("userLoggedIn", data);
+          this.tokenService.saveUser("isUserLoggedIn", true);
           this.loginFlag = true;
           this.router.navigate(['userDashboard']).then(() => {
             location.reload();

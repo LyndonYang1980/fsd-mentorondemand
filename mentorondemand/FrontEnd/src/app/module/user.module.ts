@@ -9,10 +9,11 @@ export class UserModule {
     public lastName: string,
     public userEmail: string,
     public regDate: Date,
-    public contactNumber:number,
-    public userPassword:string,
-    public status:string,
+    public contactNumber: number,
+    public userPassword: string,
+    public status: string,
+    public role: string,
     public proposals: ProposalModule[],
     public trainings: TrainingModule[]
-  ){}
+  ) { }
 } 

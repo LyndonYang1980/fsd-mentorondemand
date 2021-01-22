@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fsd.mod.entities.User;
 
+import feign.Param;
+
 @FeignClient(value = "mentorondemand-user")
 public interface UserClientService {
 

@@ -5,6 +5,7 @@ import { TrainingService } from 'src/app/service/trainingService/training.servic
 import { MentorModule } from 'src/app/module/mentor.module';
 import { TrainingModule } from 'src/app/module/training.module';
 import { Router } from '@angular/router';
+import { MentorService } from 'src/app/service/mentorService/mentor.service';
 
 @Component({
   selector: 'app-mentor-trainings',
@@ -16,20 +17,14 @@ export class MentorTrainingsComponent implements OnInit {
   mentorData: MentorModule;
   mentorTrainingList: TrainingModule[];
 
-  constructor(private skillService: SkillService,
-    private trainingService: TrainingService,
-    private router: Router) { }
+  constructor(private skillService: SkillService, private mentorService: MentorService,
+    private trainingService: TrainingService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getLoginMentor();
+    this.mentorData = this.mentorService.getLoginMentor();
     this.getMentorTrainingData();
   }
-
-  getLoginMentor() {
-    this.mentorData = JSON.parse(localStorage.getItem("mentorLoggedIn"));
-    console.log("Mentor logged in: " + this.mentorData.mentorName);
-  }
-
+  
   getMentorTrainingData() {
     let mentorId = this.mentorData.mentorId;
     this.trainingService.getMentorTraining(mentorId).subscribe((data) => {

@@ -26,8 +26,12 @@ export class UserConfigService {
     return (this.userAPIUrl);
   }
 
-  //URL for logging a user
   getUserLoginURL():string{
     return (this.userAPIUrl + "/signin");
   }
+
+  //URL for logging a user
+  // getUserLoginURL(userName: string, userPassword: string):string{
+  //   return (this.userAPIUrl + "/signin/" + userName + "/" + userPassword);
+  // }
 }

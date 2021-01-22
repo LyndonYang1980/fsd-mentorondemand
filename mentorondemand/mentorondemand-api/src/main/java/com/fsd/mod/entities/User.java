@@ -65,6 +65,6 @@ public class User {
 	private boolean status = false;
 
 	@Column(name = "role")
-	private String role = "User";
+	private String role;
 
 }

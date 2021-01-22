@@ -17,6 +17,7 @@ export class MentorSignupComponent implements OnInit {
   skillList = [];
   selectedItems = [];
   dropdownSettings:IDropdownSettings = {};
+  role:string = "MENTOR";
 
   constructor(private mentorService: MentorService, private skillService: SkillService,
     private Route: Router) { }

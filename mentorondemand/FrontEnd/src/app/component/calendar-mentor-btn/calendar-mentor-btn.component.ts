@@ -34,7 +34,6 @@ export class CalendarMentorBtnComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(MessageModalComponent, { initialState });
 
     this.bsModalRef.content.onClick = () => {
-      // this.retProposalData.emit(this.proposalData);
       location.reload();
     }
   }
