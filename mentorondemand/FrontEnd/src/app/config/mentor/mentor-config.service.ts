@@ -17,16 +17,16 @@ export class MentorConfigService {
     return (this.mentorAPIUrl + "/" + mentorId);
   }
 
-  getMentorAddedUrl(){
-    return (this.mentorAPIUrl + "/addMentor");
+  getMentorSignUpUrl(){
+    return (this.mentorAPIUrl + "/signup");
   }
 
   updMentorUrl(){
     return (this.mentorAPIUrl + "/updateMentor");
   }
 
-  getMentorLoginUrl(){
-    return (this.mentorAPIUrl + "/login");
+  getMentorSignInUrl(){
+    return (this.mentorAPIUrl + "/signin");
   }
 
   getMentorProposalByUserUrl(){

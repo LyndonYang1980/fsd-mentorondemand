@@ -40,7 +40,7 @@ export class UserService {
   }
 
   public signUp(userData: UserModule): Observable<any> {
-    return this.httpClient.post<any>(this.userConfig.getUserAddedURL(), userData, httpOptions);
+    return this.httpClient.post<any>(this.userConfig.getUserSignUpURL(), userData, httpOptions);
   }
 
   public updateUser(userData: UserModule): Observable<UserModule>{
@@ -48,12 +48,6 @@ export class UserService {
   }
   
   public signIn(userData: UserModule): Observable<any> {
-    return this.httpClient.post<any>(this.userConfig.getUserLoginURL(), userData, httpOptions);
+    return this.httpClient.post<any>(this.userConfig.getUserSignInURL(), userData, httpOptions);
   }
-
-  // public signIn(userData: UserModule): Observable<any> {
-  //   let userName = userData.userName;
-  //   let userPassword = userData.userPassword;
-  //   return this.httpClient.post(this.userConfig.getUserLoginURL(userName, userPassword), httpOptions);
-  // }
 }

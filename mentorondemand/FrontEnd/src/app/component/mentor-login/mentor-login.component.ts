@@ -3,6 +3,8 @@ import { MentorConfigService } from 'src/app/config/mentor/mentor-config.service
 import { Router } from '@angular/router';
 import { MentorService } from 'src/app/service/mentorService/mentor.service';
 import { NgForm } from '@angular/forms';
+import { TokenStorageService } from 'src/app/service/tokenStorageService/token-storage.service';
+import { MentorModule } from 'src/app/module/mentor.module';
 
 @Component({
   selector: 'app-mentor-login',
@@ -12,10 +14,11 @@ import { NgForm } from '@angular/forms';
 export class MentorLoginComponent implements OnInit {
 
   loginFlag: boolean;
-  role:string = "MENTOR";
+  role: string = "MENTOR";
   msg: string;
 
   constructor(private mentorConfig: MentorConfigService,
+    private tokenService: TokenStorageService,
     private mentorService: MentorService,
     private router: Router) { }
 
@@ -23,11 +26,14 @@ export class MentorLoginComponent implements OnInit {
   }
 
   onSubmit(mentorLoginForm: NgForm) {
-    this.mentorService.loginMentor(mentorLoginForm.value)
-      .subscribe((mentorData) => {
-        if (mentorData != null) {
-          localStorage.setItem('isMentorLoggedIn', 'true');
-          localStorage.setItem('mentorLoggedIn', JSON.stringify(mentorData));
+    this.mentorService.signIn(mentorLoginForm.value)
+      .subscribe((data) => {
+        if (data != null) {
+          this.tokenService.saveToken(data.accessToken);
+          let mentorData: MentorModule = data.objData.mentorObj;
+          this.tokenService.saveUser("mentorLoggedIn", mentorData);
+          this.tokenService.saveUser("isMentorLoggedIn", true);
+          this.loginFlag = true;
           this.router.navigate(['mentorProfile']).then(() => {
             location.reload();
           });

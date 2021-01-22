@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fsd.mod.entities.User;
 import com.fsd.mod.repository.UserRepo;
+import com.fsd.mod.utils.MD5Util;
 
 @Service
 public class UserService {
@@ -35,14 +36,17 @@ public class UserService {
 	}
 
 	public User addUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
 		return userRepo.save(user);
 	}
 
 	public User saveUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
 		return userRepo.save(user);
 	}
 
 	public User updateUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
 		return userRepo.save(user);
 	}
 

@@ -18,7 +18,7 @@ export class UserConfigService {
   }
 
   // URL for adding a user
-  getUserAddedURL():string{
+  getUserSignUpURL():string{
     return (this.userAPIUrl + "/signup");
   }
 
@@ -26,7 +26,7 @@ export class UserConfigService {
     return (this.userAPIUrl);
   }
 
-  getUserLoginURL():string{
+  getUserSignInURL():string{
     return (this.userAPIUrl + "/signin");
   }
 

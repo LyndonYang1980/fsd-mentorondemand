@@ -21,13 +21,15 @@ import lombok.Data;
 @Data
 public class MentorDetailsImpl implements UserDetails {
 
+	private String username;
+
+	private String password;
+
 	private Long mentorId;
 
 	private String mentorName;
 
 	private String mentorPassword;
-
-	private String password;
 
 	private String mentorEmail;
 
@@ -51,15 +53,17 @@ public class MentorDetailsImpl implements UserDetails {
 
 	private Collection<? extends GrantedAuthority> authorities;
 
-	public MentorDetailsImpl(Long mentorId, String mentorName, String mentorPassword, String password,
-			String mentorEmail, Float mentorExperience, Long contactNumber, Long rating, String active, String role,
-			Set<Skill> skills, Set<Training> trainings, Set<Calendar> calendars, Set<Payment> payments,
+	public MentorDetailsImpl(Long mentorId, String mentorName, String mentorPassword, String mentorEmail,
+			Float mentorExperience, Long contactNumber, Long rating, String active, String role, Set<Skill> skills,
+			Set<Training> trainings, Set<Calendar> calendars, Set<Payment> payments,
 			Collection<? extends GrantedAuthority> authorities) {
-		super();
+
+		this.username = mentorName;
+		this.password = mentorPassword;
+
 		this.mentorId = mentorId;
 		this.mentorName = mentorName;
 		this.mentorPassword = mentorPassword;
-		this.password = mentorPassword;
 		this.mentorEmail = mentorEmail;
 		this.mentorExperience = mentorExperience;
 		this.contactNumber = contactNumber;
@@ -79,45 +83,45 @@ public class MentorDetailsImpl implements UserDetails {
 		authorities.add(new SimpleGrantedAuthority(mentor.getRole()));
 
 		return new MentorDetailsImpl(mentor.getMentorId(), mentor.getMentorName(), mentor.getMentorPassword(),
-				mentor.getMentorPassword(), mentor.getMentorEmail(), mentor.getMentorExperience(),
-				mentor.getContactNumber(), mentor.getRating(), mentor.getActive(), mentor.getRole(), mentor.getSkills(),
-				mentor.getTrainings(), mentor.getCalendars(), mentor.getPayments(), authorities);
+				mentor.getMentorEmail(), mentor.getMentorExperience(), mentor.getContactNumber(), mentor.getRating(),
+				mentor.getActive(), mentor.getRole(), mentor.getSkills(), mentor.getTrainings(), mentor.getCalendars(),
+				mentor.getPayments(), authorities);
 	}
 
 	@Override
 	public String getPassword() {
 		// TODO Auto-generated method stub
-		return null;
+		return password;
 	}
 
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return null;
+		return username;
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 }

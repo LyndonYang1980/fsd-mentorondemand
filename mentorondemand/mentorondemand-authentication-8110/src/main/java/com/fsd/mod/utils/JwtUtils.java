@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.fsd.mod.service.impl.MentorDetailsImpl;
 import com.fsd.mod.service.impl.UserDetailsImpl;
 
 import io.jsonwebtoken.ExpiredJwtException;
@@ -37,7 +38,7 @@ public class JwtUtils {
 		}
 		
 		if ("MENTOR".equals(userRole)) {
-			
+			userPrincipal = (MentorDetailsImpl) authentication.getPrincipal();
 		}
 		
 		String jwtStr = Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
