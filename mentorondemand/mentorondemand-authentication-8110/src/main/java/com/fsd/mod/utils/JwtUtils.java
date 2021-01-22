@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.fsd.mod.service.impl.UserDetailsImpl;
@@ -26,10 +27,19 @@ public class JwtUtils {
 
 	@Value("${jwtExpirationMs}")
 	private int jwtExpirationMs;
+	
+	UserDetails userPrincipal;
 
-	public String generateJwtToken(Authentication authentication) {
+	public String generateJwtToken(Authentication authentication, String userRole) {
 
-		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+		if ("USER".equals(userRole)) {
+			userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+		}
+		
+		if ("MENTOR".equals(userRole)) {
+			
+		}
+		
 		String jwtStr = Jwts.builder().setSubject((userPrincipal.getUsername())).setIssuedAt(new Date())
 				.setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
 				.signWith(SignatureAlgorithm.HS512, jwtSecret).compact();

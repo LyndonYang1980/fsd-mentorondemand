@@ -13,7 +13,6 @@ export class UserModule {
     public userPassword: string,
     public status: string,
     public role: string,
-    public proposals: ProposalModule[],
     public trainings: TrainingModule[]
   ) { }
 } 

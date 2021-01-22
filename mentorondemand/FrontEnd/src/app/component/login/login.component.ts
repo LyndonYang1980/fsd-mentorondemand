@@ -3,6 +3,7 @@ import { UserService } from 'src/app/service/userService/user.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { TokenStorageService } from 'src/app/service/tokenStorageService/token-storage.service';
+import { UserModule } from 'src/app/module/user.module';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
       .subscribe((data?) => {
         if (data != null) {
           this.tokenService.saveToken(data.accessToken);
-          this.tokenService.saveUser("userLoggedIn", data);
+          let userData:UserModule = data.objData.userObj;
+          this.tokenService.saveUser("userLoggedIn", userData);
           this.tokenService.saveUser("isUserLoggedIn", true);
           this.loginFlag = true;
           this.router.navigate(['userDashboard']).then(() => {

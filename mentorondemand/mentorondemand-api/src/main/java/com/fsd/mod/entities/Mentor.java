@@ -53,7 +53,7 @@ public class Mentor {
 	private Long rating;
 
 	@Column(name = "active")
-	private boolean active;
+	private String active;
 	
 	@Column(name = "role")
 	private String role;

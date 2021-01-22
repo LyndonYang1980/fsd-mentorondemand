@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.User;
 import com.fsd.mod.service.UserService;
+import com.fsd.mod.utils.MD5Util;
 
 import feign.Param;
 
@@ -57,6 +58,7 @@ public class UserController {
 
 	@PutMapping(value = "/users")
 	public User updateUser(@RequestBody User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
 		User updUser = userService.updateUser(user);
 		return updUser;
 	}

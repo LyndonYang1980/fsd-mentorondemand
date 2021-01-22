@@ -52,7 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			if (mentor == null) {
 				throw new UsernameNotFoundException("Mentor Not Found with mentor name: " + userName);
 			}
-			return UserDetailsImpl.build(mentor);
+			return MentorDetailsImpl.build(mentor);
 		}
 		return null;
 		

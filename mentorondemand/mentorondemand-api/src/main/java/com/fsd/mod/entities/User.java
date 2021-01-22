@@ -62,7 +62,7 @@ public class User {
 	private Date regDate;
 
 	@Column(name = "status", columnDefinition = "tinyint(1) default 1")
-	private boolean status = false;
+	private Integer status = 0;
 
 	@Column(name = "role")
 	private String role;

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fsd.mod.entities.Mentor;
 import com.fsd.mod.repository.MentorRepo;
+import com.fsd.mod.utils.MD5Util;
 
 @Service
 public class MentorService {
@@ -47,7 +48,7 @@ public class MentorService {
 		oldMentor.setMentorName(mentor.getMentorName());
 		oldMentor.setMentorEmail(mentor.getMentorEmail());
 		oldMentor.setMentorExperience(mentor.getMentorExperience());
-		oldMentor.setMentorPassword(mentor.getMentorPassword());
+		oldMentor.setMentorPassword(MD5Util.encode(mentor.getMentorPassword()));
 		oldMentor.setSkills(mentor.getSkills());
 		oldMentor.setCalendars(mentor.getCalendars());
 		return mentorRepo.save(oldMentor);
