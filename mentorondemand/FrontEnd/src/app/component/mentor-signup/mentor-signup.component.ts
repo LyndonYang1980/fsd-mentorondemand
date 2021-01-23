@@ -75,7 +75,6 @@ export class MentorSignupComponent implements OnInit {
       .subscribe((data) => {
         let msg = data.message;
         this.showMsgModal(msg); 
-        this.Route.navigate(['mentorLogin'])
       }, (error) => {
         console.log(error);
       })

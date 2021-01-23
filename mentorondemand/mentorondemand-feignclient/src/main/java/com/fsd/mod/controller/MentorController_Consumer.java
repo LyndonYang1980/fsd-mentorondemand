@@ -3,11 +3,9 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,6 +28,16 @@ public class MentorController_Consumer {
 	@GetMapping("/feign/mentors/{mentorId}")
 	public Mentor getMentor(@PathVariable("mentorId") Long mentorId) {
 		return mentorClientService.getMentor(mentorId);
+	}
+
+	@GetMapping("/feign/mentors/getMentorByName/{mentorName}")
+	public Mentor getMentorByName(@PathVariable("mentorName") String mentorName) {
+		return mentorClientService.getMentorByName(mentorName);
+	}
+
+	@GetMapping("/feign/mentors/getMentorByEmail/{mentorEmail}")
+	public Mentor getMentorByEmail(@PathVariable("mentorEmail") String mentorEmail) {
+		return mentorClientService.getMentorByEmail(mentorEmail);
 	}
 
 //	@PostMapping(value = "/feign/mentors/addMentor")

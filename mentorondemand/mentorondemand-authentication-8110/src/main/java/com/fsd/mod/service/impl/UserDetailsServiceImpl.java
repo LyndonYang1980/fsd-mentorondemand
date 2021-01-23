@@ -41,8 +41,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String userName, String userRole) throws UsernameNotFoundException {		
 		
 		if ("USER".equals(userRole)) {
-			User user = userClientService.getUserByName(userName);
 			
+			User user = userClientService.getUserByName(userName);			
 			if (user == null) {
 				throw new UsernameNotFoundException("User Not Found with user name: " + userName);
 			}

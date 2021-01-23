@@ -65,16 +65,4 @@
             </fieldset>
         </div>
     </div>
-
-    <div class="col-md-6 d-lg-inline-block align-top">
-        <div class="shadow mb-5 p-5 bg-white rounded">
-            <label for="mentorSkills">Skills: </label>
-            <div class="col-sm-8">
-                <ng-multiselect-dropdown id="skills" name="skills" [placeholder]="'Your skills'" [data]="skillList"
-                    [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
-                    (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
-            </div>
-        </div>
-    </div>
 </form>

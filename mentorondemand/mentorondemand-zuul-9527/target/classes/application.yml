@@ -14,13 +14,24 @@ eureka:
     prefer-ip-address: true     #访问路径可以显示IP地址     
     
 zuul:
+  ignored-services: "*"
   prefix: /fsd
   routes:
     mentor.serviceId: mentorondemand-mentor
-    mentor.path: /mentor/**
- 
-  ignored-services: "*"
-
+    mentor.path: /mentor-service/**
+        
+    user.serviceId: mentorondemand-user
+    user.path: /user-service/**
+    
+    training.serviceId: mentorondemand-training
+    training.path: /training-service/**
+    
+    payment.serviceId: mentorondemand-payment
+    payment.path: /payment-service/**
+    
+    auth.serviceId: mentorondemand-authentication
+    auth.path: /auth-service/**
+    
 info: 
   app.name: fsd-mentorondemand
   company.name: www.ibm.com

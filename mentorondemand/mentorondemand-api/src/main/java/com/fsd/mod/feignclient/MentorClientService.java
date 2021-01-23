@@ -27,7 +27,7 @@ public interface MentorClientService {
 	@GetMapping("/mentors/getMentorByName/{mentorName}")
 	public Mentor getMentorByName(@PathVariable("mentorName") String mentorName);
 	
-	@GetMapping("/mentors/getMentorByEmail/{mentorEmail:.+}")
+	@GetMapping("/mentors/getMentorByEmail/{mentorEmail}")
 	public Mentor getMentorByEmail(@PathVariable("mentorEmail") String mentorEmail);
 
 	@PostMapping(value = "/mentors/addMentor")
