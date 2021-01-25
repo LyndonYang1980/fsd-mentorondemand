@@ -43,6 +43,6 @@ eureka:
 info: 
   app.name: fsd-mentorondemand
   company.name: www.ibm.com
-  build.artifactId: mentorondemand-user-8021
-  build.version: 0.0.1-SNAPSHOT
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
 

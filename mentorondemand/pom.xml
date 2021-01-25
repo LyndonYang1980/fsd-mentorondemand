@@ -84,7 +84,7 @@
   </dependencyManagement>
 
 	<build>
-		<finalName>mentorondemand</finalName>
+		<!-- <finalName>mentorondemand</finalName> -->
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -93,13 +93,18 @@
 		</resources>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
+				<!-- <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>				
 				<configuration>
 					<delimiters>
 						<delimit>$</delimit>
 					</delimiters>
-				</configuration>
+				</configuration> -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<outputDirectory>C:\mentorondemand</outputDirectory>
+				</configuration>				
 			</plugin>
 		</plugins>
 	</build>

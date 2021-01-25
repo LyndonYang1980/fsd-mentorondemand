@@ -46,6 +46,6 @@ jwtExpirationMs: 86400000
 info: 
   app.name: fsd-mentorondemand
   company.name: www.ibm.com
-  build.artifactId: mentorondemand-authentication-8110
-  build.version: 0.0.1-SNAPSHOT
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
 

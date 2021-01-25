@@ -35,6 +35,6 @@ zuul:
 info: 
   app.name: fsd-mentorondemand
   company.name: www.ibm.com
-  build.artifactId: mentorondemand-zuul-9527
-  build.version: 0.0.1-SNAPSHOT
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
 
