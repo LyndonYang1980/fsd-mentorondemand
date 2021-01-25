@@ -14,7 +14,8 @@
 			<groupId>com.fsd.mod</groupId>
 			<artifactId>mentorondemand-api</artifactId>
 			<version>${project.version}</version>
-		</dependency><dependency>
+		</dependency>
+		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
 		</dependency>

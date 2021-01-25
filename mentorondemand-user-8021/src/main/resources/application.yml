@@ -22,7 +22,7 @@ spring:
     data-username: root
     data-password: root
     platform: mysql    
-#    data: classpath:data.sql 
+    data: classpath:data.sql 
     continue-on-error: true
     
     

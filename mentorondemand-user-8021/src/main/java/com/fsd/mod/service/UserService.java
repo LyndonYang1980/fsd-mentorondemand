@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.fsd.mod.entities.User;
 import com.fsd.mod.repository.UserRepo;
+import com.fsd.mod.utils.MD5Util;
 
 @Service
 public class UserService {
@@ -26,20 +27,48 @@ public class UserService {
 		return userRepo.findOne(userId);
 	}
 
-	public void addUser(User user) {
-		userRepo.save(user);
+	public User getUserByEmail(String userEmail) {
+		return userRepo.findByUserEmail(userEmail);
 	}
 
-	public void saveUser(User user) {
-		userRepo.save(user);
+	public User getUserByName(String userName) {
+		return userRepo.findByUserName(userName);
 	}
 
-	public void updateUser(User user) {
-		userRepo.save(user);
+	public User addUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
+		return userRepo.save(user);
 	}
 
-	public void deleteUser(Long userId) {
-		userRepo.delete(userId);
+	public User saveUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
+		return userRepo.save(user);
+	}
+
+	public User updateUser(User user) {
+		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
+		return userRepo.save(user);
+	}
+
+	public Boolean deleteUser(Long userId) {
+		try {
+			userRepo.delete(userId);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public User userLogin(String userEmail, String userPassword) {
+		return userRepo.findByUserEmailAndUserPassword(userEmail, userPassword);
+	}
+
+	public boolean isUserExisted(String userEmail) {
+		if (userRepo.findByUserEmail(userEmail) != null)
+			return true;
+		else
+			return false;
 	}
 
 }

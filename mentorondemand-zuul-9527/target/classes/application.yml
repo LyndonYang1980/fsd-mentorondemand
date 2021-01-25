@@ -1,0 +1,40 @@
+server:
+  port: 9527
+  
+spring:
+   application:
+    name: mentorondemand-zuul-gateway
+      
+eureka:
+  client: #Register client into Eureka service list
+    service-url: 
+       defaultZone: http://eureka7001.com:7001/eureka/      
+  instance:
+    instance-id: gateway-9527.com
+    prefer-ip-address: true     #访问路径可以显示IP地址     
+    
+zuul:
+  ignored-services: "*"
+  prefix: /fsd
+  routes:
+    mentor.serviceId: mentorondemand-mentor
+    mentor.path: /mentor-service/**
+        
+    user.serviceId: mentorondemand-user
+    user.path: /user-service/**
+    
+    training.serviceId: mentorondemand-training
+    training.path: /training-service/**
+    
+    payment.serviceId: mentorondemand-payment
+    payment.path: /payment-service/**
+    
+    auth.serviceId: mentorondemand-authentication
+    auth.path: /auth-service/**
+    
+info: 
+  app.name: fsd-mentorondemand
+  company.name: www.ibm.com
+  build.artifactId: mentorondemand-zuul-9527
+  build.version: 0.0.1-SNAPSHOT
+

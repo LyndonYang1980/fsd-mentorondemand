@@ -3,46 +3,68 @@ package com.fsd.mod.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.User;
 import com.fsd.mod.feignclient.UserClientService;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UserController_Consumer {
 
 	@Autowired
 	UserClientService userClientService;
-	
-	@RequestMapping("/consumer/users")
+
+	@GetMapping("/feign/users/getUsers")
 	public List<User> getUsers() {
 		return userClientService.getUsers();
 	}
-	
-	@RequestMapping("/consumer/users/{id}")
-	public User getUser(@PathVariable Long userId) {
+
+	@GetMapping("/feign/users/{userId}")
+	public User getUser(@PathVariable("userId") Long userId) {
 		return userClientService.getUser(userId);
 	}
-	
-	@PostMapping(value = "/consumer/users/signup")
-	public void addUser(@RequestBody User user) {
-		userClientService.addUser(user);		
+
+	@GetMapping("feign/users/getUserByName/{userName}")
+	public User getUserByName(@PathVariable("userName") String userName) {
+		return userClientService.getUserByName(userName);
 	}
-	
-	@PutMapping(value = "/consumer/users/{id}")
-	public void updateUser(@RequestBody User user) {
-		userClientService.updateUser(user);
+
+	@GetMapping("feign/users/getUserByEmail/{userEmail}")
+	public User getUserByEmail(@PathVariable("userEmail") String userEmail) {
+		return userClientService.getUserByEmail(userEmail);
 	}
-	
-	@DeleteMapping(value = "/consumer/users/{id}")
-	public void deleteUser(@PathVariable Long userId) {
-		userClientService.deleteUser(userId);
-	}	
-	
+
+//	@PostMapping(value = "/feign/users/signup")
+//	public User addUser(@RequestBody User user) {
+//		return userClientService.addUser(user);
+//	}
+
+	@PutMapping(value = "/feign/users")
+	public User updateUser(@RequestBody User user) {
+		return userClientService.updateUser(user);
+	}
+
+	@DeleteMapping(value = "/feign/users/{userId}")
+	public Boolean deleteUser(@PathVariable("userId") Long userId) {
+		return userClientService.deleteUser(userId);
+	}
+
+//	@PostMapping(value = "/feign/users/signin")
+//	public User loginUser(@RequestBody User user) {
+//		return userClientService.loginUser(user);
+//	}
+
+	@PutMapping(value = "/feign/users/updatePassword")
+	public User updatePassword(@RequestBody User user) {
+		return userClientService.updatePassword(user);
+	}
+
 }
