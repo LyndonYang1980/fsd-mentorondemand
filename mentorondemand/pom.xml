@@ -101,9 +101,9 @@
 					</delimiters>
 				</configuration> -->
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<outputDirectory>C:\mentorondemand</outputDirectory>
+					<outputDirectory>C:\mentorondemand\package</outputDirectory>
 				</configuration>				
 			</plugin>
 		</plugins>

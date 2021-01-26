@@ -3,12 +3,12 @@ server:
  
 eureka: 
   instance:
-    hostname: eureka7001.com #eureka server name
+    hostname: localhost
   client: 
     register-with-eureka: false
     fetch-registry: false
     service-url: 
-      defaultZone: http://eureka7001.com:7001/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
       
  
 

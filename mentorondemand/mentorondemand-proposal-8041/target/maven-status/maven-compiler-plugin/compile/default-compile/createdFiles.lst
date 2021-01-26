@@ -1,0 +1,4 @@
+com\fsd\mod\service\ProposalService.class
+com\fsd\mod\repository\ProposalRepo.class
+com\fsd\mod\controller\ProposalController.class
+com\fsd\mod\ProposalApp_8041.class

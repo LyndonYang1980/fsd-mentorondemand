@@ -1,0 +1,13 @@
+com\fsd\mod\feignclient\TrainingClientService.class
+com\fsd\mod\entities\Training.class
+com\fsd\mod\entities\Payment.class
+com\fsd\mod\feignclient\UserClientService.class
+com\fsd\mod\feignclient\MentorClientService.class
+com\fsd\mod\feignclient\AuthClientService.class
+com\fsd\mod\entities\Skill.class
+com\fsd\mod\entities\Calendar.class
+com\fsd\mod\entities\Proposal.class
+com\fsd\mod\feignclient\ProposalClientService.class
+com\fsd\mod\utils\MD5Util.class
+com\fsd\mod\entities\Mentor.class
+com\fsd\mod\entities\User.class
