@@ -5,8 +5,9 @@
     <artifactId>mentorondemand</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>mentorondemand-training-8011</artifactId>
-  <name>mentorondemand-training-8011</name>
+  <name>mentorondemand-training</name>
   
   <dependencies>
 		<!-- Import own defined entity package -->

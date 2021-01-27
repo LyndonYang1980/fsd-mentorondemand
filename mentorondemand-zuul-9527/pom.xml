@@ -7,8 +7,6 @@
   </parent>
   
   <artifactId>mentorondemand-zuul-9527</artifactId>
-  <name>mentorondemand-zuul-9527</name>
-  <packaging>war</packaging>
   
   <dependencies>
 		<!-- zuul -->
@@ -62,5 +60,4 @@
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
 	</dependencies>
-  
 </project>

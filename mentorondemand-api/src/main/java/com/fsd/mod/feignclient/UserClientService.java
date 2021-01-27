@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fsd.mod.entities.User;
 
-import feign.Param;
-
 @FeignClient(value = "mentorondemand-user")
 public interface UserClientService {
 
@@ -22,14 +20,14 @@ public interface UserClientService {
 	public List<User> getUsers();
 
 	@RequestMapping("/users/{userId}")
-	public User getUser(@PathVariable Long userId);
+	public User getUser(@PathVariable("userId") Long userId);
 
 	@GetMapping("/users/getUserByName/{userName}")
 	public User getUserByName(@PathVariable("userName") String userName);
-	
+
 	@GetMapping("/users/getUserByEmail/{userEmail}")
 	public User getUserByEmail(@PathVariable("userEmail") String userEmail);
-	
+
 	@PostMapping(value = "/users/addUser")
 	public User addUser(@RequestBody User user);
 
@@ -37,10 +35,7 @@ public interface UserClientService {
 	public User updateUser(@RequestBody User user);
 
 	@DeleteMapping(value = "/users/{userId}")
-	public Boolean deleteUser(@PathVariable Long userId);
-
-//	@PostMapping(value = "/users/login")
-//	public User loginUser(@RequestBody User user);
+	public Boolean deleteUser(@PathVariable("userId") Long userId);
 
 	@PutMapping(value = "/users/updatePassword")
 	public User updatePassword(@RequestBody User user);

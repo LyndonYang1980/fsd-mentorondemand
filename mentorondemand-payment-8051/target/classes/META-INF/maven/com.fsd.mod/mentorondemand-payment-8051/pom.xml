@@ -7,6 +7,7 @@
   </parent>
   
   <artifactId>mentorondemand-payment-8051</artifactId>
+  <name>mentorondemand-payment</name>
   
   <dependencies>
 		<!-- Import own defined entity package -->

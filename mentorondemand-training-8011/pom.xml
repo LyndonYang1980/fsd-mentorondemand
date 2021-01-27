@@ -7,8 +7,7 @@
   </parent>
   
   <artifactId>mentorondemand-training-8011</artifactId>
-  <name>mentorondemand-training-8011</name>
-  <packaging>war</packaging>
+  <name>mentorondemand-training</name>
   
   <dependencies>
 		<!-- Import own defined entity package -->

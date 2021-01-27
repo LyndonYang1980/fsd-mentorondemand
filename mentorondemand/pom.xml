@@ -83,34 +83,48 @@
 	</dependencies>
   </dependencyManagement>
 
-	<build>
-		<!-- <finalName>mentorondemand</finalName> -->
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<!-- <groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>				
-				<configuration>
-					<delimiters>
-						<delimit>$</delimit>
-					</delimiters>
-				</configuration> -->
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<outputDirectory>C:\mentorondemand\package</outputDirectory>
-				</configuration>				
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+      <plugins>
+		<plugin>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-maven-plugin</artifactId>
+		    <configuration>
+		        <fork>true</fork>
+		        <addResources>true</addResources>
+		    </configuration>
+		    <executions>
+		        <execution>
+		            <goals>
+		                <goal>repackage</goal>
+		            </goals>
+		        </execution>
+		    </executions>
+		</plugin>
+		
+	<!-- 	<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-jar-plugin</artifactId>
+			<configuration>
+				<archive>
+					<addMavenDescriptor>true</addMavenDescriptor>
+					<manifest>
+						<useUniqueVersions>false</useUniqueVersions>
+						<addClasspath>true</addClasspath>
+						<classpathPrefix>lib/</classpathPrefix>					
+					</manifest>
+				</archive>
+				<outputDirectory>C:/mentorondemand/package</outputDirectory>
+				<includes>
+					<include>**/*.class</include>
+					<include>**/*.properties</include>
+				</includes>
+			</configuration>				
+		</plugin> -->
+	</plugins>
+  </build>				
   
 	<modules>
-		<module>mentorondemand-api</module>
+		<!-- <module>mentorondemand-api</module> -->
 		<module>mentorondemand-mentor-8001</module>
 		<module>mentorondemand-user-8021</module>
 		<module>mentorondemand-admin-8031</module>

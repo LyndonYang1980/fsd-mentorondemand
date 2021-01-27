@@ -5,8 +5,9 @@
     <artifactId>mentorondemand</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>mentorondemand-user-8021</artifactId>
-  <name>mentorondemand-user-8021</name>
+  <name>mentorondemand-user</name>
   
   <dependencies>
 		<!-- Import own defined entity package -->
@@ -77,7 +78,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
-		
+		</dependency>		
   </dependencies>
 </project>

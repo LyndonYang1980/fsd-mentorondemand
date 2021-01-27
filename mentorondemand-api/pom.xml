@@ -8,8 +8,6 @@
   </parent>
   
   <artifactId>mentorondemand-api</artifactId>
-  <name>mentorondemand-api</name>
-  <packaging>war</packaging>
   
   <dependencies>
 	<dependency>

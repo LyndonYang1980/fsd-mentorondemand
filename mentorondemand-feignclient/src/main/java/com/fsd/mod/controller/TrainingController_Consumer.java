@@ -33,7 +33,7 @@ public class TrainingController_Consumer {
 		return trainingClientService.getTraining(trainingId);
 	}
 
-	@PostMapping("feign/trainings/existingTraining")
+	@PostMapping("/feign/trainings/existingTraining")
 	public Training findExistingTraining(@RequestBody Training trainingData) {
 		return trainingClientService.findExistingTraining(trainingData);
 	}

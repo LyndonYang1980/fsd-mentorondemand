@@ -5,7 +5,9 @@
     <artifactId>mentorondemand</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
+  
   <artifactId>mentorondemand-feignclient</artifactId>
+  <name>mentorondemand-feignclient</name>
   
   <dependencies>
   		<!-- own defined api -->

@@ -8,7 +8,6 @@
   
   <artifactId>mentorondemand-feignclient</artifactId>
   <name>mentorondemand-feignclient</name>
-  <packaging>war</packaging>
   
   <dependencies>
   		<!-- own defined api -->
