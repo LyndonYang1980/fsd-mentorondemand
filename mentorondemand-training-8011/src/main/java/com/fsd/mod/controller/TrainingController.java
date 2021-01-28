@@ -33,7 +33,7 @@ public class TrainingController {
 	}
 
 	@GetMapping("/trainings/{trainingId}")
-	public Training getTraining(@PathVariable Long trainingId) {
+	public Training getTraining(@PathVariable("trainingId") Long trainingId) {
 		Training training = trainingService.getTraining(trainingId);
 		return training;
 	}
@@ -83,7 +83,7 @@ public class TrainingController {
 	}
 
 	@GetMapping(value = "/trainings/user/{userId}")
-	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId) {
+	public ResponseEntity<List<Training>> getUserTraining(@PathVariable("userId") Long userId) {
 		List<Training> userTrainings = trainingService.getUserTraining(userId);
 		if (userTrainings != null) {
 			return new ResponseEntity<List<Training>>(userTrainings, HttpStatus.OK);
@@ -93,7 +93,7 @@ public class TrainingController {
 	}
 
 	@GetMapping(value = "/trainings/mentor/{mentorId}")
-	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable Long mentorId) {
+	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable("mentorId") Long mentorId) {
 		List<Training> mentorTrainings = trainingService.getMentorTraining(mentorId);
 		if (mentorTrainings != null) {
 			return new ResponseEntity<List<Training>>(mentorTrainings, HttpStatus.OK);

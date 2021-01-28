@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsd.mod.entities.Training;
@@ -42,9 +41,9 @@ public class TrainingController_Consumer {
 	public ResponseEntity<Training> addTraining(@RequestBody Training training) {
 		return trainingClientService.addTraining(training);
 	}
-	
+
 	@PostMapping(value = "/feign/trainings/addTrainings")
-	public ResponseEntity<List<Training>> addTrainings(@RequestBody List<Training> trainingList){
+	public ResponseEntity<List<Training>> addTrainings(@RequestBody List<Training> trainingList) {
 		return trainingClientService.addTrainings(trainingList);
 	}
 

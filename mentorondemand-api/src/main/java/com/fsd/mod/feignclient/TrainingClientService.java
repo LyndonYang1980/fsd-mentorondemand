@@ -19,7 +19,7 @@ public interface TrainingClientService {
 	public List<Training> getTrainings();
 
 	@GetMapping("/trainings/{trainingId}")
-	public Training getTraining(@PathVariable Long trainingId);
+	public Training getTraining(@PathVariable("trainingId") Long trainingId);
 
 	@PostMapping("/trainings/existingTraining")
 	public Training findExistingTraining(@RequestBody Training trainingData);
@@ -34,9 +34,9 @@ public interface TrainingClientService {
 	public Training updateTraining(@RequestBody Training training);
 
 	@GetMapping(value = "/trainings/user/{userId}")
-	public ResponseEntity<List<Training>> getUserTraining(@PathVariable Long userId);
+	public ResponseEntity<List<Training>> getUserTraining(@PathVariable("userId") Long userId);
 
 	@GetMapping(value = "/trainings/mentor/{mentorId}")
-	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable Long mentorId);
+	public ResponseEntity<List<Training>> getMentorTraining(@PathVariable("mentorId") Long mentorId);
 
 }

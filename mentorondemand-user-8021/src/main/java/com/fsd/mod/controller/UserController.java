@@ -60,7 +60,7 @@ public class UserController {
 	}
 
 	@DeleteMapping(value = "/users/{userId}")
-	public Boolean deleteUser(@PathVariable Long userId) {
+	public Boolean deleteUser(@PathVariable("userId") Long userId) {
 		Boolean delFlag = userService.deleteUser(userId);
 		return delFlag;
 	}
