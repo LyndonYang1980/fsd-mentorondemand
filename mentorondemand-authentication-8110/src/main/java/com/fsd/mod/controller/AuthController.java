@@ -41,7 +41,7 @@ public class AuthController {
 
 	@Autowired
 	UserClientService userClientService;
-	
+
 	@Autowired
 	MentorClientService mentorClientService;
 
@@ -126,7 +126,7 @@ public class AuthController {
 			return ResponseEntity.ok(null);
 		}
 	}
-	
+
 	@PostMapping("/mentors/signup")
 	public ResponseEntity<?> registerMentor(@Valid @RequestBody Mentor mentor) {
 		if (mentorClientService.getMentorByEmail(mentor.getMentorEmail()) != null) {

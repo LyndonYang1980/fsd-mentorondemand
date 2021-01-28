@@ -1,7 +1,5 @@
 package com.fsd.mod.service.impl;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,18 +11,16 @@ import com.fsd.mod.entities.Mentor;
 import com.fsd.mod.entities.User;
 import com.fsd.mod.feignclient.MentorClientService;
 import com.fsd.mod.feignclient.UserClientService;
-import com.fsd.mod.service.CustomUserDetailsService;
 
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	UserClientService userClientService;
-	
+
 	@Autowired
 	MentorClientService mentorClientService;
-	
-	
+
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -36,18 +32,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 		return UserDetailsImpl.build(user);
 	}
-	
+
 	@Transactional
-	public UserDetails loadUserByUsername(String userName, String userRole) throws UsernameNotFoundException {		
-		
+	public UserDetails loadUserByUsername(String userName, String userRole) throws UsernameNotFoundException {
+
 		if ("USER".equals(userRole)) {
-			
-			User user = userClientService.getUserByName(userName);			
+
+			User user = userClientService.getUserByName(userName);
 			if (user == null) {
 				throw new UsernameNotFoundException("User Not Found with user name: " + userName);
 			}
 			return UserDetailsImpl.build(user);
-		}else if ("MENTOR".equals(userRole)) {
+		} else if ("MENTOR".equals(userRole)) {
 			Mentor mentor = mentorClientService.getMentorByName(userName);
 			if (mentor == null) {
 				throw new UsernameNotFoundException("Mentor Not Found with mentor name: " + userName);
@@ -55,6 +51,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			return MentorDetailsImpl.build(mentor);
 		}
 		return null;
-		
+
 	}
 }

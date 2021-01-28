@@ -17,12 +17,11 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.fsd.mod.entities.User;
 import com.fsd.mod.service.impl.UserDetailsServiceImpl;
 import com.fsd.mod.utils.JwtUtils;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-	
+
 	@Autowired
 	private JwtUtils jwtUtils;
 
@@ -35,9 +34,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		try {
-			
-			String userName = request.getParameter("userName");
-			String userPasssword = request.getParameter("userPassword");
+
 			String jwt = parseJwt(request);
 			if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 				String username = jwtUtils.getUserNameFromJwtToken(jwt);

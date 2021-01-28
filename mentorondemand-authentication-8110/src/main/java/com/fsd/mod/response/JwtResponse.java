@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 public class JwtResponse {
-	
+
 	private String token;
 	private String type = "Bearer";
-	
+
 	private Map<String, Object> objData = new HashMap<>();
 
 	public JwtResponse(String accessToken, Long id, String username, String email, String key, Object obj) {
@@ -20,11 +20,11 @@ public class JwtResponse {
 //		this.email = email;
 		this.add(key, obj);
 	}
-	
+
 	public JwtResponse add(String key, Object obj) {
-    	this.getObjData().put(key, obj);
-    	return this;
-    }
+		this.getObjData().put(key, obj);
+		return this;
+	}
 
 	public String getAccessToken() {
 		return token;

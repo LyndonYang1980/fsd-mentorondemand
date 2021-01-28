@@ -13,9 +13,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fsd.mod.filter.AuthTokenFilter;
@@ -38,15 +35,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
 	public AuthTokenFilter authenticationJwtTokenFilter() {
 		return new AuthTokenFilter();
 	}
-	
-	@Bean(name="customAuthenticationProvider")
-    public AuthenticationProvider customAuthenticationProvider() {
-        CustomAuthenticationProvider customAuthenticationProvider= new CustomAuthenticationProvider();
-        customAuthenticationProvider.setUserDetailsService(userDetailsService);
-        customAuthenticationProvider.setHideUserNotFoundExceptions(false);
-        customAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        return customAuthenticationProvider;
-    }
+
+	@Bean(name = "customAuthenticationProvider")
+	public AuthenticationProvider customAuthenticationProvider() {
+		CustomAuthenticationProvider customAuthenticationProvider = new CustomAuthenticationProvider();
+		customAuthenticationProvider.setUserDetailsService(userDetailsService);
+		customAuthenticationProvider.setHideUserNotFoundExceptions(false);
+		customAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+		return customAuthenticationProvider;
+	}
 
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -67,12 +64,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements A
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable()
-		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-		.authorizeRequests().antMatchers("/users/**").permitAll()
-		.antMatchers("/mentors/**").permitAll()
-		.anyRequest().authenticated();
+		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().authorizeRequests()
+				.antMatchers("/users/**").permitAll().antMatchers("/mentors/**").permitAll().anyRequest()
+				.authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

@@ -1,0 +1,8 @@
+com\fsd\mod\controller\ProposalController_Consumer.class
+com\fsd\mod\FeignClientApp.class
+com\fsd\mod\controller\MentorController_Consumer.class
+com\fsd\mod\controller\TrainingController_Consumer.class
+com\fsd\mod\controller\UserController_Consumer.class
+com\fsd\mod\controller\AuthControl_Consumer.class
+com\fsd\mod\controller\CalendarController_Consumer.class
+com\fsd\mod\controller\SkillController_Consumer.class

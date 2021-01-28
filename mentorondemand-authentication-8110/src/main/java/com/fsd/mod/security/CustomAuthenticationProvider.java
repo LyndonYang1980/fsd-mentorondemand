@@ -17,7 +17,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.util.Assert;
 
-import com.fsd.mod.config.MD5PasswordEncoder;
 import com.fsd.mod.service.impl.UserDetailsServiceImpl;
 
 /**
