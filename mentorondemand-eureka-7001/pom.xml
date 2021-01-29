@@ -7,7 +7,6 @@
   </parent>
   
   <artifactId>mentorondemand-eureka-7001</artifactId>
-  <name>mentorondemand-eureka</name>
   
   <dependencies>
 	<!--eureka-server -->
@@ -27,6 +26,7 @@
   </dependencies>
   
   <build>
+    <finalName>mentorondemand-eureka</finalName>
     <plugins>
 	  <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -43,6 +43,18 @@
 		    </execution>
 		  </executions>
 	  </plugin>
+	  
+	  <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.3.6</version>
+        <configuration>
+          <repository>${project.build.finalName}</repository>
+          <buildArgs>
+            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
 	</plugins>
   </build>
 </project>

@@ -7,7 +7,6 @@
   </parent>
   
   <artifactId>mentorondemand-feignclient</artifactId>
-  <name>mentorondemand-feignclient</name>
   
   <dependencies>
   		<!-- own defined api -->
@@ -53,8 +52,9 @@
   </dependencies>
   
   <build>
+    <finalName>mentorondemand-feign</finalName>
     <plugins>
-	  <plugin>
+      <plugin>
         <groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-maven-plugin</artifactId>
 		  <configuration>
@@ -69,6 +69,18 @@
 		    </execution>
 		  </executions>
 	  </plugin>
+	  
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.3.6</version>
+        <configuration>
+          <repository>${project.build.finalName}</repository>
+          <buildArgs>
+            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+          </buildArgs>
+        </configuration>
+      </plugin>
 	</plugins>
   </build>
 </project>
