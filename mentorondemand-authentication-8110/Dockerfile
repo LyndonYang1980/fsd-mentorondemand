@@ -3,4 +3,7 @@ VOLUME /share/data
 EXPOSE 8110
 ARG JAR_FILE
 COPY ${JAR_FILE} mentorondemand-authentication.jar
-ENTRYPOINT ["java","-jar","/mentorondemand-authentication.jar"]
+COPY ./wait-for-it.sh /wait-for-it.sh
+RUN sh -c 'chmod 777 /wait-for-it.sh'
+RUN apk add bash
+ENTRYPOINT ["bash", "/wait-for-it.sh", "eurekahost:7001", "--", "java", "-jar", "/mentorondemand-authentication.jar"]

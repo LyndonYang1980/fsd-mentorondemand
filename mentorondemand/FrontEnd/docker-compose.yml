@@ -12,18 +12,8 @@ services:
       mentorondemand:
         aliases: 
           - frontend
-    links:
-      - "mysql:mysqlhost"
-      - "eureka:eurekahost"
-    # depends_on:
-    #   - mysql
-    #   - eureka
-    #   - user
-    #   - mentor
-    #   - training
-    #   - payment
-    #   - authentification
-    #   - feign
+    # links:
+    #   - "feign:feignhost"
 
 networks: 
   mentorondemand:
