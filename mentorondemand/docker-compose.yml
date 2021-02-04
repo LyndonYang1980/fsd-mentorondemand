@@ -1,0 +1,188 @@
+version: "2"
+services:
+  
+  mysql:
+    hostname: mysqlhost
+    build: 
+      context: .
+      dockerfile: dockerfile-mysql
+    container_name: mysql
+    restart: always
+    volumes: 
+      - C:/mentorondemand/volume:/var/lib/mysql
+    expose:
+      - "3306"
+    ports: 
+      - "3307:3306"
+    networks: 
+      mentorondemand:
+        aliases: 
+          - database
+    environment:
+      - MYSQL_ROOT_PASSWORD=root     
+  
+  eureka:
+    hostname: eurekahost
+    image: mentorondemand-eureka
+    container_name: eureka
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 7001:7001
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    # links:
+      # - "mysql:mysqlhost"
+      # - "eureka:eurekahost"
+    # depends_on:
+      # - mysql
+      # - eureka
+    # entrypoint: "java -jar /mentorondemand-eureka.jar"
+
+  user:
+    hostname: userhost
+    image: mentorondemand-user
+    container_name: user
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8021:8021
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+  
+  mentor:
+    hostname: mentorhost
+    image: mentorondemand-mentor
+    container_name: mentor
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8001:8001
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+      - user
+
+  training:
+    hostname: traininghost
+    image: mentorondemand-training
+    container_name: training
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8011:8011
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+      - user
+
+  payment:
+    hostname: paymenthost
+    image: mentorondemand-payment
+    container_name: payment
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8051:8051
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+      - user
+
+  authentification:
+    hostname: authhost
+    image: mentorondemand-auth
+    container_name: auth
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8110:8110
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+      - user
+
+  feign:
+    hostname: feignhost
+    image: mentorondemand-feign
+    container_name: feign
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 80:80
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - eureka
+
+  zuul:
+    hostname: zuulhost
+    image: mentorondemand-zuul
+    container_name: zuul
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 9527:9527
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - eureka
+
+networks: 
+  mentorondemand:
