@@ -1,6 +1,6 @@
 FROM mysql:5.7
 WORKDIR /
-COPY ./schema.sql /tmp/sql
-RUN mv /root/tmp/sql/*.sql /docker-entrypoint-initdb.d
+COPY ./schema.sql /tmp/sql/schema.sql
+RUN mv /tmp/sql/schema.sql /docker-entrypoint-initdb.d
 RUN rm -rf /tmp/sql
 EXPOSE 3306
