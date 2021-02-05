@@ -104,26 +104,26 @@ services:
       - eureka
       - user
 
-  # payment:
-  #   hostname: paymenthost
-  #   image: mentorondemand-payment
-  #   container_name: payment
-  #   restart: always
-  #   volumes:
-  #     - C:\volume:/etc/share/
-  #   ports:
-  #     - 8051:8051
-  #   networks: 
-  #     mentorondemand:
-  #       aliases: 
-  #         - app
-  #   links:
-  #     - "mysql:mysqlhost"
-  #     - "eureka:eurekahost"
-  #   depends_on:
-  #     - mysql
-  #     - eureka
-  #     - user
+  payment:
+    hostname: paymenthost
+    image: mentorondemand-payment
+    container_name: payment
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 8051:8051
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - mysql
+      - eureka
+      - user
 
   authentification:
     hostname: authhost
@@ -159,30 +159,30 @@ services:
       mentorondemand:
         aliases: 
           - app
-    links:
-      - "mysql:mysqlhost"
+    # links:
+      # - "mysql:mysqlhost"
       # - "eureka:eurekahost"
     depends_on:
       - eureka
 
-  # zuul:
-  #   hostname: zuulhost
-  #   image: mentorondemand-zuul
-  #   container_name: zuul
-  #   restart: always
-  #   volumes:
-  #     - C:\volume:/etc/share/
-  #   ports:
-  #     - 9527:9527
-  #   networks: 
-  #     mentorondemand:
-  #       aliases: 
-  #         - app
-  #   links:
-  #     - "mysql:mysqlhost"
-  #     - "eureka:eurekahost"
-  #   depends_on:
-  #     - eureka
+  zuul:
+    hostname: zuulhost
+    image: mentorondemand-zuul
+    container_name: zuul
+    restart: always
+    volumes:
+      - C:\volume:/etc/share/
+    ports:
+      - 9527:9527
+    networks: 
+      mentorondemand:
+        aliases: 
+          - app
+    links:
+      # - "mysql:mysqlhost"
+      - "eureka:eurekahost"
+    depends_on:
+      - eureka
 
 networks: 
   mentorondemand:
