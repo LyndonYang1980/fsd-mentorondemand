@@ -161,7 +161,7 @@ services:
           - app
     links:
       - "mysql:mysqlhost"
-      - "eureka:eurekahost"
+      # - "eureka:eurekahost"
     depends_on:
       - eureka
 
