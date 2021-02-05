@@ -1,5 +1,5 @@
 #设置一个基本的镜像，FROM 后面是镜像的名字，这个镜像是 Docker 官方提供的，这个镜像里面包含了 Node.js，可以在node后跟冒号 申明东镜像版本。as builder 是给它起了个别名
-FROM node as builder
+FROM node:latest as builder
 #WORKDIR 指令设置了工作目录的位置，意思就是进入到 /usr/src/app 这个目录，然后要在这个目录里去做一些事情。这里的目录是在镜像里的一个位置。
 WORKDIR /usr/src/app
 
