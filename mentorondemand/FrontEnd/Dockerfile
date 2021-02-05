@@ -10,7 +10,8 @@ COPY . .
 
 RUN npm config set strict-ssl false
 #运行了一下 npm install 命令，也就是安装 Angular 项目需要的所有的东西
-RUN npm install
+# RUN npm install
+RUN npm i --unsafe-perm
 #它运行的是 ng build --prod，作用就是构建一个适合在生产环境上运行的 Angular 应用
 RUN npm run build --prod
 #这里的nginx版本可以去掉 就会下载 latest
