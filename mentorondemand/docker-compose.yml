@@ -9,7 +9,7 @@ services:
     container_name: mysql
     restart: always
     volumes: 
-      - C:/mentorondemand/volume:/var/lib/mysql
+      - C:/fsd-mentorondemand/volume:/var/lib/mysql
     expose:
       - "3306"
     ports: 
@@ -27,7 +27,7 @@ services:
     container_name: eureka
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 7001:7001
     networks: 
@@ -48,7 +48,7 @@ services:
     container_name: user
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8021:8021
     networks: 
@@ -68,7 +68,7 @@ services:
     container_name: mentor
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8001:8001
     networks: 
@@ -89,7 +89,7 @@ services:
     container_name: training
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8011:8011
     networks: 
@@ -110,7 +110,7 @@ services:
     container_name: payment
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8051:8051
     networks: 
@@ -131,7 +131,7 @@ services:
     container_name: auth
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8110:8110
     networks: 
@@ -152,7 +152,7 @@ services:
     container_name: feign
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 80:80
     networks: 
@@ -171,7 +171,7 @@ services:
     container_name: zuul
     restart: always
     volumes:
-      - C:\volume:/etc/share/
+      - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 9527:9527
     networks: 
