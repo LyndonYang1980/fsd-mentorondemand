@@ -14,8 +14,7 @@ RUN npm config set proxy null
 # RUN npm install
 RUN npm config set registry http: //registry.cnpmjs.org
 RUN npm info underscore
-RUN npm install
-# RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
+RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 RUN npm install -g @angular/cli@9.0.7
 RUN npm install --save -dev @angular-devkit/build-angular
 #它运行的是 ng build --prod，作用就是构建一个适合在生产环境上运行的 Angular 应用
