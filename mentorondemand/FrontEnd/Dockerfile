@@ -14,7 +14,8 @@ RUN npm config set strict-ssl false
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 #它运行的是 ng build --prod，作用就是构建一个适合在生产环境上运行的 Angular 应用
-RUN npm run build --prod
+# RUN npm run build --prod
+RUN node_modules/.bin/ng build --prod
 #这里的nginx版本可以去掉 就会下载 latest
 FROM nginx:1.17
 #你需要将这里的angulardemo10换成你执行ng build在dist下生成的目录 一般是你的项目名称
