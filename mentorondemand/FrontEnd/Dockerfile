@@ -12,7 +12,7 @@ RUN npm config set strict-ssl false
 #运行了一下 npm install 命令，也就是安装 Angular 项目需要的所有的东西
 # RUN npm install
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
-
+RUN npm install -g @angular/cli
 #它运行的是 ng build --prod，作用就是构建一个适合在生产环境上运行的 Angular 应用
 # RUN npm run build --prod
 RUN node_modules/.bin/ng build --prod
