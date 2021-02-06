@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 RUN npm config set strict-ssl false
+RUN npm config set proxy null
 #运行了一下 npm install 命令，也就是安装 Angular 项目需要的所有的东西
 # RUN npm install
 RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
