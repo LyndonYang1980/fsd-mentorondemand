@@ -8,8 +8,8 @@ services:
       dockerfile: dockerfile-mysql
     container_name: mysql
     restart: always
-    volumes: 
-      - C:/fsd-mentorondemand/volume:/var/lib/mysql
+    # volumes: 
+    #   - C:/fsd-mentorondemand/volume:/var/lib/mysql
     expose:
       - "3306"
     ports: 
@@ -26,8 +26,8 @@ services:
     image: mentorondemand-eureka
     container_name: eureka
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 7001:7001
     networks: 
@@ -47,8 +47,8 @@ services:
     image: mentorondemand-user
     container_name: user
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8021:8021
     networks: 
@@ -67,8 +67,8 @@ services:
     image: mentorondemand-mentor
     container_name: mentor
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8001:8001
     networks: 
@@ -88,8 +88,8 @@ services:
     image: mentorondemand-training
     container_name: training
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8011:8011
     networks: 
@@ -109,8 +109,8 @@ services:
     image: mentorondemand-payment
     container_name: payment
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8051:8051
     networks: 
@@ -130,8 +130,8 @@ services:
     image: mentorondemand-auth
     container_name: auth
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 8110:8110
     networks: 
@@ -151,8 +151,8 @@ services:
     image: mentorondemand-feign
     container_name: feign
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 80:80
     networks: 
@@ -170,8 +170,8 @@ services:
     image: mentorondemand-zuul
     container_name: zuul
     restart: always
-    volumes:
-      - C:/fsd-mentorondemand/volume:/etc/share/
+    # volumes:
+    #   - C:/fsd-mentorondemand/volume:/etc/share/
     ports:
       - 9527:9527
     networks: 
