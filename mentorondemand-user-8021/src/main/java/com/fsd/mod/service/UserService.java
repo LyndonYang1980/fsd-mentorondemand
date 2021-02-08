@@ -36,7 +36,7 @@ public class UserService {
 	}
 
 	public User addUser(User user) {
-		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
+//		user.setUserPassword(MD5Util.encode(user.getUserPassword()));
 		return userRepo.save(user);
 	}
 

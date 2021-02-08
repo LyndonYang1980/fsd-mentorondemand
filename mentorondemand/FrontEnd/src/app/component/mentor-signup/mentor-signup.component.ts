@@ -49,7 +49,7 @@ export class MentorSignupComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(MessageModalComponent, { initialState });
 
     this.bsModalRef.content.onClick = () => {
-      this.Route.navigate(['login']);
+      this.Route.navigate(['mentorLogin']);
     }
   }
 

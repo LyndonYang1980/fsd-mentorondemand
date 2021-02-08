@@ -35,7 +35,7 @@ public class MentorService {
 	}
 
 	public Mentor addMentor(Mentor mentor) {
-		mentor.setMentorPassword(MD5Util.encode(mentor.getMentorPassword()));
+//		mentor.setMentorPassword(MD5Util.encode(mentor.getMentorPassword()));
 		return mentorRepo.save(mentor);
 	}
 
